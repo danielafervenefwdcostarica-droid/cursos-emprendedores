@@ -1,9 +1,13 @@
 import React from 'react'
 
-const Footer = () => {
-  return (
-    <div>Footer</div>
-  )
+function Footer() {
+    return(
+        <footer className="footer">
+            <h3>Cursos</h3>
+           <p>Plataforma de aprendizaje y oportunidades para emprendedores
+            </p> 
+                <p>© 2024 CursosPlus. Todos los derechos reservados.</p>
+        </footer>
+    )
 }
-
 export default Footer

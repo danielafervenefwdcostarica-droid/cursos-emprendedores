@@ -1,3 +1,6 @@
+import React from 'react'
+
+
 // CTA: sección de la página que invita al usuario a hacer algo.//
 
 function CTA() {
