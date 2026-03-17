@@ -18,31 +18,35 @@ const LoginPage = () => {
   };
 
   // Aquí está la función conectada a la base de datos
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Verificando credenciales en la base de datos...");
+    console.log("Verificando credenciales...");
+
+    const emailLimpio = formData.email.trim();
+    const passwordLimpia = formData.password.trim();
 
     try {
-      // Llamamos al json-server
-      const respuesta = await fetch(`http://localhost:3001/usuarios?email=${formData.email}&password=${formData.password}`);
+      const respuesta = await fetch(`http://localhost:3001/usuarios?email=${emailLimpio}&password=${passwordLimpia}`);
       const usuariosEncontrados = await respuesta.json();
 
       if (usuariosEncontrados.length > 0) {
         const usuarioValido = usuariosEncontrados[0];
-        console.log("¡Login exitoso!", usuarioValido);
+        
+        // --- LA MAGIA ESTÁ AQUÍ ---
+        // Guardamos los datos del usuario en la memoria del navegador
+        localStorage.setItem('usuarioLogueado', JSON.stringify(usuarioValido));
 
-        // Redirigimos según el rol que venga de la base de datos
         if (usuarioValido.role === 'admin') {
           navigate('/admin');
         } else {
           navigate('/cliente');
         }
       } else {
-        alert("Correo o contraseña incorrectos. Intenta de nuevo.");
+        alert("Usuario o contraseña incorrectos. Por favor, verifica tus datos.");
       }
     } catch (error) {
       console.error("Error conectando a la base de datos:", error);
-      alert("Asegúrate de tener encendido el json-server en el puerto 3001.");
+      alert("Error de conexión. Revisa que json-server esté corriendo.");
     }
   };
 
