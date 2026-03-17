@@ -1,19 +1,26 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import RegisterPage from '../pages/RegisterPage';
+
+// Importamos todas tus vistas
+import LoginPage from '../pages/LoginPage';
+import RegisterPage from '../components/RegisterPage'; 
+import ClientProfile from '../pages/ClientProfile';
+import AdminProfile from '../pages/AdminProfile';
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Ruta para tu página de registro */}
+        {/* Rutas Públicas */}
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/registro" element={<RegisterPage />} />
         
-        {/* Cuando tus compañeros hagan el Login, lo agregarás aquí así: */}
-        {/* <Route path="/login" element={<LoginPage />} /> */}
-
-        {/* Si alguien entra a una ruta que no existe o a la raíz, lo mandamos al registro por ahora */}
-        <Route path="*" element={<Navigate to="/registro" replace />} />
+        {/* Rutas Privadas (Perfiles) */}
+        <Route path="/cliente" element={<ClientProfile />} />
+        <Route path="/admin" element={<AdminProfile />} />
+        
+        {/* Ruta por defecto: si entran a la raíz, los mandamos al login */}
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </BrowserRouter>
   );

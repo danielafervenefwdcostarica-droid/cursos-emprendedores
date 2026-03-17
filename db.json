@@ -1,0 +1,26 @@
+{
+  "usuarios": [
+    {
+      "id": "1",
+      "nombre": "Administrador Principal",
+      "email": "admin@empresa.com",
+      "password": "123",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "nombre": "Cliente de Prueba",
+      "email": "cliente@correo.com",
+      "password": "123",
+      "role": "cliente"
+    },
+    {
+      "id": "e380",
+      "nombre": "Aaron",
+      "email": "loren@gmail.com",
+      "password": "Loscatos0031",
+      "role": "cliente"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

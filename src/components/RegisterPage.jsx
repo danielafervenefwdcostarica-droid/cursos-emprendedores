@@ -1,8 +1,10 @@
-// src/pages/RegisterPage.jsx
 import React, { useState } from 'react';
-import '../styles/RegisterPage.css'; // Importamos los estilos separados
+import { useNavigate } from 'react-router-dom';
+import '../styles/RegisterPage.css'; 
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -17,10 +19,37 @@ const RegisterPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  // Función actualizada que guarda en el db.json
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Datos listos para enviar al backend:", formData);
-    // Aquí conectarás con la API de tus compañeros
+    console.log("Enviando nuevo usuario a la base de datos...");
+
+    try {
+      // Hacemos la petición POST al json-server
+      const respuesta = await fetch('http://localhost:3001/usuarios', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (respuesta.ok) {
+        console.log("¡Usuario registrado con éxito!");
+        
+        // Si se guardó bien, lo mandamos a su panel correspondiente
+        if (formData.role === 'admin') {
+          navigate('/admin');
+        } else {
+          navigate('/cliente');
+        }
+      } else {
+        alert("Hubo un problema al registrar el usuario.");
+      }
+    } catch (error) {
+      console.error("Error conectando a la base de datos:", error);
+      alert("Asegúrate de tener encendido el json-server en el puerto 3001.");
+    }
   };
 
   return (
@@ -28,7 +57,7 @@ const RegisterPage = () => {
       <div className="register-card">
         <div className="register-header">
           <h2 className="register-title">Crear Cuenta</h2>
-          <p className="register-subtitle">Complete el formulario para acceder al sistema</p>
+          <p className="register-subtitle">Complete el formulario para acceder a la academia</p>
         </div>
 
         <form onSubmit={handleSubmit} className="register-form">
@@ -80,7 +109,7 @@ const RegisterPage = () => {
               value={formData.role} 
               onChange={handleChange}
             >
-              <option value="cliente">Cliente</option>
+              <option value="cliente">Estudiante</option>
               <option value="admin">Administrador</option>
             </select>
           </div>
@@ -89,6 +118,17 @@ const RegisterPage = () => {
             Registrarse
           </button>
         </form>
+
+        <div style={{ marginTop: '20px', textAlign: 'center' }}>
+          <button 
+            type="button"
+            onClick={() => navigate('/login')}
+            style={{ background: 'none', border: 'none', color: '#004aad', cursor: 'pointer', fontSize: '14px', textDecoration: 'underline' }}
+          >
+            ¿Ya tienes cuenta? Inicia sesión aquí
+          </button>
+        </div>
+
       </div>
     </div>
   );
