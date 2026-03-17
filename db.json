@@ -13,14 +13,6 @@
       "email": "cliente@correo.com",
       "password": "123",
       "role": "cliente"
-    },
-    {
-      "id": "e380",
-      "nombre": "Aaron",
-      "email": "loren@gmail.com",
-      "password": "Loscatos0031",
-      "role": "cliente"
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
 }
