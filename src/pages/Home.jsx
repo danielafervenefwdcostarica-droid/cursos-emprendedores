@@ -1,7 +1,22 @@
+import React from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import SearchBar from '../components/SearchBar';
+import Categories from '../components/Categories';
+import Opportunies from '../components/Opportunities';
+import CTA from '../components/CTA';
+
+
 function Inicio() {
     return (
         <div>
-            <h1>Bienvenido a la página de inicio</h1>
+            <Navbar />
+            <SearchBar />
+            <Categories />
+            <Opportunies />
+            <CTA />
+            <Footer />
+    
         </div>
     );
 }
