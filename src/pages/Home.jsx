@@ -1,8 +1,13 @@
-function Inicio() {
-    return (
-        <div>
-            <h1>Bienvenido a la página de inicio</h1>
-        </div>
-    );
+import React from 'react'
+import HomeI from '../components/HomeI'
+import '../styles/Cursos.css'
+function Home() {
+  return (
+    <div>
+      <HomeI/>
+      
+    </div>
+  )
 }
-export default Inicio
+
+export default Home
