@@ -5,6 +5,8 @@ import SearchBar from '../components/SearchBar';
 import Categories from '../components/Categories';
 import Opportunies from '../components/Opportunities';
 import CTA from '../components/CTA';
+import Cursos from  '../components/Cursos';
+
 
 
 function Inicio() {
@@ -16,7 +18,8 @@ function Inicio() {
             <Opportunies />
             <CTA />
             <Footer />
-    
+            <Cursos />
+
         </div>
     );
 }

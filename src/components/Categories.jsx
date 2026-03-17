@@ -15,7 +15,6 @@ function Categorias() {
             <div className="categorias-container">
                 {categorias.map((categoria, index) => (
                     <div key={index} className="categoria-card">
-                        {cat}
                         </div>
                 ))}
             </div>
