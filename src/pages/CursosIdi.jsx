@@ -1,5 +1,5 @@
 import React from 'react'
-import Cursos from '../components/Cursos'
+import Cursos from '../components/CursosIdiomas'
 function CursosG() {
   return (
     <div>
