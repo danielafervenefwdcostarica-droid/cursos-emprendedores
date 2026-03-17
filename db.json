@@ -1,0 +1,18 @@
+{
+  "usuarios": [
+    {
+      "id": "1",
+      "nombre": "Administrador Principal",
+      "email": "admin@empresa.com",
+      "password": "123",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "nombre": "Cliente de Prueba",
+      "email": "cliente@correo.com",
+      "password": "123",
+      "role": "cliente"
+    }
+  ]
+}
