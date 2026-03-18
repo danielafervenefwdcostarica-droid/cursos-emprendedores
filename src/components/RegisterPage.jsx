@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { registrarUsuarioAPI } from '../services/fetch'; // <-- Importamos el servicio
+import { registrarUsuarioAPI } from '../services/fetch'; 
 import '../styles/RegisterPage.css'; 
 
 const RegisterPage = () => {
@@ -14,16 +14,22 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // 1. Limpiamos espacios accidentales para que no haya errores en el Login futuro
+    const usuarioLimpio = {
+      ...formData,
+      email: formData.email.trim(),
+      password: formData.password.trim()
+    };
+
     try {
-      // Usamos el servicio limpio
-      await registrarUsuarioAPI(formData);
+      // 2. Guardamos en la base de datos
+      await registrarUsuarioAPI(usuarioLimpio);
       
-      console.log("¡Usuario registrado con éxito!");
-      if (formData.role === 'admin') {
-        navigate('/admin');
-      } else {
-        navigate('/cliente');
-      }
+      // 3. Le avisamos al usuario y lo mandamos a que inicie sesión
+      alert("¡Cuenta creada con éxito! Por favor, inicia sesión.");
+      navigate('/login'); 
+      
     } catch (error) {
       console.error("Error al registrar:", error);
       alert("Asegúrate de tener encendido el servidor.");
