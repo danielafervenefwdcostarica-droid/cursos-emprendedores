@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/RegisterPage.css'; 
+import { postUsuarios } from '../services/fetch';
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -26,26 +27,8 @@ const RegisterPage = () => {
 
     try {
       // Hacemos la petición POST al json-server
-      const respuesta = await fetch('http://localhost:3001/usuarios', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-
-      if (respuesta.ok) {
-        console.log("¡Usuario registrado con éxito!");
-        
-        // Si se guardó bien, lo mandamos a su panel correspondiente
-        if (formData.role === 'admin') {
-          navigate('/admin');
-        } else {
-          navigate('/cliente');
-        }
-      } else {
-        alert("Hubo un problema al registrar el usuario.");
-      }
+     const peticion = await postUsuarios(formData)
+      console.log(peticion);
     } catch (error) {
       console.error("Error conectando a la base de datos:", error);
       alert("Asegúrate de tener encendido el json-server en el puerto 3001.");

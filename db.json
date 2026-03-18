@@ -1,18 +1,23 @@
 {
   "usuarios": [
     {
-      "id": "1",
       "nombre": "Administrador Principal",
       "email": "admin@empresa.com",
       "password": "123",
-      "role": "admin"
+      "role": "admin",
+      "id": "1"
+    }
+  ],
+  "cursos": [
+    {
+      "id": "1",
+      "nombre": "Desarrollo Web Full Stack",
+      "categoria": "Programación"
     },
     {
       "id": "2",
-      "nombre": "Cliente de Prueba",
-      "email": "cliente@correo.com",
-      "password": "123",
-      "role": "cliente"
+      "nombre": "Karate Do - Nivel Básico",
+      "categoria": "Artes Marciales"
     }
   ]
 }
