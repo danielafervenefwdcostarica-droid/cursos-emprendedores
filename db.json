@@ -6,6 +6,13 @@
       "password": "123",
       "role": "admin",
       "id": "1"
+    },
+    {
+      "id": "95d8",
+      "nombre": "aaron quiros va",
+      "email": "quirosfwd@gmail.com",
+      "password": "Loscatos0031",
+      "role": "cliente"
     }
   ],
   "cursos": [
@@ -19,5 +26,6 @@
       "nombre": "Karate Do - Nivel Básico",
       "categoria": "Artes Marciales"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

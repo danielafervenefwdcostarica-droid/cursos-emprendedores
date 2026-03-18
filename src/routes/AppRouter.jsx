@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 // Importamos todas tus vistas
-import LoginPage from '../pages/LoginPage';
+import LoginPage from '../components/LoginPage';
 import RegisterPage from '../components/RegisterPage'; 
 import ClientProfile from '../pages/ClientProfile';
 import AdminProfile from '../pages/AdminProfile';
