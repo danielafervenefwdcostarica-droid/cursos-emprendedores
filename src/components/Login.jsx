@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { iniciarSesionAPI } from '../services/fetch'; // <-- Importamos el servicio
 import '../styles/RegisterPage.css'; 
 
-const LoginPage = () => {
+const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: '', password: '' });
 
@@ -64,4 +64,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;

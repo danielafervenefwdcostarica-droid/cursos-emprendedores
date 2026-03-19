@@ -10,8 +10,9 @@ function Hero() {
         <button>
             Explorar cursos
         </button>
-       </div>
+        </div>
     </section>
-  )
+    )
 }
+    
 export default Hero

@@ -149,4 +149,9 @@ async function deleteUsuarios(id){
 export{deleteUsuarios}
 
 
+async function iniciarSesionAPI() {
+    
+}
 
+
+export { iniciarSesionAPI };
