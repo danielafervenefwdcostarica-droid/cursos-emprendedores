@@ -2,16 +2,12 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 // Importamos todas tus vistas
-import LoginPage from '../pages/LoginPage';
-import Registro from '../pages/Registro'; 
-import ClientProfile from '../pages/ClientProfile';
-import AdminProfile from '../pages/AdminProfile';
-import CursosIdi from '../pages/CursosIdi';
-import CursosTec from '../pages/CursosTec';
-import CursosArte from '../pages/CursosArte';
-import CursosBe from '../pages/CursosBe';
-import Inicio from '../pages/Home';
-import OpportunitiesHome from '../pages/OpportunitiesHome';
+import LoginPage from '../components/LoginPage';
+import Registro from '../components/Registro'; 
+import ClientProfile from '../components/ClientProfile';
+import AdminProfile from '../components/AdminProfile';
+import Inicio from '../components/Home';
+
 
 const Routing = () => {
   return (
@@ -31,11 +27,7 @@ const Routing = () => {
         {/* Ruta por defecto: si entran a la raíz, los mandamos al login */}
         <Route path="/" element={<Navigate to="/login" replace />} />
 
-        {/*Rutas de Cursos*/}
-        <Route  path="/CursosIdiomas" element={<CursosIdi/>}/>
-        <Route path="/CursosTecnología" element={<CursosTec/>}/>
-        <Route patch="/CursosArtesania" element={<CursosArte/>}/>
-        <Route path="/Cursos Belleza y estética" element={<CursosBe/>}/>
+  
 
       </Routes>
     </BrowserRouter>

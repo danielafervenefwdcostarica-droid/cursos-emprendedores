@@ -24,19 +24,9 @@ const RegisterPage = () => {
     };
 
     try {
-<<<<<<< HEAD
       // Hacemos la petición POST al json-server
      const peticion = await postUsuarios(formData)
       console.log(peticion);
-=======
-      // 2. Guardamos en la base de datos
-      await registrarUsuarioAPI(usuarioLimpio);
-      
-      // 3. Le avisamos al usuario y lo mandamos a que inicie sesión
-      alert("¡Cuenta creada con éxito! Por favor, inicia sesión.");
-      navigate('/login'); 
-      
->>>>>>> 904a23ff299a345a013f93862f2ca81b228f3f70
     } catch (error) {
       console.error("Error al registrar:", error);
       alert("Asegúrate de tener encendido el servidor.");
