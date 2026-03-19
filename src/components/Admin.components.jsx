@@ -9,7 +9,14 @@ const AdminComponent = ({
   guardarCurso, eliminarCurso
 }) => {
   /* PROPS del componente, se construye una estructura para hacer que el componente sea reutilizable
-    Este compoennte podrá tener la misma estructura con distintos comportamientos */
+    Este componente podrá tener la misma estructura con distintos comportamientos 
+      Cada prop que se le pasa *lo que va entre parentesis y llaves* construye y hace la estructura
+
+
+      En la página donde se llama, es donde se le pasan los datos
+
+
+    */
 
   const renderContent = () => {
     switch(activeTab) {
@@ -43,8 +50,8 @@ const AdminComponent = ({
                   {estudiantes.map((est) => (
                     <tr key={est.id} style={{ borderBottom: '1px solid #eee' }}>
                       <td style={{ padding: '15px 0' }}>{est.nombre}</td>
-                      <td style={{ padding: '15px 0', color: '#666' }}>{est.email}</td>
-                      <td style={{ padding: '15px 0', color: '#666' }}>{est.curso || 'Sin curso'}</td>
+                      <td style={{ padding: '15px 0', color: '#655' }}>{est.email}</td>
+                      <td style={{ padding: '15px 0', color: '#655' }}>{est.curso || 'Sin curso'}</td>
                       <td style={{ padding: '15px 0' }}><span style={{ background: est.estado === 'Activo' ? '#e6f4ea' : '#fce8e6', color: est.estado === 'Activo' ? '#1e8e3e' : '#d93025', padding: '4px 8px', borderRadius: '4px', fontSize: '12px' }}>{est.estado || 'Inactivo'}</span></td>
                       <td style={{ padding: '15px 0', display: 'flex', gap: '8px' }}>
                         <button onClick={() => abrirEditarUsuario(est)} style={{ padding: '6px 12px', backgroundColor: '#004aad', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Editar</button>
