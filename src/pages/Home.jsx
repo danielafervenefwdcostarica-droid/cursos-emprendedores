@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SearchBar from '../components/SearchBar';
-import Categories from '../components/Categories';
+import Categories from '../components/CategoriesComp';
 import Opportunities from '../components/Opportunities';
 import CTA from '../components/CTA';
 import Hero from '../components/Hero';
