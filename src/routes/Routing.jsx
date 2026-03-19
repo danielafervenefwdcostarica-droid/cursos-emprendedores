@@ -6,10 +6,7 @@ import LoginPage from '../pages/LoginPage';
 import Registro from '../pages/Registro'; 
 import ClientProfile from '../pages/ClientProfile';
 import AdminProfile from '../pages/AdminProfile';
-import CursosIdi from '../pages/CursosIdi';
-import CursosTec from '../pages/CursosTec';
-import CursosArte from '../pages/CursosArte';
-import CursosBe from '../pages/CursosBe';
+import ListaCursos from '../components/ListaCursos';
 const Routing = () => {
   return (
     <BrowserRouter>
@@ -26,11 +23,7 @@ const Routing = () => {
         <Route path="/" element={<Navigate to="/login" replace />} />
 
         {/*Rutas de Cursos*/}
-        <Route  path="/CursosIdiomas" element={<CursosIdi/>}/>
-        <Route path="/CursosTecnología" element={<CursosTec/>}/>
-        <Route patch="/CursosArtesania" element={<CursosArte/>}/>
-        <Route path="/Cursos Belleza y estética" element={<CursosBe/>}/>
-
+        <Route path='/Cursos' element={<ListaCursos/>}/>
       </Routes>
     </BrowserRouter>
   );
