@@ -10,7 +10,7 @@ import CursosIdi from '../pages/CursosIdi';
 import CursosTec from '../pages/CursosTec';
 import CursosArte from '../pages/CursosArte';
 import CursosBe from '../pages/CursosBe';
-const AppRouter = () => {
+const Routing = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -36,4 +36,4 @@ const AppRouter = () => {
   );
 };
 
-export default AppRouter;
+export default Routing;

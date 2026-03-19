@@ -14,7 +14,7 @@ async function getUsuarios() {
         return datosUsuarios;
         
     } catch (error) {
-        
+         
         console.error("Error al obtener los usuarios", error);
     }
 

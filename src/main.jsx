@@ -1,9 +1,8 @@
 import React from 'react';
+import Routing from './routes/Routing';
 import ReactDOM from 'react-dom/client';
-import AppRouter from './routes/AppRouter';
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AppRouter />
+    <Routing />
   </React.StrictMode>,
 );

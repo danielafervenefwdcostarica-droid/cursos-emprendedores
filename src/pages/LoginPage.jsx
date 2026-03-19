@@ -43,7 +43,7 @@ const handleSubmit = async (e) => {
         }
       } else {
         alert("Usuario o contraseña incorrectos. Por favor, verifica tus datos.");
-      }
+      } 
     } catch (error) {
       console.error("Error conectando a la base de datos:", error);
       alert("Error de conexión. Revisa que json-server esté corriendo.");
