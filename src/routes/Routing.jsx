@@ -5,11 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from '../pages/LoginPage';
 import Registro from '../pages/Registro'; 
 import ClientProfile from '../pages/ClientProfile';
-import AdminProfile from '../pages/AdminProfile';
-import CursosIdi from '../pages/CursosIdi';
-import CursosTec from '../pages/CursosTec';
-import CursosArte from '../pages/CursosArte';
-import CursosBe from '../pages/CursosBe';
+import ListaDeCursos from '../pages/ListaDeCursos';
 const Routing = () => {
   return (
     <BrowserRouter>
@@ -25,11 +21,8 @@ const Routing = () => {
         {/* Ruta por defecto: si entran a la raíz, los mandamos al login */}
         <Route path="/" element={<Navigate to="/login" replace />} />
 
-        {/*Rutas de Cursos*/}
-        <Route  path="/CursosIdiomas" element={<CursosIdi/>}/>
-        <Route path="/CursosTecnología" element={<CursosTec/>}/>
-        <Route patch="/CursosArtesania" element={<CursosArte/>}/>
-        <Route path="/Cursos Belleza y estética" element={<CursosBe/>}/>
+        {/*Ruta de Curso*/}
+        <Route path='/Cursos' element={<ListaDeCursos/>}/>
 
       </Routes>
     </BrowserRouter>
