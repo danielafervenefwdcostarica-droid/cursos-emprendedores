@@ -4,10 +4,8 @@ import Footer from '../components/Footer';
 import SearchBar from '../components/SearchBar';
 import Categories from '../components/Categories';
 import Opportunies from '../components/Opportunities';
-import CTA from '../components/CTA';
-import Cursos from  '../components/Cursos';
-
-
+import CTA from '../components/CTA'
+import Hero from '../components/Hero';
 
 function Inicio() {
     return (
@@ -18,7 +16,7 @@ function Inicio() {
             <Opportunies />
             <CTA />
             <Footer />
-            <Cursos />
+            <Hero/>
 
         </div>
     );

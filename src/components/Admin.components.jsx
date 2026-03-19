@@ -8,6 +8,8 @@ const AdminComponent = ({
   abrirEditarUsuario, eliminarUsuario, guardarUsuario,
   guardarCurso, eliminarCurso
 }) => {
+  /* PROPS del componente, se construye una estructura para hacer que el componente sea reutilizable
+    Este compoennte podrá tener la misma estructura con distintos comportamientos */
 
   const renderContent = () => {
     switch(activeTab) {
