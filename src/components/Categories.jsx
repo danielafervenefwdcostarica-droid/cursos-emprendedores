@@ -1,4 +1,5 @@
 import React from 'react'
+import Categorias from '../page/Categories';
 function Categorias() {
     const categorias = [
         "Finanzas",

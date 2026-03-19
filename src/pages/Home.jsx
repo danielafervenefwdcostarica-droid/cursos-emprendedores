@@ -5,7 +5,7 @@ import SearchBar from '../components/SearchBar';
 import Categories from '../components/Categories';
 import Opportunies from '../components/Opportunities';
 import CTA from '../components/CTA';
-import Cursos from  '../components/Cursos';
+
 
 
 
