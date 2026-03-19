@@ -42,8 +42,4 @@ const Routing = () => {
   );
 };
 
-<<<<<<< HEAD
 export default Routing;
-=======
-export default Routing;
->>>>>>> 904a23ff299a345a013f93862f2ca81b228f3f70
