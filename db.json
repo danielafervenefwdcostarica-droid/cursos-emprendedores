@@ -6,6 +6,15 @@
       "password": "123",
       "role": "admin",
       "id": "1"
+    },
+    {
+      "nombre": "Cliente de Prueba",
+      "email": "cliente@correo.com",
+      "password": "123",
+      "role": "cliente",
+      "curso": "",
+      "estado": "Activo",
+      "id": "2"
     }
   ],
   "cursos": [
