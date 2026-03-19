@@ -3,8 +3,9 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SearchBar from '../components/SearchBar';
 import Categories from '../components/Categories';
-import Opportunies from '../components/Opportunities';
+import Opportunities from '../components/Opportunities';
 import CTA from '../components/CTA';
+import Hero from '../components/Hero';
 
 
 
@@ -15,10 +16,10 @@ function Inicio() {
             <Navbar />
             <SearchBar />
             <Categories />
-            <Opportunies />
+            <Opportunities />
             <CTA />
             <Footer />
-            <Cursos />
+            <Hero/>
 
         </div>
     );
