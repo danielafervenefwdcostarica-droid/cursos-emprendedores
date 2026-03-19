@@ -3,7 +3,8 @@ import CardCursos from '../components/CardCursos'
 function ListaCursos() {
   return (
     <div>
-      <CardCursos/>
+
+      <CardCursos nombreCurso={""}  descripcionCurso={""}duraciónCurso={""} horarioCurso={" "}/>
     </div>
   )
 }
