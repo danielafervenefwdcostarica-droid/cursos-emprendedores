@@ -7,12 +7,10 @@ import Registro from '../pages/Registro';
 import ClientProfile from '../pages/ClientProfile';
 import AdminProfile from '../pages/AdminProfile';
 import ListaCursos from '../components/ListaCursos';
-
-import LoginPage from '../components/LoginPage';
-import RegisterPage from '../components/RegisterPage'; 
 import ClientProfile from '../pages/ClientProfile';
 import AdminProfile from '../pages/AdminProfile';
-
+import Inicio from '../pages/Home';
+import OpportunitiesHome from '../pages/OpportunitiesHome';
 
 const Routing = () => {
   return (
@@ -21,7 +19,10 @@ const Routing = () => {
         {/* Rutas Públicas */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/registro" element={<Registro />} />
-        
+        <Route path="/oportunidades" element={<OpportunitiesHome />} />
+        <Route path="/inicio" element={<Inicio />} />
+
+
         {/* Rutas Privadas (Perfiles) */}
         <Route path="/cliente" element={<ClientProfile />} />
         <Route path="/admin" element={<AdminProfile />} />
@@ -36,8 +37,4 @@ const Routing = () => {
   );
 };
 
-<<<<<<< HEAD
 export default Routing;
-=======
-export default Routing;
->>>>>>> 904a23ff299a345a013f93862f2ca81b228f3f70
