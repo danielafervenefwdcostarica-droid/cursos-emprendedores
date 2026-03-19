@@ -7,6 +7,13 @@ import Registro from '../pages/Registro';
 import ClientProfile from '../pages/ClientProfile';
 import AdminProfile from '../pages/AdminProfile';
 import ListaCursos from '../components/ListaCursos';
+
+import LoginPage from '../components/LoginPage';
+import RegisterPage from '../components/RegisterPage'; 
+import ClientProfile from '../pages/ClientProfile';
+import AdminProfile from '../pages/AdminProfile';
+
+
 const Routing = () => {
   return (
     <BrowserRouter>
@@ -29,4 +36,8 @@ const Routing = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Routing;
+=======
+export default Routing;
+>>>>>>> 904a23ff299a345a013f93862f2ca81b228f3f70
