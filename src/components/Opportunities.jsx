@@ -5,7 +5,7 @@ const opportunities = [
     {
         titulo: "Concurso Nacional de Innovacion",
         descripcion: "Obetener financiamiento para tu proyecto ",
-        imagen: ["https://img.daisyui.com/images/stock/daisyui-hat-1.webp", "https://img.daisyui.com/images/stock/daisyui-hat-2.webp", "https://img.daisyui.com/images/stock/daisyui-hat-3.webp", "https://img.daisyui.com/images/stock/daisyui-hat-4.webp"]
+        imagen: ["https://chatgpt.com/s/m_69bc67a323748191a3fce9fd7c9da233", "https://chatgpt.com/s/m_69bc67bf3428819191e0725028b79355", "https://chatgpt.com/s/m_69bc67df0d7081918df2597ccf7a6ccc"]
     },
         {
             titulo: "Impulso digital",
