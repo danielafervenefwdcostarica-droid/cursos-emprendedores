@@ -4,24 +4,23 @@ import Footer from '../components/Footer';
 import SearchBar from '../components/SearchBar';
 import Categories from '../components/CategoriesComp';
 import Opportunities from '../components/Opportunities';
-import CTA from '../components/CTA';
+import AboutPlatform from '../components/AboutPlatform';
 import Hero from '../components/Hero';
-
-
-
+import '../styles/modern-theme.css';
 
 function Inicio() {
     return (
-        <div>
+        <div className="modern-home">
             <Navbar />
-            <SearchBar />
-            <Categories />
-            <Opportunities />
-            <CTA />
+            <div className="modern-container">
+                <Hero />
+                <SearchBar />
+                <Categories />
+                <Opportunities />
+                <AboutPlatform />
+            </div>
             <Footer />
-            <Hero/>
-
         </div>
     );
 }
-export default Inicio
+export default Inicio;

@@ -1,57 +1,34 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../assets/logo.png';
+
 function Navbar() {
-
   return (
-    <nav className="navbar">
-      <h2>CursosPlus</h2>
-      <ul>
-        <li><a href="/">Inicio</a></li>
-        <li><a href="/cursos">Cursos</a></li>
-        <li><a href="/contacto">Contacto</a></li>
-        <li><a href="/login">Login</a></li>
-      </ul>
-<div className="carousel w-full">
-  <div id="slide1" className="carousel-item relative w-full">
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
-      className="w-full" />
-    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-      <a href="#slide4" className="btn btn-circle">❮</a>
-      <a href="#slide2" className="btn btn-circle">❯</a>
-    </div>
-  </div>
-  <div id="slide2" className="carousel-item relative w-full">
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
-      className="w-full" />
-    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-      <a href="#slide1" className="btn btn-circle">❮</a>
-      <a href="#slide3" className="btn btn-circle">❯</a>
-    </div>
-  </div>
-  <div id="slide3" className="carousel-item relative w-full">
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp"
-      className="w-full" />
-    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-      <a href="#slide2" className="btn btn-circle">❮</a>
-      <a href="#slide4" className="btn btn-circle">❯</a>
-    </div>
-  </div>
-  <div id="slide4" className="carousel-item relative w-full">
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
-      className="w-full" />
-    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-      <a href="#slide3" className="btn btn-circle">❮</a>
-      <a href="#slide1" className="btn btn-circle">❯</a>
-    </div>
-  </div>
-</div>
-    </nav>
+    <nav className="modern-navbar">
+      <div className="modern-navbar-content">
+        
+        
+        <a href="/" className="modern-nav-logo">
+          <img src={logo} alt="CursosPlus Logo" className="modern-nav-icon-img" />
+          CursosPlus
+        </a>
 
+       
+        <ul className="modern-nav-links">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/cursos">Cursos</a></li>
+          <li><a href="/sobre-nosotros">Sobre Nosotros</a></li>
+          <li><a href="/contacto">Contacto</a></li>
+        </ul>
+
+       
+        <div>
+          <a href="/login" className="modern-btn-primary">Login</a>
+        </div>
+
+      </div>
+    </nav>
   );
 }
 
-export default Navbar
+export default Navbar;

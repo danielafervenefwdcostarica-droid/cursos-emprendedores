@@ -7,17 +7,19 @@ import '../styles/RegisterPage.css';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  
+    const [usuarios,setUsuarios] = useState([])
+    const [emailUsuario,setEmailUsuario] = useState("")
+    const [claveUsuario,setClaveUsuario] = useState("")
   useEffect(()=>{
     async function traerUsuarios() {
       const lista = await getUsuarios()
       setUsuarios(lista)
     }
-    traerUsuarios
+    traerUsuarios()
   },[])
 
   const iniciarSesion = () => {
-    const usuarioValido = usuarios.find((u)=> u.email == emailUsuario && u.password == claveUsuario)
+    const usuarioValido = usuarios.find((u)=> u.email === emailUsuario && u.password === claveUsuario)
     if (usuarioValido) {
       alert("inicia")
     }else{
@@ -33,7 +35,7 @@ const LoginPage = () => {
           <h2 className="register-title">Iniciar Sesión</h2>
           <p className="register-subtitle">Ingresa tus credenciales para continuar</p>
         </div>
-        <form onSubmit={handleSubmit} className="register-form">
+        <form  className="register-form">
           <div className="form-group">
             <label className="form-label">Correo Electrónico</label>
             <input type="email" name="email" className="form-control" value={emailUsuario} onChange={(e)=>setEmailUsuario(e.target.value)} required placeholder="correo@empresa.com"/>

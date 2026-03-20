@@ -1,23 +1,34 @@
+import React from 'react';
+
 function CategoriesComp() {
-    const categories = [
-        "Finanzas",
-        "Marketing",
-        "Diseño",
-        "Tecnologia",
-        "Artesanias",
-        "Cocina",
-        "Idiomas"
-    ]
-    return(
-        <div className="categories">
-            <h2>Categories Popular</h2>
-            <div className="categories-container">
-                {categories.map((category, index) => (
-                    <div key={index} className="category-card">
+    const defaultCategories = [
+        { name: "Finanzas", desc: "Gestión contable e inversión.", iconClass: "icon-blue", icon: "₹" },
+        { name: "Marketing", desc: "Estrategias de venta.", iconClass: "icon-purple", icon: "📈" },
+        { name: "Diseño", desc: "Creatividad visual.", iconClass: "icon-yellow", icon: "🎨" }
+    ];
+
+    return (
+        <section className="modern-categories">
+            <div className="section-header">
+                <div>
+                    <h2>Categorías Destacadas</h2>
+                </div>
+            </div>
+            <div className="modern-categories-grid">
+                {defaultCategories.map((cat, index) => (
+                    <div key={index} className="modern-category-card">
+                        <div className={`modern-category-icon ${cat.iconClass}`}>
+                            {cat.icon}
                         </div>
+                        <div className="modern-category-info">
+                            <h3>{cat.name}</h3>
+                            <p>{cat.desc}</p>
+                        </div>
+                    </div>
                 ))}
             </div>
-        </div>
-    )
+        </section>
+    );
 }
-export default CategoriesComp
+
+export default CategoriesComp;
