@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { registrarUsuarioAPI } from '../services/fetch'; 
 import '../styles/RegisterPage.css'; 
 import { postUsuarios } from '../services/fetch';
 
@@ -7,31 +8,38 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
-    nombre: '',
-    email: '',
-    password: '',
-    role: 'cliente' // Por defecto
+    nombre: '', email: '', password: '', role: 'cliente'
   });
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  // Función actualizada que guarda en el db.json
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Enviando nuevo usuario a la base de datos...");
+    
+    // 1. Limpiamos espacios accidentales para que no haya errores en el Login futuro
+    const usuarioLimpio = {
+      ...formData,
+      email: formData.email.trim(),
+      password: formData.password.trim()
+    };
 
     try {
+<<<<<<< HEAD
       // Hacemos la petición POST al json-server
      const peticion = await postUsuarios(formData)
       console.log(peticion);
+=======
+      // 2. Guardamos en la base de datos
+      await registrarUsuarioAPI(usuarioLimpio);
+      
+      // 3. Le avisamos al usuario y lo mandamos a que inicie sesión
+      alert("¡Cuenta creada con éxito! Por favor, inicia sesión.");
+      navigate('/login'); 
+      
+>>>>>>> 904a23ff299a345a013f93862f2ca81b228f3f70
     } catch (error) {
-      console.error("Error conectando a la base de datos:", error);
-      alert("Asegúrate de tener encendido el json-server en el puerto 3001.");
+      console.error("Error al registrar:", error);
+      alert("Asegúrate de tener encendido el servidor.");
     }
   };
 
@@ -42,76 +50,33 @@ const RegisterPage = () => {
           <h2 className="register-title">Crear Cuenta</h2>
           <p className="register-subtitle">Complete el formulario para acceder a la academia</p>
         </div>
-
         <form onSubmit={handleSubmit} className="register-form">
-          
           <div className="form-group">
             <label className="form-label">Nombre Completo</label>
-            <input 
-              type="text" 
-              name="nombre" 
-              className="form-control"
-              value={formData.nombre} 
-              onChange={handleChange} 
-              required 
-              placeholder="Ej. Juan Pérez"
-            />
+            <input type="text" name="nombre" className="form-control" value={formData.nombre} onChange={handleChange} required placeholder="Ej. Juan Pérez"/>
           </div>
-
           <div className="form-group">
             <label className="form-label">Correo Electrónico</label>
-            <input 
-              type="email" 
-              name="email" 
-              className="form-control"
-              value={formData.email} 
-              onChange={handleChange} 
-              required 
-              placeholder="correo@empresa.com"
-            />
+            <input type="email" name="email" className="form-control" value={formData.email} onChange={handleChange} required placeholder="correo@empresa.com"/>
           </div>
-
           <div className="form-group">
             <label className="form-label">Contraseña</label>
-            <input 
-              type="password" 
-              name="password" 
-              className="form-control"
-              value={formData.password} 
-              onChange={handleChange} 
-              required 
-              placeholder="••••••••"
-            />
+            <input type="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required placeholder="••••••••"/>
           </div>
-
           <div className="form-group">
             <label className="form-label">Tipo de Cuenta</label>
-            <select 
-              name="role" 
-              className="form-control"
-              value={formData.role} 
-              onChange={handleChange}
-            >
+            <select name="role" className="form-control" value={formData.role} onChange={handleChange}>
               <option value="cliente">Estudiante</option>
               <option value="admin">Administrador</option>
             </select>
           </div>
-
-          <button type="submit" className="btn-primary">
-            Registrarse
-          </button>
+          <button type="submit" className="btn-primary">Registrarse</button>
         </form>
-
         <div style={{ marginTop: '20px', textAlign: 'center' }}>
-          <button 
-            type="button"
-            onClick={() => navigate('/login')}
-            style={{ background: 'none', border: 'none', color: '#004aad', cursor: 'pointer', fontSize: '14px', textDecoration: 'underline' }}
-          >
+          <button type="button" onClick={() => navigate('/login')} style={{ background: 'none', border: 'none', color: '#004aad', cursor: 'pointer', fontSize: '14px', textDecoration: 'underline' }}>
             ¿Ya tienes cuenta? Inicia sesión aquí
           </button>
         </div>
-
       </div>
     </div>
   );

@@ -1,11 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
+
 // Importamos todas tus vistas
-import LoginPage from '../pages/LoginPage';
+import LoginPage from '../pages/Login';
 import Registro from '../pages/Registro'; 
 import ClientProfile from '../pages/ClientProfile';
-import ListaDeCursos from '../pages/ListaDeCursos';
+import ListaDeCursos from '../pages/ListaDeCursos'
+import AdminProfile from '../pages/AdminProfile'
+
+
+ 
 const Routing = () => {
   return (
     <BrowserRouter>
@@ -23,6 +28,7 @@ const Routing = () => {
 
         {/*Ruta de Curso*/}
         <Route path='/Cursos' element={<ListaDeCursos/>}/>
+
 
       </Routes>
     </BrowserRouter>
