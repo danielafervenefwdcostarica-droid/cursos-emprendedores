@@ -37,7 +37,6 @@ const RegisterPage = () => {
       navigate('/login'); 
       
       // Hacemos la petición POST al json-server
-     const peticion = await postUsuarios(formData)
       console.log(peticion);
     } catch (error) {
       console.error("Error al registrar:", error);
