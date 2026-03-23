@@ -21,9 +21,15 @@ const LoginPage = () => {
   const iniciarSesion = () => {
     const usuarioValido = usuarios.find((u)=> u.email === emailUsuario && u.password === claveUsuario)
     if (usuarioValido) {
-      alert("inicia")
+      alert("Inicio de sesión exitoso")
+      // Navigate based on role
+      if (usuarioValido.role === 'admin') {
+        navigate('/panelAdministrativo');
+      } else {
+        navigate('/PerfilCliente');
+      }
     }else{
-      alert("no inicia")
+      alert("ups😅, parece que hubo un error, contraseña o email incorrecto")
     }
   }
 
@@ -47,7 +53,7 @@ const LoginPage = () => {
           <button type="button" onClick={iniciarSesion} className="btn-primary">Entrar</button>
         </form>
         <div style={{ marginTop: '20px', textAlign: 'center' }}>
-          <button onClick={() => navigate('/registro')} style={{ background: 'none', border: 'none', color: '#004aad', cursor: 'pointer', fontSize: '14px', textDecoration: 'underline' }}>
+          <button onClick={() => navigate('/Registro')} style={{ background: 'none', border: 'none', color: '#004aad', cursor: 'pointer', fontSize: '14px', textDecoration: 'underline' }}>
             ¿No tienes cuenta? Regístrate aquí
           </button>
         </div>

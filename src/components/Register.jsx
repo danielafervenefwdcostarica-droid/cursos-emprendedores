@@ -10,7 +10,7 @@ const RegisterPage = () => {
     nombre: '', email: '', password: '', role: 'cliente' 
   });
   
-        alert("Usuario o contraseña incorrectos. Por favor, verifica tus datos.");
+  
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -26,8 +26,12 @@ const RegisterPage = () => {
 
     try {
       // Hacemos la petición POST al json-server
-     const peticion = await postUsuarios(formData)
+      const peticion = await postUsuarios(usuarioLimpio);
       console.log(peticion);
+      
+      // 3. Le avisamos al usuario y lo mandamos a que inicie sesión
+      alert("¡Cuenta creada con éxito! Por favor, inicia sesión.");
+      navigate('/login'); 
     } catch (error) {
       console.error("Error al registrar:", error);
       alert("Asegúrate de tener encendido el servidor.");
