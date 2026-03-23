@@ -31,7 +31,7 @@ function Footer() {
                     <div className="modern-footer-col">
                         <h4>Empresa</h4>
                         <ul className="modern-footer-links">
-                            <li><a href="/nosotros">Sobre Nosotros</a></li>
+                            <li><a href="/SobreNosotros">Sobre Nosotros</a></li>
                             <li><a href="/blog">Blog</a></li>
                             <li><a href="/partners">Partners</a></li>
                             <li><a href="/contacto">Contacto</a></li>
