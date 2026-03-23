@@ -17,11 +17,11 @@ const Login = () => {
   },[])
 
   const iniciarSesion = () => {
-    const usuarioValido = usuarios.find((u)=> u.email == emailUsuario && u.password == claveUsuario)
+    const usuarioValido = usuarios.find((u)=> u.gmail == emailUsuario && u.password == claveUsuario)
     if (usuarioValido) {
-      alert("inicia")
+      alert("//")
     }else{
-      alert("no inicia")
+      alert("ups😅, parece que hubo un error, contraseña o gmail incorrecto")
     }
   }
 

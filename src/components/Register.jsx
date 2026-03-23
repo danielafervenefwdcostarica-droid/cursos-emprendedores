@@ -10,7 +10,7 @@ const RegisterPage = () => {
     nombre: '', email: '', password: '', role: 'cliente' 
   });
   
-        alert("Usuario o contraseña incorrectos. Por favor, verifica tus datos.");
+  
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
