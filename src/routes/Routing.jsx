@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 
@@ -36,3 +37,34 @@ const Routing = () => {
 };
 
 export default Routing;
+=======
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from '../pages/Home';
+import Contacto from '../pages/Contacto';
+import LoginPage from '../pages/LoginPage';
+import RegisterPage from '../pages/RegisterPage';
+import AdministradorPerfil from '../pages/AdministradorPerfil';
+import ListaDeCursos from '../pages/ListaDeCursos';
+import ClientePerfil from '../pages/ClientePerfil';
+
+function Routing() {
+  return(
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/Contacto' element={<Contacto/>}/>
+         <Route path='/Registro' element={<RegisterPage/>}/>
+         <Route path='/Login' element={<LoginPage/>}/>
+         <Route path='/panelAdministrativo'element={<AdministradorPerfil/>}/>
+         <Route path='/PerfilCliente' element={<ClientePerfil/>}/>
+         <Route path= '/lista' element={<ListaDeCursos/>}/>
+
+      </Routes>
+    </Router>
+  )
+}
+
+
+
+export default Routing;
+>>>>>>> 3dcc61249f19e39a0aa8bb673a4cb2e2ec46ee92

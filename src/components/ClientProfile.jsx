@@ -1,7 +1,6 @@
 // src/pages/ClientProfile.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { obtenerCursosAPI, actualizarUsuarioAPI } from '../services/fetch';
 import ClientComponent from '../components/Client.component.jsx'; // <-- Importamos nuestra vista
 
 const ClientProfile = () => {

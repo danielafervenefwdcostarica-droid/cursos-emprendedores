@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  obtenerEstudiantesAPI, eliminarUsuarioAPI, actualizarUsuarioAPI, 
-  registrarUsuarioAPI, obtenerCursosAPI, crearCursoAPI, eliminarCursoAPI 
-} from '../services/fetch';
-import AdminComponent from '../components/Admin.component.jsx'; // <-- Importamos la parte visual
+
+import AdminComponent from './Admin.components';
+
 
 const AdminProfile = () => {
   const navigate = useNavigate();

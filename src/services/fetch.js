@@ -14,7 +14,7 @@ async function getUsuarios() {
         return datosUsuarios;
         
     } catch (error) {
-         
+        
         console.error("Error al obtener los usuarios", error);
     }
 
@@ -149,4 +149,9 @@ async function deleteUsuarios(id){
 export{deleteUsuarios}
 
 
+async function iniciarSesionAPI() {
+    
+}
 
+
+export { iniciarSesionAPI };

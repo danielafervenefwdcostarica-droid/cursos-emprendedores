@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { registrarUsuarioAPI } from '../services/fetch'; 
 import '../styles/RegisterPage.css'; 
 import { postUsuarios } from '../services/fetch';
 
@@ -8,8 +7,10 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
-    nombre: '', email: '', password: '', role: 'cliente'
+    nombre: '', email: '', password: '', role: 'cliente' 
   });
+  
+  
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -24,11 +25,10 @@ const RegisterPage = () => {
     };
 
     try {
-<<<<<<< HEAD
+
       // Hacemos la petición POST al json-server
      const peticion = await postUsuarios(formData)
       console.log(peticion);
-=======
       // 2. Guardamos en la base de datos
       await registrarUsuarioAPI(usuarioLimpio);
       
@@ -36,7 +36,9 @@ const RegisterPage = () => {
       alert("¡Cuenta creada con éxito! Por favor, inicia sesión.");
       navigate('/login'); 
       
->>>>>>> 904a23ff299a345a013f93862f2ca81b228f3f70
+      // Hacemos la petición POST al json-server
+     const peticion = await postUsuarios(formData)
+      console.log(peticion);
     } catch (error) {
       console.error("Error al registrar:", error);
       alert("Asegúrate de tener encendido el servidor.");
