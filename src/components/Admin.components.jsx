@@ -1,5 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Dashboard.css';
+import { postCursos, postUsuarios } from '../services/fetch';
+
+                          
+                        
+
+            
 
 const AdminComponent = ({
   activeTab, setActiveTab, estudiantes, cursos, mostrarFormulario,
@@ -17,6 +23,23 @@ const AdminComponent = ({
 
 
     */
+   const [nombreCurso,setNombreCurso] = useState("")
+   const [categoriaCurso,setCategoriaCurso] = useState("")
+   const [descripcionCurso,setDescripcionCurso] = useState("")
+   const [duracionCurso,setDuracionCurso] = useState("")
+   const [horarioCurso,setHorarioCurso] = useState("")
+
+  async function guardarCurso() {
+    const objCurso = {
+      nombreCurso:nombreCurso,
+      categoriaCurso:categoriaCurso,
+      descripcionCurso:descripcionCurso,
+      duracionCurso:duracionCurso,
+      horarioCurso:horarioCurso
+    }
+    await postCursos(objCurso)
+  }
+
 
   const renderContent = () => {
     switch(activeTab) {
@@ -94,9 +117,12 @@ const AdminComponent = ({
               <div className="glass-card" style={{ flex: '1' }}>
                 <h3 className="card-title" style={{ marginBottom: '15px' }}>Agregar Nuevo Curso</h3>
                 <form onSubmit={guardarCurso} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                  <input type="text" placeholder="Nombre (Ej. Kendo Básico)" required value={nuevoCurso.nombre} onChange={(e) => setNuevoCurso({...nuevoCurso, nombre: e.target.value})} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}/>
-                  <input type="text" placeholder="Categoría (Ej. Artes Marciales)" required value={nuevoCurso.categoria} onChange={(e) => setNuevoCurso({...nuevoCurso, categoria: e.target.value})} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}/>
-                  <button type="submit" style={{ padding: '10px', backgroundColor: '#004aad', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}>Crear Curso</button>
+                  <input type="text" placeholder="Nombre (Ej. Kendo Básico)" required value={nombreCurso} onChange={(e) => setNombreCurso(e.target.value)} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}/>
+                  <input type="text" placeholder="Categoría (Ej. Artes Marciales)" required value={categoriaCurso} onChange={(e) => setCategoriaCurso(e.target.value)} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}/>
+                  <input type="text" placeholder="Descripción del curso" required value={descripcionCurso || ''} onChange={(e) => setDescripcionCurso(e.target.value)} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}/>
+                  <input type="text" placeholder="Duración del curso" required value={duracionCurso || ''} onChange={(e) => setDuracionCurso(e.target.value)} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}/>
+                  <input type="text" placeholder="Horario del curso" required value={horarioCurso || ''} onChange={(e) => setHorarioCurso(e.target.value)} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}/>
+                  <button type="button" onClick={guardarCurso} style={{ padding: '10px', backgroundColor: '#004aad', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}>Crear Curso</button>
                 </form>
               </div>
               <div className="glass-card" style={{ flex: '2' }}>
@@ -105,7 +131,7 @@ const AdminComponent = ({
                   {cursos.length === 0 ? <p style={{ color: '#888' }}>No hay cursos creados.</p> : null}
                   {cursos.map(curso => (
                     <li key={curso.id} style={{ display: 'flex', justifyContent: 'space-between', padding: '15px', borderBottom: '1px solid #eee', alignItems: 'center' }}>
-                      <div><strong>{curso.nombre}</strong> <br/><span style={{ fontSize: '12px', color: '#666' }}>{curso.categoria}</span></div>
+                      <div><strong>{curso.nombre}</strong> <br/><span style={{ fontSize: '12px', color: '#666' }}>{curso.categoria} {curso.descripcion ? ` - ${curso.descripcion}` : ''} {curso.duracion ? ` | Duración: ${curso.duracion}` : ''} {curso.horario ? ` | Horario: ${curso.horario}` : ''}</span></div>
                       <button onClick={() => eliminarCurso(curso.id)} style={{ padding: '6px 12px', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Eliminar</button>
                     </li>
                   ))}

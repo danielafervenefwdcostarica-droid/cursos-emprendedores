@@ -1,4 +1,8 @@
 function CardCurso({nombreCurso,descripcionCurso,duraciónCurso,horarioCurso}) {
+
+
+
+    
     return (
         <>
             <div class="card">

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 import AdminComponent from './Admin.components';
+
 
 
 const AdminProfile = () => {
@@ -13,18 +15,7 @@ const AdminProfile = () => {
   const [estudianteActual, setEstudianteActual] = useState({ id: null, nombre: '', email: '', curso: '', estado: 'Activo' });
   const [nuevoCurso, setNuevoCurso] = useState({ nombre: '', categoria: '' });
 
-  useEffect(() => {
-    cargarDatos();
-  }, []);
-
-  const cargarDatos = async () => {
-    try {
-      setEstudiantes(await obtenerEstudiantesAPI());
-      setCursos(await obtenerCursosAPI());
-    } catch (error) {
-      console.error("Error cargando datos:", error);
-    }
-  };
+////////////////////////////////////////////////////////////////
 
   const handleLogout = () => navigate('/login'); 
 

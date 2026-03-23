@@ -149,9 +149,27 @@ async function deleteUsuarios(id){
 export{deleteUsuarios}
 
 
-async function iniciarSesionAPI() {
-    
+async function postCursos(cursos) {
+         try {
+
+        const respuesta = await fetch("http://localhost:3001/cursos",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(cursos)
+
+        })
+
+        const datosUsuarios= await respuesta.json();
+
+        return datosUsuarios;
+        
+    } catch (error) {
+        
+        console.error("Error al obtener los curos", error);
+    }
 }
 
 
-export { iniciarSesionAPI };
+export { postCursos };

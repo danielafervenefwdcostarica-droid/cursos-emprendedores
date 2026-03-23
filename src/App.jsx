@@ -1,9 +1,9 @@
-import AppRoutes from "./routes/AppRoutes"
+import Routing from "./routes/Routing"
 
 function App() {
   return (
     <>
-      <AppRoutes />
+      <Routing />
     </>
   )
 }

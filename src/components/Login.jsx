@@ -13,15 +13,21 @@ const Login = () => {
       const lista = await getUsuarios()
       setUsuarios(lista)
     }
-    traerUsuarios
+    traerUsuarios()
   },[])
 
   const iniciarSesion = () => {
-    const usuarioValido = usuarios.find((u)=> u.gmail == emailUsuario && u.password == claveUsuario)
+    const usuarioValido = usuarios.find((u)=> u.email == emailUsuario && u.password == claveUsuario)
     if (usuarioValido) {
-      alert("//")
+      alert("Inicio de sesión exitoso")
+      // Navigate based on role
+      if (usuarioValido.role === 'admin') {
+        navigate('/panelAdministrativo');
+      } else {
+        navigate('/PerfilCliente');
+      }
     }else{
-      alert("ups😅, parece que hubo un error, contraseña o gmail incorrecto")
+      alert("ups😅, parece que hubo un error, contraseña o email incorrecto")
     }
   }
 
@@ -45,7 +51,7 @@ const Login = () => {
           <button type="button" onClick={iniciarSesion} className="btn-primary">Entrar</button>
         </form>
         <div style={{ marginTop: '20px', textAlign: 'center' }}>
-          <button onClick={() => navigate('/registro')} style={{ background: 'none', border: 'none', color: '#004aad', cursor: 'pointer', fontSize: '14px', textDecoration: 'underline' }}>
+          <button onClick={() => navigate('/Registro')} style={{ background: 'none', border: 'none', color: '#004aad', cursor: 'pointer', fontSize: '14px', textDecoration: 'underline' }}>
             ¿No tienes cuenta? Regístrate aquí
           </button>
         </div>
