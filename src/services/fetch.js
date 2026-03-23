@@ -171,5 +171,4 @@ async function postCursos(cursos) {
     }
 }
 
-
-export { postCursos };
+export { iniciarSesionAPI };

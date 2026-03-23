@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { getUsuarios } from '../services/fetch';
 import '../styles/RegisterPage.css'; 
 
-const Login = () => {
+
+
+const LoginPage = () => {
   const navigate = useNavigate();
     const [usuarios,setUsuarios] = useState([])
     const [emailUsuario,setEmailUsuario] = useState("")
@@ -17,7 +19,7 @@ const Login = () => {
   },[])
 
   const iniciarSesion = () => {
-    const usuarioValido = usuarios.find((u)=> u.email == emailUsuario && u.password == claveUsuario)
+    const usuarioValido = usuarios.find((u)=> u.email === emailUsuario && u.password === claveUsuario)
     if (usuarioValido) {
       alert("Inicio de sesión exitoso")
       // Navigate based on role
@@ -60,4 +62,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;
