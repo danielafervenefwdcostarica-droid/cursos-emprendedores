@@ -1,8 +1,8 @@
-function CardCurso({nombreCurso,descripcionCurso,duraciónCurso,horarioCurso}) {
+function CardCurso({ nombreCurso, descripcionCurso, duraciónCurso, horarioCurso }) {
 
 
 
-    
+
     return (
         <>
             <div class="card">
@@ -10,9 +10,9 @@ function CardCurso({nombreCurso,descripcionCurso,duraciónCurso,horarioCurso}) {
                 <div class="category"> {nombreCurso} </div>
                 <div class="heading"> {descripcionCurso}
                     <div class="author"> <span class="name">{duraciónCurso} </span> {horarioCurso}</div>
-                
-                          
-                        
+
+
+
 
                 </div>
             </div>
