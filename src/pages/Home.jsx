@@ -5,15 +5,15 @@ import SearchBar from '../components/SearchBar';
 import Categories from '../components/CategoriesComp';
 import Opportunities from '../components/Opportunities';
 import AboutPlatform from '../components/AboutPlatform';
-import Hero from '../components/Hero';
-import '../styles/modern-theme.css';
+import PagHome from '../components/PagHome';
+import '../styles/home.css';
 
 function Inicio() {
     return (
         <div className="modern-home">
             <Navbar />
             <div className="modern-container">
-                <Hero />
+                <PagHome />
                 <SearchBar />
                 <Categories />
                 <Opportunities />
