@@ -8,15 +8,6 @@
       "id": "1"
     },
     {
-      "nombre": "Cliente de Prueba",
-      "email": "cliente@correo.com",
-      "password": "123",
-      "role": "cliente",
-      "curso": "",
-      "estado": "Activo",
-      "id": "2"
-    },
-    {
       "id": "7fbd",
       "nombre": "Ale",
       "email": "Ale@gmail.com",
@@ -31,15 +22,16 @@
       "role": "admin"
     },
     {
-      "nombre": "Luna",
-      "email": "lu@gmail.com",
-      "password": "1234567",
-      "role": "cliente",
-      "id": "EXvwzBvSFsQ"
+      "id": "cbf9",
+      "nombre": "d",
+      "email": "dd@gmail.com",
+      "password": "1234",
+      "role": "cliente"
     }
   ],
   "cursos": [
     {
+<<<<<<< HEAD
       "id": "1",
       "nombre": "Desarrollo Web Full Stack",
       "categoria": "Programación"
@@ -64,7 +56,17 @@
       "descripcionCurso": "La",
       "duracionCurso": "Compu De",
       "horarioCurso": "Daniela"
+=======
+      "id": "eef2",
+      "nombre": "f",
+      "categoria": "f",
+      "descripcion": "f",
+      "duracion": "f",
+      "horario": "f",
+      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774368779/u252es6cwdazhuka1gva.jpg",
+      "tag": "f",
+      "meta": "f"
+>>>>>>> 93bb23408cc735c186f0f1880e129fb9426072d3
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
 }

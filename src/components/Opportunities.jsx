@@ -1,35 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getCursos } from '../services/fetch';
 
 function Opportunities() {
-    const opportunities = [
-        {
-            titulo: "Concurso Nacional de Innovacion",
-            descripcion: "Obtener financiamiento para tu proyecto.",
-            tag: "CONCURSO",
-            tagClass: "modern-tag-blue",
-            meta: "Abierto",
-            img: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-            buttonText: "Ver Más"
-        },
-        {
-            titulo: "Impulso digital",
-            descripcion: "Programa de apoyo para emprendedores digitales.",
-            tag: "PROGRAMA",
-            tagClass: "modern-tag-green",
-            meta: "Plazo abierto",
-            img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-            buttonText: "Ver Más"
-        },
-        {
-            titulo: "Beca de emprendimiento social",
-            descripcion: "Formacion gratuita en negocios.",
-            tag: "BECAS",
-            tagClass: "modern-tag-purple",
-            meta: "Todo el año",
-            img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-            buttonText: "Ver Más"
+    const [cursos,setCursos] = useState([])
+
+    useEffect(()=>{
+        async function traerCursos() {
+            const peticion = await getCursos()
+            setCursos(peticion)
         }
-    ];
+        traerCursos()
+    },[])
 
     return (
         <section className="modern-opportunities" id="oportunidades-destacadas">
@@ -42,17 +23,18 @@ function Opportunities() {
             </div>
             
             <div className="modern-opp-grid">
-                {opportunities.map((item, index) => (
+                {cursos.map((item, index) => (
                     <div key={index} className="modern-opp-card">
-                        <img src={item.img} alt={item.titulo} className="modern-opp-img" />
+                        <img src={item.imagen} alt={item.titulo} className="modern-opp-img" />
                         <div className="modern-opp-content">
                             <div className="modern-opp-meta">
                                 <span className={item.tagClass}>{item.tag}</span>
                                 <span>{item.meta}</span>
                             </div>
-                            <h3>{item.titulo}</h3>
+                            <h3>{item.nombre}</h3>
                             <p>{item.descripcion}</p>
-                            <button className="modern-opp-btn">{item.buttonText}</button>
+                            <button className="modern-opp-btn">{item.duracion}</button>
+                            <button className="modern-opp-btn">{item.horario}</button>
                         </div>
                     </div>
                 ))}

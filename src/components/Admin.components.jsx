@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/Dashboard.css';
+import '../styles/Admin.css';
 import { postCursos, postUsuarios } from '../services/fetch';
+import CloudinaryUpload from './CloudinaryUpload';
 
                           
                         
@@ -12,7 +14,8 @@ const AdminComponent = ({
   setMostrarFormulario, estudianteActual, setEstudianteActual,
   nuevoCurso, setNuevoCurso, handleLogout, abrirNuevoUsuario,
   abrirEditarUsuario, eliminarUsuario, guardarUsuario,
-  guardarCurso, eliminarCurso
+  guardarCurso, eliminarCurso, onCursoCreated,
+  editar, manejarCambio, guardarCambios, editando, CursoActual,setEditando
 }) => {
   /* PROPS del componente, se construye una estructura para hacer que el componente sea reutilizable
     Este componente podrá tener la misma estructura con distintos comportamientos 
@@ -28,16 +31,28 @@ const AdminComponent = ({
    const [descripcionCurso,setDescripcionCurso] = useState("")
    const [duracionCurso,setDuracionCurso] = useState("")
    const [horarioCurso,setHorarioCurso] = useState("")
+   const [imagenCurso,setImagenCurso] = useState("")
 
-  async function guardarCurso() {
+  async function guardarCurso(e) {
+    if (e) e.preventDefault();
     const objCurso = {
-      nombreCurso:nombreCurso,
-      categoriaCurso:categoriaCurso,
-      descripcionCurso:descripcionCurso,
-      duracionCurso:duracionCurso,
-      horarioCurso:horarioCurso
+      nombre: nombreCurso,
+      categoria: categoriaCurso,
+      descripcion: descripcionCurso,
+      duracion: duracionCurso,
+      horario: horarioCurso,
+      imagen: imagenCurso,
+      tag: categoriaCurso,
+      meta: duracionCurso
     }
-    await postCursos(objCurso)
+    const nuevoCursoCreado = await postCursos(objCurso);
+    if (onCursoCreated) onCursoCreated(nuevoCursoCreado);
+    setNombreCurso("");
+    setCategoriaCurso("");
+    setDescripcionCurso("");
+    setDuracionCurso("");
+    setHorarioCurso("");
+    setImagenCurso("");
   }
 
 
@@ -50,9 +65,9 @@ const AdminComponent = ({
           <>
             <div className="page-header"><h1 className="page-title">Panel de Control de Cursos</h1></div>
             <div className="stats-grid">
-              <div className="glass-card"><h3 className="card-title">Estudiantes Activos</h3><p className="card-value" style={{ color: '#28a745' }}>{activos}</p></div>
-              <div className="glass-card"><h3 className="card-title">Estudiantes Inactivos</h3><p className="card-value" style={{ color: '#dc3545' }}>{inactivos}</p></div>
-              <div className="glass-card"><h3 className="card-title">Cursos Creados</h3><p className="card-value" style={{ color: '#004aad' }}>{cursos.length}</p></div>
+              <div className="glass-card"><h3 className="card-title">Estudiantes Activos</h3><p className="card-value admin-activos">{activos}</p></div>
+              <div className="glass-card"><h3 className="card-title">Estudiantes Inactivos</h3><p className="card-value admin-inactivos">{inactivos}</p></div>
+              <div className="glass-card"><h3 className="card-title">Cursos Creados</h3><p className="card-value admin-cursos-count">{cursos.length}</p></div>
             </div>
           </>
         );
@@ -62,23 +77,23 @@ const AdminComponent = ({
           <>
             <div className="page-header"><h1 className="page-title">Gestión de Estudiantes</h1></div>
             <div className="glass-card">
-              <button onClick={abrirNuevoUsuario} style={{ marginBottom: '20px', padding: '10px 20px', backgroundColor: '#28a745', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' }}>+ Nuevo Estudiante</button>
-              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+              <button onClick={abrirNuevoUsuario} className="admin-btn-nuevo">+ Nuevo Estudiante</button>
+              <table className="admin-table">
                 <thead>
-                  <tr style={{ borderBottom: '2px solid #eee', color: '#666' }}>
-                    <th style={{ padding: '12px 0' }}>Nombre</th><th style={{ padding: '12px 0' }}>Correo</th><th style={{ padding: '12px 0' }}>Curso Inscrito</th><th style={{ padding: '12px 0' }}>Estado</th><th style={{ padding: '12px 0' }}>Acciones</th>
+                  <tr className="admin-thead-tr">
+                    <th className="admin-th">Nombre</th><th className="admin-th">Correo</th><th className="admin-th">Curso Inscrito</th><th className="admin-th">Estado</th><th className="admin-th">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
                   {estudiantes.map((est) => (
-                    <tr key={est.id} style={{ borderBottom: '1px solid #eee' }}>
-                      <td style={{ padding: '15px 0' }}>{est.nombre}</td>
-                      <td style={{ padding: '15px 0', color: '#655' }}>{est.email}</td>
-                      <td style={{ padding: '15px 0', color: '#655' }}>{est.curso || 'Sin curso'}</td>
-                      <td style={{ padding: '15px 0' }}><span style={{ background: est.estado === 'Activo' ? '#e6f4ea' : '#fce8e6', color: est.estado === 'Activo' ? '#1e8e3e' : '#d93025', padding: '4px 8px', borderRadius: '4px', fontSize: '12px' }}>{est.estado || 'Inactivo'}</span></td>
-                      <td style={{ padding: '15px 0', display: 'flex', gap: '8px' }}>
-                        <button onClick={() => abrirEditarUsuario(est)} style={{ padding: '6px 12px', backgroundColor: '#004aad', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Editar</button>
-                        <button onClick={() => eliminarUsuario(est.id)} style={{ padding: '6px 12px', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Eliminar</button>
+                    <tr key={est.id} className="admin-tbody-tr">
+                      <td className="admin-td">{est.nombre}</td>
+                      <td className="admin-td-secondary">{est.email}</td>
+                      <td className="admin-td-secondary">{est.curso || 'Sin curso'}</td>
+                      <td className="admin-td"><span className={`admin-status-badge ${est.estado === 'Activo' ? 'admin-status-activo' : 'admin-status-inactivo'}`}>{est.estado || 'Inactivo'}</span></td>
+                      <td className="admin-td-acciones">
+                        <button onClick={() => abrirEditarUsuario(est)} className="admin-btn-editar">Editar</button>
+                        <button onClick={() => eliminarUsuario(est.id)} className="admin-btn-eliminar">Eliminar</button>
                       </td>
                     </tr>
                   ))}
@@ -86,25 +101,26 @@ const AdminComponent = ({
               </table>
 
               {mostrarFormulario && (
-                <div style={{ position: 'absolute', top: '10%', left: '50%', transform: 'translate(-50%, 0)', backgroundColor: 'white', padding: '30px', borderRadius: '10px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)', zIndex: 100, width: '400px' }}>
-                  <h3 style={{ marginTop: 0 }}>{estudianteActual.id ? 'Editar Estudiante' : 'Nuevo Estudiante'}</h3>
-                  <form onSubmit={guardarUsuario} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                    <input type="text" placeholder="Nombre completo" required value={estudianteActual.nombre} onChange={(e) => setEstudianteActual({...estudianteActual, nombre: e.target.value})} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}/>
-                    <input type="email" placeholder="Correo electrónico" required value={estudianteActual.email} onChange={(e) => setEstudianteActual({...estudianteActual, email: e.target.value})} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}/>
-                    <select value={estudianteActual.curso} onChange={(e) => setEstudianteActual({...estudianteActual, curso: e.target.value})} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}>
+                <div className="admin-modal">
+                  <h3 className="admin-modal-h3">{estudianteActual.id ? 'Editar Estudiante' : 'Nuevo Estudiante'}</h3>
+                  <form onSubmit={guardarUsuario} className="admin-form">
+                    <input type="text" placeholder="Nombre completo" required value={estudianteActual.nombre} onChange={(e) => setEstudianteActual({...estudianteActual, nombre: e.target.value})} className="admin-input"/>
+                    <input type="email" placeholder="Correo electrónico" required value={estudianteActual.email} onChange={(e) => setEstudianteActual({...estudianteActual, email: e.target.value})} className="admin-input"/>
+                    <select value={estudianteActual.curso} onChange={(e) => setEstudianteActual({...estudianteActual, curso: e.target.value})} className="admin-select">
                       <option value="">-- Seleccionar Curso --</option>
                       {cursos.map(c => <option key={c.id} value={c.nombre}>{c.nombre}</option>)}
                     </select>
-                    <select value={estudianteActual.estado} onChange={(e) => setEstudianteActual({...estudianteActual, estado: e.target.value})} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}>
+                    <select value={estudianteActual.estado} onChange={(e) => setEstudianteActual({...estudianteActual, estado: e.target.value})} className="admin-select">
                       <option value="Activo">Activo</option><option value="Inactivo">Inactivo</option>
                     </select>
-                    <div style={{ display: 'flex', gap: '10px' }}>
-                      <button type="submit" style={{ flex: 1, padding: '10px', backgroundColor: '#28a745', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Guardar</button>
-                      <button type="button" onClick={() => setMostrarFormulario(false)} style={{ flex: 1, padding: '10px', backgroundColor: '#6c757d', color: 'white', border: 'none', borderRadius: '5px' }}>Cancelar</button>
+                    <div className="admin-form-buttons">
+                      <button type="submit" className="admin-btn-guardar">Guardar</button>
+                      <button type="button" onClick={() => setMostrarFormulario(false)} className="admin-btn-cancelar">Cancelar</button>
                     </div>
                   </form>
                 </div>
               )}
+
             </div>
           </>
         );
@@ -113,31 +129,55 @@ const AdminComponent = ({
         return (
           <>
             <div className="page-header"><h1 className="page-title">Catálogo de Cursos</h1></div>
-            <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
-              <div className="glass-card" style={{ flex: '1' }}>
-                <h3 className="card-title" style={{ marginBottom: '15px' }}>Agregar Nuevo Curso</h3>
-                <form onSubmit={guardarCurso} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                  <input type="text" placeholder="Nombre (Ej. Kendo Básico)" required value={nombreCurso} onChange={(e) => setNombreCurso(e.target.value)} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}/>
-                  <input type="text" placeholder="Categoría (Ej. Artes Marciales)" required value={categoriaCurso} onChange={(e) => setCategoriaCurso(e.target.value)} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}/>
-                  <input type="text" placeholder="Descripción del curso" required value={descripcionCurso || ''} onChange={(e) => setDescripcionCurso(e.target.value)} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}/>
-                  <input type="text" placeholder="Duración del curso" required value={duracionCurso || ''} onChange={(e) => setDuracionCurso(e.target.value)} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}/>
-                  <input type="text" placeholder="Horario del curso" required value={horarioCurso || ''} onChange={(e) => setHorarioCurso(e.target.value)} style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}/>
-                  <button type="button" onClick={guardarCurso} style={{ padding: '10px', backgroundColor: '#004aad', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}>Crear Curso</button>
+            <div className="admin-cursos-container">
+              <div className="glass-card admin-cursos-left">
+                <h3 className="card-title admin-cursos-h3">Agregar Nuevo Curso</h3>
+                <form onSubmit={guardarCurso} className="admin-form">
+                  <input type="text" placeholder="Nombre (Ej. Kendo Básico)" required value={nombreCurso}onChange={(e) => setNombreCurso(e.target.value)} className="admin-input"/>
+                  <input type="text" placeholder="Categoría (Ej. Artes Marciales)" required value={categoriaCurso} onChange={(e) => setCategoriaCurso(e.target.value)} className="admin-input"/>
+                  <input type="text" placeholder="Descripción del curso" required value={descripcionCurso || ''} onChange={(e) => setDescripcionCurso(e.target.value)} className="admin-input"/>
+                  <input type="text" placeholder="Duración del curso" required value={duracionCurso || ''} onChange={(e) => setDuracionCurso(e.target.value)} className="admin-input"/>
+                  <input type="text" placeholder="Horario del curso" required value={horarioCurso || ''} onChange={(e) => setHorarioCurso(e.target.value)} className="admin-input"/>
+                  <CloudinaryUpload buttonText="Subir Imagen del Curso" onImageUpload={(url) => setImagenCurso(url)} />
+                  {imagenCurso && <img src={imagenCurso} alt="Vista previa" className="admin-preview-img" />}
+                  <button type="button" onClick={guardarCurso} className="admin-btn-crear-curso">Crear Curso</button>
                 </form>
               </div>
-              <div className="glass-card" style={{ flex: '2' }}>
-                <h3 className="card-title" style={{ marginBottom: '15px' }}>Cursos Activos</h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {cursos.length === 0 ? <p style={{ color: '#888' }}>No hay cursos creados.</p> : null}
+              <div className="glass-card admin-cursos-right">
+                <h3 className="card-title admin-cursos-h3">Cursos Activos</h3>
+                <ul className="admin-cursos-ul">
+                  {cursos.length === 0 ? <p className="admin-no-cursos">No hay cursos creados.</p> : null}
                   {cursos.map(curso => (
-                    <li key={curso.id} style={{ display: 'flex', justifyContent: 'space-between', padding: '15px', borderBottom: '1px solid #eee', alignItems: 'center' }}>
-                      <div><strong>{curso.nombre}</strong> <br/><span style={{ fontSize: '12px', color: '#666' }}>{curso.categoria} {curso.descripcion ? ` - ${curso.descripcion}` : ''} {curso.duracion ? ` | Duración: ${curso.duracion}` : ''} {curso.horario ? ` | Horario: ${curso.horario}` : ''}</span></div>
-                      <button onClick={() => eliminarCurso(curso.id)} style={{ padding: '6px 12px', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Eliminar</button>
+                    <li key={curso.id} className="admin-curso-li">
+                      {curso.imagen && <img src={curso.imagen} alt={curso.nombre} className="admin-curso-img" />}
+                      <div className="admin-curso-info"><strong>{curso.nombre}</strong> <br/><span className="admin-curso-details">{curso.categoria} {curso.descripcion ? ` - ${curso.descripcion}` : ''} {curso.duracion ? ` | Duración: ${curso.duracion}` : ''} {curso.horario ? ` | Horario: ${curso.horario}` : ''}</span></div>
+                      <div style={{ display: 'flex', gap: '8px' }}>
+                        <button onClick={() => editar(curso)} className="admin-btn-editar">Editar</button>
+                        <button onClick={() => eliminarCurso(curso.id)} className="admin-btn-eliminar">Eliminar</button>
+                      </div>
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
+
+            {/* MODAL PARA EDITAR CURSOS - Aparece cuando se hace clic en "Editar" en un curso */}
+            {editando && CursoActual && (
+              <div className="admin-modal">
+                <h3 className="admin-modal-h3">Editar Curso</h3>
+                <form onSubmit={(e) => { e.preventDefault(); guardarCambios(); }} className="admin-form">
+                  <input type="text" name="nombre" placeholder="Nombre del curso" value={CursoActual.nombre || ''} onChange={manejarCambio} className="admin-input"/>
+                  <input type="text" name="categoria" placeholder="Categoría" value={CursoActual.categoria || ''} onChange={manejarCambio} className="admin-input"/>
+                  <input type="text" name="descripcion" placeholder="Descripción" value={CursoActual.descripcion || ''} onChange={manejarCambio} className="admin-input"/>
+                  <input type="text" name="duracion" placeholder="Duración" value={CursoActual.duracion || ''} onChange={manejarCambio} className="admin-input"/>
+                  <input type="text" name="horario" placeholder="Horario" value={CursoActual.horario || ''} onChange={manejarCambio} className="admin-input"/>
+                  <div className="admin-form-buttons">
+                    <button type="submit" className="admin-btn-guardar">Guardar Cambios</button>
+                    <button type="button" onClick={() => setEditando(false)} className="admin-btn-cancelar">Cancelar</button>
+                  </div>
+                </form>
+              </div>
+            )}
           </>
         );
       default: return <h2>Pestaña no encontrada</h2>;
@@ -152,7 +192,7 @@ const AdminComponent = ({
           <li className={activeTab === 'dashboard' ? 'active' : ''} onClick={() => setActiveTab('dashboard')}>Dashboard</li>
           <li className={activeTab === 'usuarios' ? 'active' : ''} onClick={() => setActiveTab('usuarios')}>Gestión de Estudiantes</li>
           <li className={activeTab === 'cursos' ? 'active' : ''} onClick={() => setActiveTab('cursos')}>Gestión de Cursos</li>
-          <li style={{ marginTop: 'auto', borderTop: '1px solid #1a3c5e' }} onClick={handleLogout}>Cerrar Sesión</li>
+          <li className="admin-logout-li" onClick={handleLogout}>Cerrar Sesión</li>
         </ul>
       </aside>
       <main className="main-content">{renderContent()}</main>

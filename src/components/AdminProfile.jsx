@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import AdminComponent from './Admin.components';
+import { postCursos, getCursos, deleteCursos, getUsuarios, postUsuarios, putUsuarios, deleteUsuarios, putCursos } from '../services/fetch';
 
 
 
@@ -14,8 +15,27 @@ const AdminProfile = () => {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [estudianteActual, setEstudianteActual] = useState({ id: null, nombre: '', email: '', curso: '', estado: 'Activo' });
   const [nuevoCurso, setNuevoCurso] = useState({ nombre: '', categoria: '' });
+  const [editandoCurso, setEditandoCurso] = useState(false);
+  const [cursoActual, setCursoActual] = useState({});
 
 ////////////////////////////////////////////////////////////////
+
+  useEffect(() => {
+    const cargarCursos = async () => {
+      const cursosData = await getCursos();
+      setCursos(cursosData);
+    };
+    const cargarEstudiantes = async () => {
+      const estudiantesData = await getUsuarios();
+      setEstudiantes(estudiantesData.filter(user => user.role === 'cliente'));
+    };
+    cargarCursos();
+    cargarEstudiantes();
+  }, []);
+
+  const registrarUsuario = postUsuarios;
+  const actualizarUsuario = putUsuarios;
+  const eliminarUsuarioAPI = deleteUsuarios;
 
   const handleLogout = () => navigate('/login'); 
 
@@ -39,12 +59,12 @@ const AdminProfile = () => {
   const guardarUsuario = async (e) => {
     e.preventDefault();
     if (estudianteActual.id) {
-      const data = await actualizarUsuarioAPI(estudianteActual.id, estudianteActual);
+      const data = await actualizarUsuario(estudianteActual.id, estudianteActual);
       setEstudiantes(estudiantes.map(est => est.id === data.id ? data : est));
     } else {
       const nuevoEst = { ...estudianteActual, role: 'cliente', password: '123' };
       delete nuevoEst.id;
-      const data = await registrarUsuarioAPI(nuevoEst);
+      const data = await registrarUsuario(nuevoEst);
       setEstudiantes([...estudiantes, data]);
     }
     setMostrarFormulario(false);
@@ -53,7 +73,7 @@ const AdminProfile = () => {
   const guardarCurso = async (e) => {
     e.preventDefault();
     try {
-      const cursoGuardado = await crearCursoAPI(nuevoCurso);
+      const cursoGuardado = await postCursos(nuevoCurso);
       setCursos([...cursos, cursoGuardado]); 
       setNuevoCurso({ nombre: '', categoria: '' }); 
     } catch (error) {
@@ -63,9 +83,25 @@ const AdminProfile = () => {
 
   const eliminarCurso = async (id) => {
     if (window.confirm("¿Seguro que deseas eliminar este curso?")) {
-      await eliminarCursoAPI(id);
+      await deleteCursos(id);
       setCursos(cursos.filter(curso => curso.id !== id));
     }
+  };
+
+  const abrirEditarCurso = (curso) => {
+    setCursoActual(curso);
+    setEditandoCurso(true);
+  };
+
+  const manejarCambioCurso = (e) => {
+    const { name, value } = e.target;
+    setCursoActual({ ...cursoActual, [name]: value });
+  };
+
+  const guardarCambiosCurso = async () => {
+    await putCursos(cursoActual, cursoActual.id);
+    setCursos(cursos.map(c => c.id === cursoActual.id ? cursoActual : c));
+    setEditandoCurso(false);
   };
 
   // --- AQUÍ CONECTAMOS LA LÓGICA CON LA VISTA ---
@@ -80,6 +116,10 @@ const AdminProfile = () => {
       abrirEditarUsuario={abrirEditarUsuario} eliminarUsuario={eliminarUsuario}
       guardarUsuario={guardarUsuario} guardarCurso={guardarCurso}
       eliminarCurso={eliminarCurso}
+      onCursoCreated={(curso) => setCursos([...cursos, curso])}
+      editando={editandoCurso} setEditando={setEditandoCurso}
+      editar={abrirEditarCurso} manejarCambio={manejarCambioCurso}
+      guardarCambios={guardarCambiosCurso} CursoActual={cursoActual}
     />
   );
 };

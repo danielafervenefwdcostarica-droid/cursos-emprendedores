@@ -25,6 +25,33 @@ export{getUsuarios}
 
 
 
+//GET CURSOS funcion que consulta al endpoint a traves de un fetch,consulta al API al Endpoint
+
+
+async function getCursos() {
+
+    try {
+
+        const respuestaServidor = await fetch("http://localhost:3001/cursos")
+      
+        
+        const datosCursos= await respuestaServidor.json();
+   
+        
+        return datosCursos;
+        
+    } catch (error) {
+        
+        console.error("Error al obtener los cursos", error);
+    }
+
+
+}
+
+export{getCursos}
+
+
+
 //POST USUARIOS AQUI S EVA A CREAR LA FUNCION PARA GUARDAR UN NUEVO USUARIO
 
 
@@ -171,5 +198,65 @@ async function postCursos(cursos) {
     }
 }
 
+<<<<<<< HEAD
 
 export { postCursos };
+=======
+export { postCursos };
+
+
+
+//PUT CURSOS
+
+
+async function putCursos(curso,id){
+
+       try {
+
+        const respuesta = await fetch("http://localhost:3001/cursos/"+id,{
+            method:"PUT",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(curso)
+
+        })
+
+        const datosCursos= await respuesta.json();
+
+        return datosCursos;
+        
+    } catch (error) {
+        
+        console.error("Error al actualizar el curso", error);
+    }
+}
+
+export{putCursos}
+
+
+
+//DELETE CURSOS
+
+
+
+async function deleteCursos(id){
+
+       try {
+
+        const respuesta = await fetch("http://localhost:3001/cursos/"+id,{
+            method:"DELETE",
+        })
+
+        const datosCursos= await respuesta.json();
+
+        return datosCursos;
+        
+    } catch (error) {
+        
+        console.error("Error al Eliminar el curso", error);
+    }
+}
+
+export{deleteCursos}
+>>>>>>> 93bb23408cc735c186f0f1880e129fb9426072d3

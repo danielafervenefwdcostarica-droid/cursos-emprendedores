@@ -1,0 +1,234 @@
+/* Admin Component Styles */
+
+/* Dashboard Stats */
+.admin-activos {
+  color: #28a745;
+}
+
+.admin-inactivos {
+  color: #dc3545;
+}
+
+.admin-cursos-count {
+  color: #004aad;
+}
+
+/* Buttons */
+.admin-btn-nuevo {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.admin-btn-editar {
+  padding: 6px 12px;
+  background-color: #004aad;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.admin-btn-eliminar {
+  padding: 6px 12px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.admin-btn-crear-curso {
+  padding: 10px;
+  background-color: #004aad;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.admin-btn-guardar {
+  flex: 1;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.admin-btn-cancelar {
+  flex: 1;
+  padding: 10px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Table */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.admin-thead-tr {
+  border-bottom: 2px solid #eee;
+  color: #666;
+}
+
+.admin-th {
+  padding: 12px 0;
+}
+
+.admin-tbody-tr {
+  border-bottom: 1px solid #eee;
+}
+
+.admin-td {
+  padding: 15px 0;
+}
+
+.admin-td-secondary {
+  padding: 15px 0;
+  color: #655;
+}
+
+.admin-td-acciones {
+  padding: 15px 0;
+  display: flex;
+  gap: 8px;
+}
+
+/* Status Badge */
+.admin-status-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.admin-status-activo {
+  background: #e6f4ea;
+  color: #1e8e3e;
+}
+
+.admin-status-inactivo {
+  background: #fce8e6;
+  color: #d93025;
+}
+
+/* Modal */
+.admin-modal {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  z-index: 100;
+  width: 400px;
+}
+
+.admin-modal-h3 {
+  margin-top: 0;
+}
+
+/* Form */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.admin-input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.admin-select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.admin-form-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Cursos Section */
+.admin-cursos-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.admin-cursos-left {
+  flex: 1;
+}
+
+.admin-cursos-right {
+  flex: 2;
+}
+
+.admin-cursos-h3 {
+  margin-bottom: 15px;
+}
+
+.admin-cursos-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-no-cursos {
+  color: #888;
+}
+
+.admin-curso-li {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+  gap: 15px;
+}
+
+.admin-curso-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.admin-curso-info {
+  flex: 1;
+}
+
+.admin-curso-details {
+  font-size: 12px;
+  color: #666;
+}
+
+.admin-preview-img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Sidebar */
+.admin-logout-li {
+  margin-top: auto;
+  border-top: 1px solid #1a3c5e;
+}
