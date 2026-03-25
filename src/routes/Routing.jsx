@@ -3,9 +3,10 @@ import Contacto from '../pages/Contacto';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import AdministradorPerfil from '../pages/AdministradorPerfil';
-import ListaDeCursos from '../pages/ListaDeCursos';
+import ListaDeCursos from '../pages/Cursos';
 import ClientePerfil from '../pages/ClientePerfil';
 import Inicio from '../pages/Home';
+import Cursos from '../pages/Cursos';
 
 function Routing() {
   return(
@@ -18,6 +19,7 @@ function Routing() {
          <Route path='/panelAdministrativo'element={<AdministradorPerfil/>}/>
          <Route path='/PerfilCliente' element={<ClientePerfil/>}/>
          <Route path= '/lista' element={<ListaDeCursos/>}/>
+         <Route path= '/cursos' element={<Cursos/>}/>
         
       </Routes>
     </Router>

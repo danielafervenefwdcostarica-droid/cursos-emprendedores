@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ClientComponent from '../components/Client.component.jsx'; // <-- Importamos nuestra vista
+import { getCursos, putUsuarios } from '../services/fetch';
 
 const ClientProfile = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const ClientProfile = () => {
   useEffect(() => {
     const cargarCursos = async () => {
       try {
-        const datos = await obtenerCursosAPI();
+        const datos = await getCursos();
         setCursosDisponibles(datos);
       } catch (error) {
         console.error("Error al cargar los cursos:", error);
@@ -54,7 +55,7 @@ const ClientProfile = () => {
       const datosParaBD = { ...editForm, curso: editForm.cursoActual };
       
       if (userData.id) {
-        await actualizarUsuarioAPI(userData.id, datosParaBD);
+        await putUsuarios(userData.id, datosParaBD);
       }
 
       setUserData(editForm);

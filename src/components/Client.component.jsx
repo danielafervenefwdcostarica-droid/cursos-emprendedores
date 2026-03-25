@@ -1,6 +1,7 @@
 // src/components/Client.component.jsx
 import React from 'react';
 import '../styles/Dashboard.css';
+import '../styles/Cliente.css';
 
 const ClientComponent = ({
   userData, isEditing, editForm, cursosDisponibles,
@@ -9,10 +10,10 @@ const ClientComponent = ({
 }) => {
   return (
     <div className="dashboard-layout">
-      <div className="main-content" style={{ maxWidth: '1000px', margin: '0 auto' }}>
+      <div className="main-content client-main-content">
         
         {/* Encabezado */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        <div className="client-header">
           <div className="profile-header">
             <div className="avatar">
               {userData.nombre ? userData.nombre.substring(0, 2).toUpperCase() : "ES"}
@@ -24,7 +25,7 @@ const ClientComponent = ({
           </div>
           <button 
             onClick={handleLogout} 
-            style={{ padding: '8px 16px', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' }}>
+            className="client-logout-btn">
             Cerrar Sesión
           </button>
         </div>
@@ -33,7 +34,7 @@ const ClientComponent = ({
         <div className="stats-grid">
           <div className="glass-card">
             <h3 className="card-title">Estado de Cuenta</h3>
-            <p className="card-value" style={{ color: '#28a745' }}>Activa</p>
+            <p className="card-value client-card-value-active">Activa</p>
           </div>
           <div className="glass-card">
             <h3 className="card-title">Plan / Suscripción</h3>
@@ -41,63 +42,69 @@ const ClientComponent = ({
           </div>
           <div className="glass-card">
             <h3 className="card-title">Curso Actual</h3>
-            <p className="card-value" style={{ fontSize: '20px', marginTop: '8px', color: userData.cursoActual ? '#004aad' : '#888' }}>
+            <p className={`card-value client-card-value-course ${userData.cursoActual ? 'active' : 'inactive'}`}>
               {userData.cursoActual || "Sin matricular"}
             </p>
           </div>
         </div>
 
         {/* Formulario y Datos */}
-        <div className="glass-card" style={{ marginTop: '20px' }}>
-          <h3 className="card-title" style={{ color: '#1a1a1a', fontSize: '18px' }}>Información Personal y Matrícula</h3>
-          <hr style={{ border: 'none', borderTop: '1px solid #eee', margin: '15px 0' }} />
+        <div className="glass-card client-glass-card-margin">
+          <h3 className="card-title client-card-title-custom">Información Personal y Matrícula</h3>
+          <hr className="client-hr" />
           
           {isEditing ? (
-            <form onSubmit={guardarCambios} style={{ display: 'flex', flexDirection: 'column', gap: '15px', maxWidth: '400px' }}>
+            <form onSubmit={guardarCambios} className="client-edit-form">
               <div>
-                <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold', fontSize: '14px' }}>Nombre Completo</label>
-                <input type="text" name="nombre" value={editForm.nombre} onChange={manejarCambios} style={{ width: '100%', padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }} required />
+                <label className="client-form-label">Nombre Completo</label>
+                <input type="text" name="nombre" value={editForm.nombre} onChange={manejarCambios} className="client-form-input" required />
               </div>
               
               <div>
-                <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold', fontSize: '14px' }}>Correo Electrónico</label>
-                <input type="email" name="email" value={editForm.email} onChange={manejarCambios} style={{ width: '100%', padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }} required />
+                <label className="client-form-label">Correo Electrónico</label>
+                <input type="email" name="email" value={editForm.email} onChange={manejarCambios} className="client-form-input" required />
               </div>
 
               <div>
-                <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold', fontSize: '14px', color: '#004aad' }}>Elegir Curso / Matrícula</label>
+                <label className="client-form-label client-form-label-course">Elegir Curso / Matrícula</label>
                 <select 
                   name="cursoActual" 
                   value={editForm.cursoActual} 
                   onChange={manejarCambios} 
-                  style={{ width: '100%', padding: '10px', borderRadius: '5px', border: '2px solid #004aad', backgroundColor: '#f8faff' }} 
+                  className="client-form-select" 
                   required
                 >
                   <option value="">-- Selecciona un curso --</option>
                   {cursosDisponibles.map(curso => (
                     <option key={curso.id} value={curso.nombre}>
                       {curso.nombre} ({curso.categoria})
-                    </option>
+                     </option>
+                    
+                    
+                  
+
+
+
                   ))}
                 </select>
               </div>
 
-              <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
-                <button type="submit" style={{ padding: '10px 20px', backgroundColor: '#28a745', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' }}>Guardar Cambios</button>
-                <button type="button" onClick={cancelarEdicion} style={{ padding: '10px 20px', backgroundColor: '#6c757d', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' }}>Cancelar</button>
+              <div className="client-form-buttons">
+                <button type="submit" className="client-btn-save">Guardar Cambios</button>
+                <button type="button" onClick={cancelarEdicion} className="client-btn-cancel">Cancelar</button>
               </div>
             </form>
           ) : (
             <div>
-              <p style={{ margin: '10px 0' }}><strong>Nombre Completo:</strong> {userData.nombre}</p>
-              <p style={{ margin: '10px 0' }}><strong>Correo Electrónico:</strong> {userData.email}</p>
-              <p style={{ margin: '10px 0' }}><strong>Miembro desde:</strong> {userData.fechaRegistro}</p>
-              <p style={{ margin: '10px 0', padding: '10px', backgroundColor: '#f8faff', borderLeft: '4px solid #004aad', borderRadius: '4px' }}>
+              <p className="client-info-p"><strong>Nombre Completo:</strong> {userData.nombre}</p>
+              <p className="client-info-p"><strong>Correo Electrónico:</strong> {userData.email}</p>
+              <p className="client-info-p"><strong>Miembro desde:</strong> {userData.fechaRegistro}</p>
+              <p className="client-course-p">
                 <strong>Curso Matriculado:</strong> {userData.cursoActual || "Aún no has elegido un curso."}
               </p>
               <button 
                 onClick={iniciarEdicion} 
-                style={{ marginTop: '20px', padding: '10px 20px', backgroundColor: '#004aad', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' }}>
+                className="client-btn-edit">
                 Editar Perfil y Matrícula
               </button>
             </div>

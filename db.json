@@ -31,15 +31,37 @@
   ],
   "cursos": [
     {
-      "id": "eef2",
-      "nombre": "f",
-      "categoria": "f",
-      "descripcion": "f",
-      "duracion": "f",
-      "horario": "f",
-      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774368779/u252es6cwdazhuka1gva.jpg",
-      "tag": "f",
-      "meta": "f"
+      "id": "aa92",
+      "nombre": "s",
+      "categoria": "x",
+      "descripcion": "  f",
+      "duracion": "c",
+      "horario": "b",
+      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774382322/zrtzdanqcokdskkuoes9.jpg",
+      "tag": "x",
+      "meta": "c"
+    },
+    {
+      "id": "aa222",
+      "nombre": "Ingles",
+      "categoria": "Idiomas",
+      "descripcion": "Ingles basico",
+      "duracion": "1",
+      "horario": "2",
+      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774382322/zrtzdanqcokdskkuoes9.jpg",
+      "tag": "Idioma",
+      "meta": "xd"
+    },
+    {
+      "id": "2a4a",
+      "nombre": "sf",
+      "categoria": "idiomas",
+      "descripcion": "v",
+      "duracion": " d",
+      "horario": "vv",
+      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774382968/misr0ztnkjjp7hrdvlck.jpg",
+      "tag": "idiomas",
+      "meta": " d"
     }
   ]
 }

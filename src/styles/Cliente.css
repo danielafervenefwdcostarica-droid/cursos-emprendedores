@@ -1,0 +1,155 @@
+/* Estilos para el componente de cliente */
+
+/* Contenedor principal */
+.client-main-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Encabezado con flex */
+.client-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Botón de cerrar sesión */
+.client-logout-btn {
+  padding: 8px 16px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Valor de tarjeta activa */
+.client-card-value-active {
+  color: #28a745;
+}
+
+/* Valor de tarjeta de curso */
+.client-card-value-course {
+  font-size: 20px;
+  margin-top: 8px;
+}
+
+.client-card-value-course.active {
+  color: #004aad;
+}
+
+.client-card-value-course.inactive {
+  color: #888;
+}
+
+/* Tarjeta de vidrio con margen */
+.client-glass-card-margin {
+  margin-top: 20px;
+}
+
+/* Título de tarjeta personalizado */
+.client-card-title-custom {
+  color: #1a1a1a;
+  font-size: 18px;
+}
+
+/* Separador horizontal */
+.client-hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 15px 0;
+}
+
+/* Formulario de edición */
+.client-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+}
+
+/* Etiqueta de formulario */
+.client-form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Etiqueta de selección de curso */
+.client-form-label-course {
+  color: #004aad;
+}
+
+/* Input de formulario */
+.client-form-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Select de curso */
+.client-form-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #004aad;
+  background-color: #f8faff;
+}
+
+/* Contenedor de botones */
+.client-form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Botón guardar */
+.client-btn-save {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Botón cancelar */
+.client-btn-cancel {
+  padding: 10px 20px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Párrafo de información */
+.client-info-p {
+  margin: 10px 0;
+}
+
+/* Párrafo de curso matriculado */
+.client-course-p {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #f8faff;
+  border-left: 4px solid #004aad;
+  border-radius: 4px;
+}
+
+/* Botón editar perfil */
+.client-btn-edit {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #004aad;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}

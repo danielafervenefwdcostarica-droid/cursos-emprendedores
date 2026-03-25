@@ -134,7 +134,16 @@ const AdminComponent = ({
                 <h3 className="card-title admin-cursos-h3">Agregar Nuevo Curso</h3>
                 <form onSubmit={guardarCurso} className="admin-form">
                   <input type="text" placeholder="Nombre (Ej. Kendo Básico)" required value={nombreCurso}onChange={(e) => setNombreCurso(e.target.value)} className="admin-input"/>
-                  <input type="text" placeholder="Categoría (Ej. Artes Marciales)" required value={categoriaCurso} onChange={(e) => setCategoriaCurso(e.target.value)} className="admin-input"/>
+                  <select className="admin-input" name="" id="" onChange={(e)=>setCategoriaCurso(e.target.value)}>
+                    <option value="">Seleccione la categoria del curso</option>
+                    <option value="idiomas">Idiomas</option>
+                    <option value="tecnologia">Tecnologia</option>
+                    <option value="artesania">Artesania</option>
+                    <option value="musica">Musica</option>
+                      <option value="belleza">Belleza</option>
+                  </select>
+
+
                   <input type="text" placeholder="Descripción del curso" required value={descripcionCurso || ''} onChange={(e) => setDescripcionCurso(e.target.value)} className="admin-input"/>
                   <input type="text" placeholder="Duración del curso" required value={duracionCurso || ''} onChange={(e) => setDuracionCurso(e.target.value)} className="admin-input"/>
                   <input type="text" placeholder="Horario del curso" required value={horarioCurso || ''} onChange={(e) => setHorarioCurso(e.target.value)} className="admin-input"/>
