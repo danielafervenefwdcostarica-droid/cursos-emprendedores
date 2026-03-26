@@ -31,37 +31,37 @@
   ],
   "cursos": [
     {
-      "id": "aa92",
-      "nombre": "s",
-      "categoria": "x",
-      "descripcion": "  f",
-      "duracion": "c",
-      "horario": "b",
-      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774382322/zrtzdanqcokdskkuoes9.jpg",
-      "tag": "x",
-      "meta": "c"
-    },
-    {
-      "id": "aa222",
-      "nombre": "Ingles",
-      "categoria": "Idiomas",
-      "descripcion": "Ingles basico",
-      "duracion": "1",
-      "horario": "2",
-      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774382322/zrtzdanqcokdskkuoes9.jpg",
-      "tag": "Idioma",
-      "meta": "xd"
-    },
-    {
-      "id": "2a4a",
-      "nombre": "sf",
+      "id": "4b6c",
+      "nombre": "vfdvoifdj",
       "categoria": "idiomas",
-      "descripcion": "v",
-      "duracion": " d",
-      "horario": "vv",
-      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774382968/misr0ztnkjjp7hrdvlck.jpg",
+      "descripcion": "lkmfpfv",
+      "duracion": "vnonvonv",
+      "horario": "nkfjnvof",
+      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774476504/nuo12clxuletx82ijddr.jpg",
       "tag": "idiomas",
-      "meta": " d"
+      "meta": "vnonvonv"
+    },
+    {
+      "id": "3d5c",
+      "nombre": "jnojn",
+      "categoria": "artesania",
+      "descripcion": "bkbkjoj",
+      "duracion": "oonmopji",
+      "horario": "km[ok-",
+      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774476609/wei3qbscr9tbk8b9zxoy.jpg",
+      "tag": "artesania",
+      "meta": "oonmopji"
+    },
+    {
+      "id": "b212",
+      "nombre": "f",
+      "categoria": "musica",
+      "descripcion": "f",
+      "duracion": "b",
+      "horario": "k",
+      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774487039/gmiiizxu7moeah5x07ja.jpg",
+      "tag": "musica",
+      "meta": "b"
     }
   ]
 }

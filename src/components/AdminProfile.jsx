@@ -18,7 +18,7 @@ const AdminProfile = () => {
   const [editandoCurso, setEditandoCurso] = useState(false);
   const [cursoActual, setCursoActual] = useState({});
 
-////////////////////////////////////////////////////////////////
+ 
 
   useEffect(() => {
     const cargarCursos = async () => {
@@ -44,10 +44,7 @@ const AdminProfile = () => {
     setMostrarFormulario(true);
   };
 
-  const abrirEditarUsuario = (estudiante) => {
-    setEstudianteActual(estudiante);
-    setMostrarFormulario(true);
-  };
+ 
 
   const eliminarUsuario = async (id) => {
     if (window.confirm("¿Seguro que deseas eliminar a este estudiante?")) {
@@ -113,7 +110,7 @@ const AdminProfile = () => {
       estudianteActual={estudianteActual} setEstudianteActual={setEstudianteActual}
       nuevoCurso={nuevoCurso} setNuevoCurso={setNuevoCurso}
       handleLogout={handleLogout} abrirNuevoUsuario={abrirNuevoUsuario}
-      abrirEditarUsuario={abrirEditarUsuario} eliminarUsuario={eliminarUsuario}
+       eliminarUsuario={eliminarUsuario}
       guardarUsuario={guardarUsuario} guardarCurso={guardarCurso}
       eliminarCurso={eliminarCurso}
       onCursoCreated={(curso) => setCursos([...cursos, curso])}

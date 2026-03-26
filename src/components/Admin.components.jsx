@@ -3,11 +3,7 @@ import '../styles/Dashboard.css';
 import '../styles/Admin.css';
 import { postCursos, postUsuarios } from '../services/fetch';
 import CloudinaryUpload from './CloudinaryUpload';
-
-                          
-                        
-
-            
+import CardCurso from './CardCursos';
 
 const AdminComponent = ({
   activeTab, setActiveTab, estudiantes, cursos, mostrarFormulario,
@@ -59,7 +55,10 @@ const AdminComponent = ({
   const renderContent = () => {
     switch(activeTab) {
       case 'dashboard':
-        const activos = estudiantes.filter(est => est.estado === 'Activo').length;
+        // NUEVO: El filtro de estudiantes activos ahora cuenta no solo a los que dicen "Activo",
+        // sino también a los que no tienen el estado definido (!est.estado). Esto es porque al
+        // registrar un estudiante nuevo desde el registro, por defecto no traen estado.
+        const activos = estudiantes.filter(est => est.estado === 'Activo' || !est.estado).length;
         const inactivos = estudiantes.filter(est => est.estado === 'Inactivo').length;
         return (
           <>
@@ -90,9 +89,12 @@ const AdminComponent = ({
                       <td className="admin-td">{est.nombre}</td>
                       <td className="admin-td-secondary">{est.email}</td>
                       <td className="admin-td-secondary">{est.curso || 'Sin curso'}</td>
-                      <td className="admin-td"><span className={`admin-status-badge ${est.estado === 'Activo' ? 'admin-status-activo' : 'admin-status-inactivo'}`}>{est.estado || 'Inactivo'}</span></td>
+                      
+                      {/* NUEVO: Las etiquetas de la tabla ahora asignan "Activo" (color verde) a los estudiantes
+                          recién registrados en lugar de mostrarlos visualmente como "Inactivos" por error. */}
+                      <td className="admin-td"><span className={`admin-status-badge ${est.estado === 'Activo' || !est.estado ? 'admin-status-activo' : 'admin-status-inactivo'}`}>{est.estado || 'Activo'}</span></td>
+                      
                       <td className="admin-td-acciones">
-                        <button onClick={() => abrirEditarUsuario(est)} className="admin-btn-editar">Editar</button>
                         <button onClick={() => eliminarUsuario(est.id)} className="admin-btn-eliminar">Eliminar</button>
                       </td>
                     </tr>
@@ -134,13 +136,13 @@ const AdminComponent = ({
                 <h3 className="card-title admin-cursos-h3">Agregar Nuevo Curso</h3>
                 <form onSubmit={guardarCurso} className="admin-form">
                   <input type="text" placeholder="Nombre (Ej. Kendo Básico)" required value={nombreCurso}onChange={(e) => setNombreCurso(e.target.value)} className="admin-input"/>
-                  <select className="admin-input" name="" id="" onChange={(e)=>setCategoriaCurso(e.target.value)}>
-                    <option value="">Seleccione la categoria del curso</option>
+                  <select className="admin-input" name="categoria" id="categoria" value={categoriaCurso} onChange={(e)=>setCategoriaCurso(e.target.value)}>
+                    <option value="">Seleccione la categoría del curso</option>
                     <option value="idiomas">Idiomas</option>
                     <option value="tecnologia">Tecnologia</option>
                     <option value="artesania">Artesania</option>
                     <option value="musica">Musica</option>
-                      <option value="belleza">Belleza</option>
+                    <option value="belleza">Belleza</option>
                   </select>
 
 
@@ -157,10 +159,17 @@ const AdminComponent = ({
                 <ul className="admin-cursos-ul">
                   {cursos.length === 0 ? <p className="admin-no-cursos">No hay cursos creados.</p> : null}
                   {cursos.map(curso => (
-                    <li key={curso.id} className="admin-curso-li">
-                      {curso.imagen && <img src={curso.imagen} alt={curso.nombre} className="admin-curso-img" />}
-                      <div className="admin-curso-info"><strong>{curso.nombre}</strong> <br/><span className="admin-curso-details">{curso.categoria} {curso.descripcion ? ` - ${curso.descripcion}` : ''} {curso.duracion ? ` | Duración: ${curso.duracion}` : ''} {curso.horario ? ` | Horario: ${curso.horario}` : ''}</span></div>
-                      <div style={{ display: 'flex', gap: '8px' }}>
+                    <li key={curso.id} className="admin-curso-li" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                      <CardCurso 
+                        img={curso.imagen}
+                        nombreCurso={curso.nombre}
+                        descripcionCurso={curso.descripcion}
+                        duracionCurso={curso.duracion}
+                        horarioCurso={curso.horario}
+                        tag={curso.categoria}
+                        meta={curso.meta || curso.duracion}
+                      />
+                      <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', marginTop: '-15px', zIndex: 10 }}>
                         <button onClick={() => editar(curso)} className="admin-btn-editar">Editar</button>
                         <button onClick={() => eliminarCurso(curso.id)} className="admin-btn-eliminar">Eliminar</button>
                       </div>

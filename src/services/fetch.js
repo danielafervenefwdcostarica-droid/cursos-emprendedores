@@ -89,7 +89,7 @@ export{postUsuarios}
 
 async function putUsuarios(usuario,id){
 
-       try {
+       try { 
 
         const respuesta = await fetch("http://localhost:3001/usuarios/"+id,{
             method:"PUT",

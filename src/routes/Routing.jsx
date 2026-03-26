@@ -6,7 +6,7 @@ import AdministradorPerfil from '../pages/AdministradorPerfil';
 import ListaDeCursos from '../pages/Cursos';
 import ClientePerfil from '../pages/ClientePerfil';
 import Inicio from '../pages/Home';
-import Cursos from '../pages/Cursos';
+import SobreNosotros from '../pages/SobreNosotros';
 
 function Routing() {
   return(
@@ -18,9 +18,8 @@ function Routing() {
          <Route path='/Login' element={<LoginPage/>}/>
          <Route path='/panelAdministrativo'element={<AdministradorPerfil/>}/>
          <Route path='/PerfilCliente' element={<ClientePerfil/>}/>
-         <Route path= '/lista' element={<ListaDeCursos/>}/>
-         <Route path= '/cursos' element={<Cursos/>}/>
-        
+         <Route path= '/cursos' element={<ListaDeCursos/>}/>
+         <Route path='/Sobre-Nosotros' element={<SobreNosotros/>}/>
       </Routes>
     </Router>
   )

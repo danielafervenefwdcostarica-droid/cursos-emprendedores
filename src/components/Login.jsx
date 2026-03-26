@@ -22,6 +22,10 @@ const LoginPage = () => {
     const usuarioValido = usuarios.find((u)=> u.email === emailUsuario && u.password === claveUsuario)
     if (usuarioValido) {
       alert("Inicio de sesión exitoso")
+      
+      // GUARDAMOS EL USUARIO EN LOCALSTORAGE PARA QUE EL PERFIL LO ENCUENTRE
+      localStorage.setItem('usuarioLogueado', JSON.stringify(usuarioValido));
+
       // Navigate based on role
       if (usuarioValido.role === 'admin') {
         navigate('/panelAdministrativo');

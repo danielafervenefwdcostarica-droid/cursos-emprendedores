@@ -14,7 +14,7 @@ const ClientProfile = () => {
       const parsedUser = JSON.parse(usuarioGuardado);
       return { ...parsedUser, plan: "Premium", fechaRegistro: "2023", cursoActual: parsedUser.curso || "" };
     }
-    return { nombre: "Estudiante", email: "", plan: "Básico", fechaRegistro: "", cursoActual: "" };
+    return { nombre: "", email: "", plan: "Básico", fechaRegistro: "", cursoActual: "" };
   });
 
   const [isEditing, setIsEditing] = useState(false);

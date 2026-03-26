@@ -17,7 +17,7 @@ function Navbar() {
         <ul className="modern-nav-links">
           <li><a href="/">Inicio</a></li>
           <li><a href="/cursos">Cursos</a></li>
-          <li><a href="/sobre-nosotros">Sobre Nosotros</a></li>
+          <li><a href="/Sobre-Nosotros">Sobre Nosotros</a></li>
           <li><a href="/contacto">Contacto</a></li>
         </ul>
 

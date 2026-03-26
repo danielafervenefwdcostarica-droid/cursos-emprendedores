@@ -1,7 +1,7 @@
 import React from 'react';
 import HomeCarousel from './HomeCarousel';
 
-function Hero() {
+function PagHome() {
   return (
     <section className="modern-hero">
       <div className="modern-hero-content">
@@ -18,4 +18,4 @@ function Hero() {
   );
 }
 
-export default Hero;
+export default PagHome;

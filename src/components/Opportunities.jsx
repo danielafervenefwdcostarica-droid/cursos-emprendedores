@@ -13,7 +13,7 @@ function Opportunities() {
     },[])
 
     return (
-        <section className="modern-opportunities">
+        <section className="modern-opportunities" id="oportunidades-destacadas">
             <div className="section-header">
                 <div>
                     <h2>Oportunidades Destacadas</h2>
