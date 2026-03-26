@@ -31,7 +31,6 @@
   ],
   "cursos": [
     {
-<<<<<<< HEAD
       "id": "1",
       "nombre": "Desarrollo Web Full Stack",
       "categoria": "Programación"
@@ -56,17 +55,6 @@
       "descripcionCurso": "La",
       "duracionCurso": "Compu De",
       "horarioCurso": "Daniela"
-=======
-      "id": "eef2",
-      "nombre": "f",
-      "categoria": "f",
-      "descripcion": "f",
-      "duracion": "f",
-      "horario": "f",
-      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774368779/u252es6cwdazhuka1gva.jpg",
-      "tag": "f",
-      "meta": "f"
->>>>>>> 93bb23408cc735c186f0f1880e129fb9426072d3
     }
   ]
 }

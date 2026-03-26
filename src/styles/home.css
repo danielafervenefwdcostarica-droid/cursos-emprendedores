@@ -244,7 +244,7 @@ body {
   display: flex;
   align-items: center;
   gap: 16px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   border: 1px solid #f1f5f9;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -252,7 +252,7 @@ body {
 
 .modern-category-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
 }
 
 .modern-category-icon {
@@ -265,9 +265,20 @@ body {
   font-size: 20px;
 }
 
-.icon-blue { background: #eff6ff; color: #3b82f6; }
-.icon-yellow { background: #fffbeb; color: #d97706; }
-.icon-purple { background: #f3e8ff; color: #9333ea; }
+.icon-blue {
+  background: #eff6ff;
+  color: #3b82f6;
+}
+
+.icon-yellow {
+  background: #fffbeb;
+  color: #d97706;
+}
+
+.icon-purple {
+  background: #f3e8ff;
+  color: #9333ea;
+}
 
 .modern-category-info h3 {
   margin: 0 0 4px 0;
@@ -275,6 +286,7 @@ body {
   font-weight: 700;
   color: #0f172a;
 }
+
 .modern-category-info p {
   margin: 0;
   font-size: 13px;
@@ -296,7 +308,7 @@ body {
   background: white;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   border: 1px solid #f1f5f9;
   display: flex;
   flex-direction: column;
@@ -324,9 +336,32 @@ body {
   font-size: 12px;
 }
 
-.modern-tag-green { background: #dcfce7; color: #16a34a; padding: 4px 10px; border-radius: 4px; font-weight: 700; letter-spacing: 0.5px; }
-.modern-tag-blue { background: #eff6ff; color: #2563eb; padding: 4px 10px; border-radius: 4px; font-weight: 700; letter-spacing: 0.5px; }
-.modern-tag-purple { background: #f3e8ff; color: #9333ea; padding: 4px 10px; border-radius: 4px; font-weight: 700; letter-spacing: 0.5px; }
+.modern-tag-green {
+  background: #dcfce7;
+  color: #16a34a;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.modern-tag-blue {
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.modern-tag-purple {
+  background: #f3e8ff;
+  color: #9333ea;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
 
 .modern-opp-meta span:last-child {
   color: #64748b;
@@ -360,6 +395,9 @@ body {
   cursor: pointer;
   transition: background 0.2s;
   width: 100%;
+  display: block;
+  text-align: center;
+  text-decoration: none;
 }
 
 .modern-opp-btn:hover {
@@ -372,7 +410,7 @@ body {
   border-radius: 20px;
   padding: 48px;
   margin-bottom: 80px;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   border: 1px solid #f1f5f9;
 }
 
@@ -460,4 +498,14 @@ body {
 .modern-footer-bottom-links {
   display: flex;
   gap: 24px;
+}
+
+.footer-logo-link {
+  margin-bottom: 16px;
+  display: flex;
+}
+
+.footer-bottom-link {
+  color: inherit;
+  text-decoration: none;
 }

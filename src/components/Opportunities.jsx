@@ -1,16 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { getCursos } from '../services/fetch';
+import React from 'react';
+import concursoImg from '../assets/img/concurso_emprendimientos.png';
+import mujeresImg from '../assets/img/Mentoring para Mujeres STEM.jpg';
+import becasImg from '../assets/img/BECASoPORTUNIDADES.jpg';
 
 function Opportunities() {
-    const [cursos,setCursos] = useState([])
-
-    useEffect(()=>{
-        async function traerCursos() {
-            const peticion = await getCursos()
-            setCursos(peticion)
+    const staticCursos = [
+        {
+            nombre: "Concurso Impulsa Tech 2024",
+            descripcion: "Financiamiento de hasta $25,000 para proyectos tecnológicos con impacto social.",
+            imagen: concursoImg,
+            tag: "FONDO SEMILLA",
+            tagClass: "modern-tag-green",
+            botonText: "Ver más"
+        },
+        {
+            nombre: "Mentoring para Mujeres STEM",
+            descripcion: "Programa de acompañamiento personalizado por expertos en el sector tecnológico.",
+            imagen: mujeresImg,
+            tag: "INCUBADORA",
+            tagClass: "modern-tag-blue",
+            botonText: "Ver más"
+        },
+        {
+            nombre: "Oportunidades de Becas",
+            descripcion: "Presenta tu perfil ante una red de becas y formación técnica de alto nivel.",
+            imagen: becasImg,
+            tag: "INVERSIÓN ANGEL",
+            tagClass: "modern-tag-purple",
+            botonText: "Ver becas"
         }
-        traerCursos()
-    },[])
+    ];
 
     return (
         <section className="modern-opportunities" id="oportunidades-destacadas">
@@ -19,22 +38,21 @@ function Opportunities() {
                     <h2>Oportunidades Destacadas</h2>
                     <p>Fondos concursables, incubadoras y concursos de emprendimiento.</p>
                 </div>
-                <a href="/oportunidades">Ver todas <span>→</span></a>
             </div>
             
             <div className="modern-opp-grid">
-                {cursos.map((item, index) => (
+                {staticCursos.map((item, index) => (
                     <div key={index} className="modern-opp-card">
-                        <img src={item.imagen} alt={item.titulo} className="modern-opp-img" />
+                        <img src={item.imagen} alt={item.nombre} className="modern-opp-img" />
                         <div className="modern-opp-content">
                             <div className="modern-opp-meta">
                                 <span className={item.tagClass}>{item.tag}</span>
-                                <span>{item.meta}</span>
                             </div>
                             <h3>{item.nombre}</h3>
                             <p>{item.descripcion}</p>
-                            <button className="modern-opp-btn">{item.duracion}</button>
-                            <button className="modern-opp-btn">{item.horario}</button>
+                            <a href="/oportunidades-detalles" className="modern-opp-btn">
+                                {item.botonText}
+                            </a>
                         </div>
                     </div>
                 ))}
@@ -44,4 +62,3 @@ function Opportunities() {
 }
 
 export default Opportunities;
-   

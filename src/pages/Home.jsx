@@ -6,7 +6,6 @@ import Categories from '../components/CategoriesComp';
 import Opportunities from '../components/Opportunities';
 import AboutPlatform from '../components/AboutPlatform';
 import PagHome from '../components/PagHome';
-import '../styles/home.css';
 
 function Inicio() {
     return (
