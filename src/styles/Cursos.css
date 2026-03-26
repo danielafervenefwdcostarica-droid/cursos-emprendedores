@@ -1,63 +1,235 @@
-/* From Uiverse.io by alexmaracinaru */ 
-.card {
-  width: 190px;
-  background: white;
-  padding: .4em;
-  border-radius: 6px;
-
-
-
+/* Cursos Page Layout */
+.cursos-page-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #1f2937;
 }
 
-.card-image {
-  background-color: rgb(236, 236, 236);
+.cursos-page-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #111827;
+}
+
+.cursos-page-subtitle {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* Filters */
+.cursos-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  border: 1px solid #e5e7eb;
+  background-color: white;
+  color: #4b5563;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  background-color: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.filter-btn.active {
+  background-color: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+/* List Container */
+.cursos-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Horizontal Card */
+.curso-card-horizontal {
+  display: flex;
+  background-color: white;
+  border-radius: 20px;
+  padding: 12px;
+  gap: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f3f4f6;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.curso-card-horizontal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.curso-image-wrapper {
+  width: 320px;
+  height: 220px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #f3f4f6;
+}
+
+.curso-img {
   width: 100%;
-  height: 130px;
-  border-radius: 6px 6px 0 0;
+  height: 100%;
+  object-fit: cover;
 }
 
-.card-image:hover {
-  transform: scale(0.98);
+.curso-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 12px 12px 0;
 }
 
-.category {
+/* Tags & Meta */
+.curso-meta-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.curso-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
-  font-size: 0.7em;
-  font-weight: 600;
-  color: rgb(63, 121, 230);
-  padding: 10px 7px 0;
+  padding: 4px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
 }
 
-.category:hover {
-  cursor: pointer;
+.tag-popular {
+  background-color: #eff6ff;
+  color: #2563eb;
 }
 
-.heading {
-  font-weight: 600;
-  color: rgb(88, 87, 87);
-  padding: 7px;
+.tag-nuevo {
+  background-color: #f0fdf4;
+  color: #16a34a;
 }
 
-.heading:hover {
-  cursor: pointer;
+.tag-intermedio {
+  background-color: #f3f4f6;
+  color: #4b5563;
 }
 
-.author {
-  color: gray;
-  font-weight: 400;
-  font-size: 11px;
-  padding-top: 20px;
+.tag-default {
+  background-color: #fef2f2;
+  color: #dc2626;
 }
 
-.name {
-  font-weight: 600;
+.curso-rating {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
 }
 
-.name:hover {
-  cursor: pointer;
+/* Typography */
+.curso-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
 }
 
-.cont-cursos{
+.curso-description {
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin: 0 0 auto 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Footer (Info & Button) */
+.curso-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.curso-info {
   display: flex;
   gap: 20px;
+}
+
+.curso-info-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.curso-btn-inscribirse {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.curso-btn-inscribirse:hover {
+  background-color: #1d4ed8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .curso-card-horizontal {
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+  }
+  
+  .curso-image-wrapper {
+    width: 100%;
+    height: 200px;
+  }
+  
+  .curso-content {
+    padding: 0;
+  }
+  
+  .curso-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .curso-btn-inscribirse {
+    width: 100%;
+  }
 }

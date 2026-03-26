@@ -7,7 +7,7 @@ import Contacto from '../pages/Contacto';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import AdministradorPerfil from '../pages/AdministradorPerfil';
-import ListaDeCursos from '../pages/ListaDeCursos';
+import ListaDeCursos from '../pages/Cursos';
 import ClientePerfil from '../pages/ClientePerfil';
 import Inicio from '../pages/Home';
 import SobreNosotros from '../pages/SobreNosotros';
@@ -23,7 +23,7 @@ function Routing() {
          <Route path='/Login' element={<LoginPage/>}/>
          <Route path='/panelAdministrativo'element={<AdministradorPerfil/>}/>
          <Route path='/PerfilCliente' element={<ClientePerfil/>}/>
-         <Route path= '/lista' element={<ListaDeCursos/>}/>
+         <Route path= '/cursos' element={<ListaDeCursos/>}/>
          <Route path='/Sobre-Nosotros' element={<SobreNosotros/>}/>
          <Route path='/oportunidades-detalles' element={<OportunidadesDetalles/>}/>
       </Routes>
