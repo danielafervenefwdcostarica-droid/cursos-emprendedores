@@ -43,18 +43,13 @@ async function postUsuarios(usuario) {
 
 export { postUsuarios }
 
-
-//PUT
-
-
-async function putUsuarios(usuario,id){
-
-       try { 
-
-        const respuesta = await fetch("http://localhost:3001/usuarios/"+id,{
-            method:"PUT",
-            headers:{
-                "Content-Type":"application/json"
+//PUT USUARIOS
+async function putUsuarios(usuario, id) {
+    try {
+        const respuesta = await fetch("http://localhost:3001/usuarios/" + id, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(usuario)
         })
@@ -118,9 +113,7 @@ async function postCursos(cursos) {
     }
 }
 
-export { postCursos };
-
-
+export { postCursos }
 
 //PUT CURSOS
 async function putCursos(curso, id) {
@@ -154,4 +147,30 @@ async function deleteCursos(id) {
     }
 }
 
-export{deleteCursos}
+export { deleteCursos }
+
+//GET MENSAJES
+async function getMensajes() {
+    try {
+        const respuesta = await fetch("http://localhost:3001/mensajes")
+        const datos = await respuesta.json();
+        return datos;
+    } catch (error) {
+        console.error("Error al obtener los mensajes", error);
+    }
+}
+
+export { getMensajes }
+
+//DELETE MENSAJES
+async function deleteMensajes(id) {
+    try {
+        await fetch("http://localhost:3001/mensajes/" + id, {
+            method: "DELETE",
+        })
+    } catch (error) {
+        console.error("Error al eliminar el mensaje", error);
+    }
+}
+
+export { deleteMensajes }

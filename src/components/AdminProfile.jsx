@@ -3,15 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import AdminComponent from './Admin.components';
-import { postCursos, getCursos, deleteCursos, getUsuarios, postUsuarios, putUsuarios, deleteUsuarios, putCursos } from '../services/fetch';
-
-
+import { postCursos, getCursos, deleteCursos, getUsuarios, postUsuarios, putUsuarios, deleteUsuarios, putCursos, getMensajes, deleteMensajes } from '../services/fetch';
 
 const AdminProfile = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('cursos');
+  const [activeTab, setActiveTab] = useState('dashboard');
   const [estudiantes, setEstudiantes] = useState([]);
   const [cursos, setCursos] = useState([]); 
+  const [mensajes, setMensajes] = useState([]);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [estudianteActual, setEstudianteActual] = useState({ id: null, nombre: '', email: '', curso: '', estado: 'Activo' });
   const [nuevoCurso, setNuevoCurso] = useState({ nombre: '', categoria: '' });
@@ -19,19 +18,18 @@ const AdminProfile = () => {
   const [cursoActual, setCursoActual] = useState({});
   const [confirmarPassword, setConfirmarPassword] = useState('');
 
- 
-
   useEffect(() => {
-    const cargarCursos = async () => {
+    const cargarDatos = async () => {
       const cursosData = await getCursos();
       setCursos(cursosData);
-    };
-    const cargarEstudiantes = async () => {
+      
       const estudiantesData = await getUsuarios();
-      setEstudiantes(estudiantesData); // Ahora contiene tanto a "cliente" como a "admin"
+      setEstudiantes(estudiantesData.filter(user => user.role === 'cliente'));
+      
+      const mensajesData = await getMensajes();
+      setMensajes(mensajesData || []);
     };
-    cargarCursos();
-    cargarEstudiantes();
+    cargarDatos();
   }, []);
 
   const registrarUsuario = postUsuarios;
@@ -53,12 +51,17 @@ const AdminProfile = () => {
     setMostrarFormulario(true);
   };
 
- 
-
   const eliminarUsuario = async (id) => {
     if (window.confirm("¿Seguro que deseas eliminar a este estudiante?")) {
       await eliminarUsuarioAPI(id);
       setEstudiantes(estudiantes.filter(est => est.id !== id));
+    }
+  };
+
+  const eliminarMensaje = async (id) => {
+    if (window.confirm("¿Seguro que deseas eliminar este mensaje?")) {
+      await deleteMensajes(id);
+      setMensajes(mensajes.filter(msg => msg.id !== id));
     }
   };
 
@@ -117,13 +120,12 @@ const AdminProfile = () => {
   return (
     <AdminComponent 
       activeTab={activeTab} setActiveTab={setActiveTab}
-      estudiantes={estudiantes} cursos={cursos}
+      estudiantes={estudiantes} cursos={cursos} mensajes={mensajes}
       mostrarFormulario={mostrarFormulario} setMostrarFormulario={setMostrarFormulario}
       estudianteActual={estudianteActual} setEstudianteActual={setEstudianteActual}
       nuevoCurso={nuevoCurso} setNuevoCurso={setNuevoCurso}
       handleLogout={handleLogout} abrirNuevoUsuario={abrirNuevoUsuario}
-      eliminarUsuario={eliminarUsuario} abrirEditarUsuario={abrirEditarUsuario}
-      confirmarPassword={confirmarPassword} setConfirmarPassword={setConfirmarPassword}
+      eliminarUsuario={eliminarUsuario} eliminarMensaje={eliminarMensaje}
       guardarUsuario={guardarUsuario} guardarCurso={guardarCurso}
       eliminarCurso={eliminarCurso}
       onCursoCreated={(curso) => setCursos([...cursos, curso])}

@@ -2,12 +2,13 @@
 import React from 'react';
 import '../styles/Dashboard.css';
 import '../styles/Cliente.css';
-
+import { useNavigate } from 'react-router-dom';
 const ClientComponent = ({
   userData, isEditing, editForm, cursosDisponibles,
-  handleLogout, iniciarEdicion, cancelarEdicion, 
+  iniciarEdicion, cancelarEdicion, 
   manejarCambios, guardarCambios
 }) => {
+  const navigate = useNavigate()
   return (
     <div className="dashboard-layout">
       <div className="main-content client-main-content">
@@ -24,7 +25,11 @@ const ClientComponent = ({
             </div>
           </div>
           <button 
-            onClick={handleLogout} 
+            onClick={()=>{
+              localStorage.removeItem("id")
+              localStorage.removeItem("usuarioLogueado")
+              navigate("/")
+            }} 
             className="client-logout-btn">
             Cerrar Sesión
           </button>

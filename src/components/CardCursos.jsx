@@ -13,6 +13,7 @@ function CardCurso({ img, nombreCurso, descripcionCurso, duracionCurso, horarioC
     };
 
     return (
+        
         <div className="curso-card-horizontal">
             <div className="curso-image-wrapper">
                 <img src={img} alt={nombreCurso} className="curso-img" />

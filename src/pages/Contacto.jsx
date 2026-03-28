@@ -1,10 +1,13 @@
+import Navbar from '../components/Navbar';
 import ContactoComp from '../components/ContactoComp';
 
 function Contacto() {
   return (
-    <div>
-      <h2>Contacto</h2>
-        <ContactoComp/>
+    <div className="modern-home">
+        <Navbar />
+        <div className="modern-container" style={{ paddingTop: '40px' }}>
+            <ContactoComp/>
+        </div>
     </div>
   )
 }
