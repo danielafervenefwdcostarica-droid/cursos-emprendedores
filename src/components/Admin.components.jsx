@@ -4,6 +4,7 @@ import '../styles/Admin.css';
 import { postCursos, postUsuarios } from '../services/fetch';
 import CloudinaryUpload from './CloudinaryUpload';
 import CardCurso from './CardCursos';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const AdminComponent = ({
   activeTab, setActiveTab, estudiantes, cursos, mensajes, mostrarFormulario,
@@ -28,6 +29,7 @@ const AdminComponent = ({
    const [duracionCurso,setDuracionCurso] = useState("")
    const [horarioCurso,setHorarioCurso] = useState("")
    const [imagenCurso,setImagenCurso] = useState("")
+   const [confirmarPassword, setConfirmarPassword] = useState("");
 
   async function guardarCurso(e) {
     if (e) e.preventDefault();
@@ -54,12 +56,25 @@ const AdminComponent = ({
 
   const renderContent = () => {
     switch(activeTab) {
-      case 'dashboard':
-        // NUEVO: El filtro de estudiantes activos ahora cuenta no solo a los que dicen "Activo",
-        // sino también a los que no tienen el estado definido (!est.estado). Esto es porque al
-        // registrar un estudiante nuevo desde el registro, por defecto no traen estado.
-        const activos = estudiantes.filter(est => est.estado === 'Activo' || !est.estado).length;
-        const inactivos = estudiantes.filter(est => est.estado === 'Inactivo').length;
+      case 'dashboard': {
+        const soloEstudiantes = estudiantes.filter(u => u.role !== 'admin');
+        const activos = soloEstudiantes.filter(est => est.estado === 'Activo' || !est.estado).length;
+        const inactivos = soloEstudiantes.filter(est => est.estado === 'Inactivo').length;
+
+        // Categorías únicas de cursos creados
+        const categorias = [...new Set(cursos.map(c => c.categoria).filter(Boolean))];
+
+        // Para cada categoría: cuántos cursos hay y cuántos estudiantes están matriculados
+        const datosGrafico = categorias.map(cat => {
+          const cursosEnCat = cursos.filter(c => c.categoria === cat).map(c => c.nombre);
+          const matriculados = soloEstudiantes.filter(est => cursosEnCat.includes(est.curso)).length;
+          return {
+            categoria: cat.charAt(0).toUpperCase() + cat.slice(1),
+            'Estudiantes registrados': soloEstudiantes.length,
+            'Matriculados en categoría': matriculados,
+          };
+        });
+
         return (
           <>
             <div className="page-header"><h1 className="page-title">Panel de Control de Cursos</h1></div>
@@ -69,53 +84,168 @@ const AdminComponent = ({
               <div className="glass-card"><h3 className="card-title">Cursos Creados</h3><p className="card-value admin-cursos-count">{cursos.length}</p></div>
               <div className="glass-card"><h3 className="card-title">Mensajes Recibidos</h3><p className="card-value" style={{ color: '#2563eb' }}>{mensajes.length}</p></div>
             </div>
+
+            <div className="glass-card" style={{ marginTop: '2rem', padding: '1.5rem' }}>
+              <h3 className="card-title" style={{ marginBottom: '1.5rem' }}>Estudiantes por Categoría de Curso</h3>
+              {datosGrafico.length === 0 ? (
+                <p style={{ color: '#888', textAlign: 'center' }}>No hay categorías de cursos creadas aún.</p>
+              ) : (
+                <ResponsiveContainer width="100%" height={320}>
+                  <BarChart data={datosGrafico} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
+                    <XAxis dataKey="categoria" tick={{ fontSize: 13 }} />
+                    <YAxis allowDecimals={false} tick={{ fontSize: 13 }} />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="Estudiantes registrados" fill="#004aad" radius={[4,4,0,0]} />
+                    <Bar dataKey="Matriculados en categoría" fill="#28a745" radius={[4,4,0,0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              )}
+            </div>
           </>
         );
+      }
 
       case 'usuarios':
+        const listaEstudiantes = estudiantes.filter(u => u.role !== 'admin');
+        const listaAdmins = estudiantes.filter(u => u.role === 'admin');
+
         return (
           <>
-            <div className="page-header"><h1 className="page-title">Gestión de Estudiantes</h1></div>
-            <div className="glass-card">
-              <button onClick={abrirNuevoUsuario} className="admin-btn-nuevo">+ Nuevo Estudiante</button>
+            <div className="page-header"><h1 className="page-title">Gestión de Usuarios</h1></div>
+            
+            <div className="glass-card" style={{ marginBottom: "2rem" }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                <h3 className="card-title" style={{ margin: 0 }}>Sección de Estudiantes</h3>
+                <button onClick={() => abrirNuevoUsuario('cliente')} className="admin-btn-nuevo">+ Nuevo Estudiante</button>
+              </div>
+
               <table className="admin-table">
                 <thead>
                   <tr className="admin-thead-tr">
-                    <th className="admin-th">Nombre</th><th className="admin-th">Correo</th><th className="admin-th">Curso Inscrito</th><th className="admin-th">Estado</th><th className="admin-th">Acciones</th>
+                    <th className="admin-th">Nombre</th>
+                    <th className="admin-th">Correo</th>
+                    <th className="admin-th">Curso Inscrito</th>
+                    <th className="admin-th">Estado</th>
+                    <th className="admin-th">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {estudiantes.map((est) => (
-                    <tr key={est.id} className="admin-tbody-tr">
-                      <td className="admin-td">{est.nombre}</td>
-                      <td className="admin-td-secondary">{est.email}</td>
-                      <td className="admin-td-secondary">{est.curso || 'Sin curso'}</td>
-                      
-                      {/* NUEVO: Las etiquetas de la tabla ahora asignan "Activo" (color verde) a los estudiantes
-                          recién registrados en lugar de mostrarlos visualmente como "Inactivos" por error. */}
-                      <td className="admin-td"><span className={`admin-status-badge ${est.estado === 'Activo' || !est.estado ? 'admin-status-activo' : 'admin-status-inactivo'}`}>{est.estado || 'Activo'}</span></td>
-                      
-                      <td className="admin-td-acciones">
-                        <button onClick={() => eliminarUsuario(est.id)} className="admin-btn-eliminar">Eliminar</button>
-                      </td>
-                    </tr>
-                  ))}
+                  {listaEstudiantes.length === 0 ? (
+                    <tr><td colSpan="5" className="admin-td" style={{ textAlign: 'center', padding: '20px' }}>No hay estudiantes registrados.</td></tr>
+                  ) : (
+                    listaEstudiantes.map((est) => (
+                      <tr key={est.id} className="admin-tbody-tr">
+                        <td className="admin-td">{est.nombre}</td>
+                        <td className="admin-td-secondary">{est.email}</td>
+                        <td className="admin-td-secondary">{est.curso || 'Sin curso'}</td>
+                        <td className="admin-td">
+                          <span className={`admin-status-badge ${est.estado === 'Activo' || !est.estado ? 'admin-status-activo' : 'admin-status-inactivo'}`}>
+                            {est.estado || 'Activo'}
+                          </span>
+                        </td>
+                        <td className="admin-td-acciones">
+                          <button onClick={() => abrirEditarUsuario(est)} className="admin-btn-editar">Editar</button>
+                          <button onClick={() => eliminarUsuario(est.id)} className="admin-btn-eliminar">Eliminar</button>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="glass-card">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                <h3 className="card-title" style={{ margin: 0 }}>Sección de Administradores</h3>
+                <button onClick={() => abrirNuevoUsuario('admin')} className="admin-btn-nuevo" style={{ backgroundColor: "#1e3a8a" }}>+ Nuevo Administrador</button>
+              </div>
+              <table className="admin-table">
+                <thead>
+                  <tr className="admin-thead-tr">
+                    <th className="admin-th">Nombre</th>
+                    <th className="admin-th">Correo</th>
+                    <th className="admin-th">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {listaAdmins.length === 0 ? (
+                    <tr><td colSpan="3" className="admin-td" style={{ textAlign: 'center', padding: '20px' }}>No hay administradores registrados.</td></tr>
+                  ) : (
+                    listaAdmins.map((adm) => (
+                      <tr key={adm.id} className="admin-tbody-tr">
+                        <td className="admin-td">{adm.nombre}</td>
+                        <td className="admin-td-secondary">{adm.email}</td>
+                        <td className="admin-td-acciones">
+                          <button onClick={() => abrirEditarUsuario(adm)} className="admin-btn-editar">Editar</button>
+                          <button onClick={() => eliminarUsuario(adm.id)} className="admin-btn-eliminar">Eliminar</button>
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
 
               {mostrarFormulario && (
                 <div className="admin-modal">
-                  <h3 className="admin-modal-h3">{estudianteActual.id ? 'Editar Estudiante' : 'Nuevo Estudiante'}</h3>
-                  <form onSubmit={guardarUsuario} className="admin-form">
+                  <h3 className="admin-modal-h3">
+                    {estudianteActual.id 
+                       ? (estudianteActual.role === 'admin' ? 'Editar Administrador' : 'Editar Estudiante')
+                       : (estudianteActual.role === 'admin' ? 'Nuevo Administrador' : 'Nuevo Estudiante')}
+                  </h3>
+                  <form onSubmit={(e) => {
+                    if (estudianteActual.role === 'admin' && !estudianteActual.id) {
+                      const pwd = estudianteActual.password || "";
+                      const hasKLength = pwd.length >= 8;
+                      const hasUpperCase = /[A-Z]/.test(pwd);
+                      const hasSpecialChar = /[?!&#*]/.test(pwd);
+
+                      if (!hasKLength || !hasUpperCase || !hasSpecialChar) {
+                        e.preventDefault();
+                        alert("La contraseña debe tener:\n• Al menos 8 caracteres\n• Al menos una letra mayúscula\n• Al menos un signo especial (? ! & # *)");
+                        return;
+                      }
+
+                      if (pwd !== confirmarPassword) {
+                        e.preventDefault();
+                        alert("Las contraseñas no coinciden");
+                        return;
+                      }
+                    }
+                    guardarUsuario(e);
+                  }} className="admin-form">
                     <input type="text" placeholder="Nombre completo" required value={estudianteActual.nombre} onChange={(e) => setEstudianteActual({...estudianteActual, nombre: e.target.value})} className="admin-input"/>
                     <input type="email" placeholder="Correo electrónico" required value={estudianteActual.email} onChange={(e) => setEstudianteActual({...estudianteActual, email: e.target.value})} className="admin-input"/>
-                    <select value={estudianteActual.curso} onChange={(e) => setEstudianteActual({...estudianteActual, curso: e.target.value})} className="admin-select">
-                      <option value="">-- Seleccionar Curso --</option>
-                      {cursos.map(c => <option key={c.id} value={c.nombre}>{c.nombre}</option>)}
-                    </select>
-                    <select value={estudianteActual.estado} onChange={(e) => setEstudianteActual({...estudianteActual, estado: e.target.value})} className="admin-select">
-                      <option value="Activo">Activo</option><option value="Inactivo">Inactivo</option>
-                    </select>
+                    
+                    {estudianteActual.role !== 'admin' && (
+                      <select value={estudianteActual.curso} onChange={(e) => setEstudianteActual({...estudianteActual, curso: e.target.value})} className="admin-select">
+                        <option value="">-- Seleccionar Curso --</option>
+                        {cursos.map(c => <option key={c.id} value={c.nombre}>{c.nombre}</option>)}
+                      </select>
+                    )}
+
+                    {estudianteActual.role === 'admin' && !estudianteActual.id && (
+                      <>
+                        <input type="password" placeholder="Contraseña" required value={estudianteActual.password || ''} onChange={(e) => setEstudianteActual({...estudianteActual, password: e.target.value})} className="admin-input"/>
+                        <div style={{ margin: '10px 0', fontSize: '13px', textAlign: 'left', background: '#f8f9fa', padding: '10px', borderRadius: '5px', border: '1px solid #ddd' }}>
+                          <p style={{ margin: '0 0 5px 0', fontWeight: 'bold', color: '#333' }}>Requisitos de la contraseña:</p>
+                          <ul style={{ listStyleType: 'none', paddingLeft: '0', margin: '0' }}>
+                            <li style={{ color: (estudianteActual.password || '').length >= 8 ? '#16a34a' : '#dc2626', marginBottom: '3px' }}>
+                              {(estudianteActual.password || '').length >= 8 ? '✓' : '✗'} Al menos 8 caracteres
+                            </li>
+                            <li style={{ color: /[A-Z]/.test(estudianteActual.password || '') ? '#16a34a' : '#dc2626', marginBottom: '3px' }}>
+                              {/[A-Z]/.test(estudianteActual.password || '') ? '✓' : '✗'} Al menos una letra mayúscula
+                            </li>
+                            <li style={{ color: /[?!&#*]/.test(estudianteActual.password || '') ? '#16a34a' : '#dc2626' }}>
+                              {/[?!&#*]/.test(estudianteActual.password || '') ? '✓' : '✗'} Al menos un signo especial (? ! & # *)
+                            </li>
+                          </ul>
+                        </div>
+                        <input type="password" placeholder="Confirmar contraseña" required value={confirmarPassword} onChange={(e) => setConfirmarPassword(e.target.value)} className="admin-input"/>
+                      </>
+                    )}
+
                     <div className="admin-form-buttons">
                       <button type="submit" className="admin-btn-guardar">Guardar</button>
                       <button type="button" onClick={() => setMostrarFormulario(false)} className="admin-btn-cancelar">Cancelar</button>
@@ -123,7 +253,6 @@ const AdminComponent = ({
                   </form>
                 </div>
               )}
-
             </div>
           </>
         );
@@ -136,7 +265,7 @@ const AdminComponent = ({
               <div className="glass-card admin-cursos-left">
                 <h3 className="card-title admin-cursos-h3">Agregar Nuevo Curso</h3>
                 <form onSubmit={guardarCurso} className="admin-form">
-                  <input type="text" placeholder="Nombre (Ej. Kendo Básico)" required value={nombreCurso}onChange={(e) => setNombreCurso(e.target.value)} className="admin-input"/>
+                  <input type="text" placeholder="Nombre (Ej. Kendo Básico)" required value={nombreCurso} onChange={(e) => setNombreCurso(e.target.value)} className="admin-input"/>
                   <select className="admin-input" name="categoria" id="categoria" value={categoriaCurso} onChange={(e)=>setCategoriaCurso(e.target.value)}>
                     <option value="">Seleccione la categoría del curso</option>
                     <option value="idiomas">Idiomas</option>
@@ -244,10 +373,12 @@ const AdminComponent = ({
   return (
     <div className="dashboard-layout">
       <aside className="sidebar">
-        <div className="sidebar-brand">CursosAdmin</div>
+        {/* Nombre/marca del panel que aparece en la parte superior del sidebar */}
+        <div className="sidebar-brand">Panel Administrativo</div>
         <ul className="sidebar-menu">
           <li className={activeTab === 'dashboard' ? 'active' : ''} onClick={() => setActiveTab('dashboard')}>Dashboard</li>
-          <li className={activeTab === 'usuarios' ? 'active' : ''} onClick={() => setActiveTab('usuarios')}>Gestión de Estudiantes</li>
+          {/* Enlace a la sección de usuarios (estudiantes y admins) */}
+          <li className={activeTab === 'usuarios' ? 'active' : ''} onClick={() => setActiveTab('usuarios')}>Gestión de Usuarios</li>
           <li className={activeTab === 'cursos' ? 'active' : ''} onClick={() => setActiveTab('cursos')}>Gestión de Cursos</li>
           <li className={activeTab === 'mensajes' ? 'active' : ''} onClick={() => setActiveTab('mensajes')}>Mensajes Recibidos</li>
           <li className="admin-logout-li" onClick={handleLogout}>Cerrar Sesión</li>

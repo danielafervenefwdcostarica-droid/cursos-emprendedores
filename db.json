@@ -1,13 +1,6 @@
 {
   "usuarios": [
     {
-      "nombre": "Administrador Principal",
-      "email": "admin@empresa.com",
-      "password": "123",
-      "role": "admin",
-      "id": "1"
-    },
-    {
       "id": "7fbd",
       "nombre": "Ale",
       "email": "Ale@gmail.com",

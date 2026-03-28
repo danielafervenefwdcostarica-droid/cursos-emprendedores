@@ -33,7 +33,7 @@ const LoginPage = () => {
         navigate('/PerfilCliente');
       }
     }else{
-      alert("ups😅, parece que hubo un error, contraseña o email incorrecto")
+      alert(" contraseña o email incorrecto")
     }
   }
 
@@ -48,7 +48,7 @@ const LoginPage = () => {
         <form  className="register-form">
           <div className="form-group">
             <label className="form-label">Correo Electrónico</label>
-            <input type="email" name="email" className="form-control" value={emailUsuario} onChange={(e)=>setEmailUsuario(e.target.value)} required placeholder="correo@empresa.com"/>
+            <input type="email" name="email" className="form-control" value={emailUsuario} onChange={(e)=>setEmailUsuario(e.target.value)} required placeholder="rl123@gmail.com"/>
           </div>
           <div className="form-group">
             <label className="form-label">Contraseña</label>

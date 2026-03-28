@@ -34,7 +34,7 @@ function Cursos() {
   return (
     <div className="cursos-page-wrapper">
         <h1 className="cursos-page-title">Catálogo de Cursos</h1>
-        <p className="cursos-page-subtitle">Impulsa tu carrera profesional con nuestra selección de cursos certificados por expertos de la industria.</p>
+        <p className="cursos-page-subtitle">Impulsa tu vida con nuestra selección de cursos certificados por expertos de la industria.</p>
         
         <div className="cursos-filters">
             <button 
@@ -47,31 +47,31 @@ function Cursos() {
               className={`filter-btn ${categoriaActiva === 'tecnologia' ? 'active' : ''}`}
               onClick={() => setCategoriaActiva('tecnologia')}
             >
-              Tecnologia <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              Tecnologia <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></svg>
             </button>
             <button 
               className={`filter-btn ${categoriaActiva === 'artesania' ? 'active' : ''}`}
               onClick={() => setCategoriaActiva('artesania')}
             >
-              Artesania <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              Artesania <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></svg>
             </button>
             <button 
               className={`filter-btn ${categoriaActiva === 'musica' ? 'active' : ''}`}
               onClick={() => setCategoriaActiva('musica')}
             >
-              Musica <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              Musica <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></svg>
             </button>
             <button 
               className={`filter-btn ${categoriaActiva === 'belleza' ? 'active' : ''}`}
               onClick={() => setCategoriaActiva('belleza')}
             >
-              Belleza <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              Belleza <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></svg>
             </button>
              <button 
               className={`filter-btn ${categoriaActiva === 'idiomas' ? 'active' : ''}`}
               onClick={() => setCategoriaActiva('idiomas')}
             >
-              Idiomas <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              Idiomas <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></svg>
             </button>
         </div>
 

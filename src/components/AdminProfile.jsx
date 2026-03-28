@@ -16,6 +16,7 @@ const AdminProfile = () => {
   const [nuevoCurso, setNuevoCurso] = useState({ nombre: '', categoria: '' });
   const [editandoCurso, setEditandoCurso] = useState(false);
   const [cursoActual, setCursoActual] = useState({});
+  const [confirmarPassword, setConfirmarPassword] = useState('');
 
   useEffect(() => {
     const cargarDatos = async () => {
@@ -23,7 +24,7 @@ const AdminProfile = () => {
       setCursos(cursosData);
       
       const estudiantesData = await getUsuarios();
-      setEstudiantes(estudiantesData.filter(user => user.role === 'cliente'));
+      setEstudiantes(estudiantesData || []);
       
       const mensajesData = await getMensajes();
       setMensajes(mensajesData || []);
@@ -37,8 +38,16 @@ const AdminProfile = () => {
 
   const handleLogout = () => navigate('/login'); 
 
-  const abrirNuevoUsuario = () => {
-    setEstudianteActual({ id: null, nombre: '', email: '', curso: '', estado: 'Activo' });
+  const abrirNuevoUsuario = (role) => {
+    const assignedRole = typeof role === 'string' ? role : 'cliente';
+    setEstudianteActual({ id: null, nombre: '', email: '', curso: '', estado: 'Activo', role: assignedRole, password: '' });
+    setConfirmarPassword('');
+    setMostrarFormulario(true);
+  };
+
+  const abrirEditarUsuario = (usuario) => {
+    setEstudianteActual({ ...usuario, password: '' });
+    setConfirmarPassword('');
     setMostrarFormulario(true);
   };
 
@@ -62,11 +71,14 @@ const AdminProfile = () => {
       const data = await actualizarUsuario(estudianteActual.id, estudianteActual);
       setEstudiantes(estudiantes.map(est => est.id === data.id ? data : est));
     } else {
-      const nuevoEst = { ...estudianteActual, role: 'cliente', password: '123' };
+      const roleToUse = estudianteActual.role || 'cliente';
+      const userPassword = roleToUse === 'admin' ? estudianteActual.password : '123';
+      const nuevoEst = { ...estudianteActual, role: roleToUse, password: userPassword };
       delete nuevoEst.id;
       const data = await registrarUsuario(nuevoEst);
       setEstudiantes([...estudiantes, data]);
     }
+    setConfirmarPassword('');
     setMostrarFormulario(false);
   };
 
@@ -113,6 +125,8 @@ const AdminProfile = () => {
       estudianteActual={estudianteActual} setEstudianteActual={setEstudianteActual}
       nuevoCurso={nuevoCurso} setNuevoCurso={setNuevoCurso}
       handleLogout={handleLogout} abrirNuevoUsuario={abrirNuevoUsuario}
+      abrirEditarUsuario={abrirEditarUsuario} confirmarPassword={confirmarPassword}
+      setConfirmarPassword={setConfirmarPassword}
       eliminarUsuario={eliminarUsuario} eliminarMensaje={eliminarMensaje}
       guardarUsuario={guardarUsuario} guardarCurso={guardarCurso}
       eliminarCurso={eliminarCurso}

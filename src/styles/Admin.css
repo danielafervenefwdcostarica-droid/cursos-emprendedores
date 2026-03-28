@@ -126,16 +126,26 @@
 
 /* Modal */
 .admin-modal {
-  position: absolute;
-  top: 10%;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, -50%);
   background-color: white;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  z-index: 100;
-  width: 400px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+  z-index: 1000;
+  width: 420px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.admin-modal::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.6);
+  z-index: -1;
 }
 
 .admin-modal-h3 {

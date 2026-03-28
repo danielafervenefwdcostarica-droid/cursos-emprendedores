@@ -103,7 +103,6 @@ const ClientComponent = ({
             <div>
               <p className="client-info-p"><strong>Nombre Completo:</strong> {userData.nombre}</p>
               <p className="client-info-p"><strong>Correo Electrónico:</strong> {userData.email}</p>
-              <p className="client-info-p"><strong>Miembro desde:</strong> {userData.fechaRegistro}</p>
               <p className="client-course-p">
                 <strong>Curso Matriculado:</strong> {userData.cursoActual || "Aún no has elegido un curso."}
               </p>
