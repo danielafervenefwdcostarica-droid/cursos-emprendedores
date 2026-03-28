@@ -27,25 +27,20 @@
       "email": "dd@gmail.com",
       "password": "1234",
       "role": "cliente"
+    },
+    {
+      "nombre": "dabiela",
+      "email": "danielafervene@gmail.com",
+      "password": "1234",
+      "role": "admin",
+      "id": "Xsvqe0YpPdE"
     }
   ],
   "cursos": [
     {
-<<<<<<< HEAD
       "id": "1",
       "nombre": "Desarrollo Web Full Stack",
       "categoria": "Programación"
-=======
-      "id": "4b6c",
-      "nombre": "vfdvoifdj",
-      "categoria": "idiomas",
-      "descripcion": "lkmfpfv",
-      "duracion": "vnonvonv",
-      "horario": "nkfjnvof",
-      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774476504/nuo12clxuletx82ijddr.jpg",
-      "tag": "idiomas",
-      "meta": "vnonvonv"
->>>>>>> c79e757be4f4fbef8552c828db46a1e74c5cd468
     },
     {
       "id": "3d5c",
@@ -59,7 +54,6 @@
       "meta": "oonmopji"
     },
     {
-<<<<<<< HEAD
       "id": "3112",
       "nombreCurso": "A",
       "categoriaCurso": "B",
@@ -74,17 +68,24 @@
       "descripcionCurso": "La",
       "duracionCurso": "Compu De",
       "horarioCurso": "Daniela"
-=======
-      "id": "b212",
-      "nombre": "f",
-      "categoria": "musica",
-      "descripcion": "f",
-      "duracion": "b",
-      "horario": "k",
-      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774487039/gmiiizxu7moeah5x07ja.jpg",
-      "tag": "musica",
-      "meta": "b"
->>>>>>> c79e757be4f4fbef8552c828db46a1e74c5cd468
+    }
+  ],
+  "mensajes": [
+    {
+      "nombre": "daniela",
+      "email": "danielafervene@gmail.com",
+      "asunto": "Becas y Financiamiento",
+      "mensaje": "sdefrgthyjuk",
+      "privacidad": true,
+      "id": "4HLjj2DIalM"
+    },
+    {
+      "nombre": "an",
+      "email": "danielavene@gmail.com",
+      "asunto": "Otros",
+      "mensaje": "werftghyjuklñ",
+      "privacidad": true,
+      "id": "Mk9tLIsAq1A"
     }
   ]
 }

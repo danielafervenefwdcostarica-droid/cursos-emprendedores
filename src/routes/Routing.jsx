@@ -12,20 +12,21 @@ import ClientePerfil from '../pages/ClientePerfil';
 import Inicio from '../pages/Home';
 import SobreNosotros from '../pages/SobreNosotros';
 import OportunidadesDetalles from '../pages/OportunidadesDetalles';
+import RutasPrivadas from './RutasPrivadas';
 
 function Routing() {
-  return(
+  return (
     <Router>
       <Routes>
-        <Route path='/' element={<Inicio/>}/>
-        <Route path='/Contacto' element={<Contacto/>}/>
-         <Route path='/Registro' element={<RegisterPage/>}/>
-         <Route path='/Login' element={<LoginPage/>}/>
-         <Route path='/panelAdministrativo'element={<AdministradorPerfil/>}/>
-         <Route path='/PerfilCliente' element={<ClientePerfil/>}/>
-         <Route path= '/cursos' element={<ListaDeCursos/>}/>
-         <Route path='/Sobre-Nosotros' element={<SobreNosotros/>}/>
-         <Route path='/oportunidades-detalles' element={<OportunidadesDetalles/>}/>
+        <Route path='/' element={<Inicio />} />
+        <Route path='/Contacto' element={<Contacto />} />
+        <Route path='/Registro' element={<RegisterPage />} />
+        <Route path='/Login' element={<LoginPage />} />
+        <Route path='/panelAdministrativo' element={<AdministradorPerfil />} />
+        <Route path='/PerfilCliente' element={<RutasPrivadas children={<ClientePerfil />} />} />
+        <Route path='/cursos' element={<ListaDeCursos />} />
+        <Route path='/Sobre-Nosotros' element={<SobreNosotros />} />
+        <Route path='/Oportunidades-Detalles' element={<OportunidadesDetalles />} />
       </Routes>
     </Router>
   )

@@ -6,10 +6,10 @@ import CloudinaryUpload from './CloudinaryUpload';
 import CardCurso from './CardCursos';
 
 const AdminComponent = ({
-  activeTab, setActiveTab, estudiantes, cursos, mostrarFormulario,
+  activeTab, setActiveTab, estudiantes, cursos, mensajes, mostrarFormulario,
   setMostrarFormulario, estudianteActual, setEstudianteActual,
   nuevoCurso, setNuevoCurso, handleLogout, abrirNuevoUsuario,
-  abrirEditarUsuario, eliminarUsuario, guardarUsuario,
+  abrirEditarUsuario, eliminarUsuario, eliminarMensaje, guardarUsuario,
   guardarCurso, eliminarCurso, onCursoCreated,
   editar, manejarCambio, guardarCambios, editando, CursoActual,setEditando
 }) => {
@@ -67,6 +67,7 @@ const AdminComponent = ({
               <div className="glass-card"><h3 className="card-title">Estudiantes Activos</h3><p className="card-value admin-activos">{activos}</p></div>
               <div className="glass-card"><h3 className="card-title">Estudiantes Inactivos</h3><p className="card-value admin-inactivos">{inactivos}</p></div>
               <div className="glass-card"><h3 className="card-title">Cursos Creados</h3><p className="card-value admin-cursos-count">{cursos.length}</p></div>
+              <div className="glass-card"><h3 className="card-title">Mensajes Recibidos</h3><p className="card-value" style={{ color: '#2563eb' }}>{mensajes.length}</p></div>
             </div>
           </>
         );
@@ -198,6 +199,44 @@ const AdminComponent = ({
             )}
           </>
         );
+      case 'mensajes':
+        return (
+          <>
+            <div className="page-header"><h1 className="page-title">Mensajes de Contacto</h1></div>
+            <div className="glass-card">
+              <table className="admin-table">
+                <thead>
+                  <tr className="admin-thead-tr">
+                    <th className="admin-th">ID</th>
+                    <th className="admin-th">Nombre</th>
+                    <th className="admin-th">Correo</th>
+                    <th className="admin-th">Asunto</th>
+                    <th className="admin-th">Mensaje</th>
+                    <th className="admin-th">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {mensajes.length === 0 ? (
+                    <tr><td colSpan="6" className="admin-td" style={{ textAlign: 'center', padding: '40px' }}>No hay mensajes nuevos.</td></tr>
+                  ) : (
+                    mensajes.map((msg) => (
+                      <tr key={msg.id} className="admin-tbody-tr">
+                        <td className="admin-td-secondary">{msg.id}</td>
+                        <td className="admin-td" style={{ fontWeight: '600' }}>{msg.nombre}</td>
+                        <td className="admin-td-secondary">{msg.email}</td>
+                        <td className="admin-td"><span className="admin-status-badge admin-status-activo" style={{ background: '#eff6ff', color: '#2563eb' }}>{msg.asunto}</span></td>
+                        <td className="admin-td-secondary" style={{ maxWidth: '300px', whiteSpace: 'normal' }}>{msg.mensaje}</td>
+                        <td className="admin-td-acciones">
+                          <button onClick={() => eliminarMensaje(msg.id)} className="admin-btn-eliminar">Eliminar</button>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </>
+        );
       default: return <h2>Pestaña no encontrada</h2>;
     }
   };
@@ -210,6 +249,7 @@ const AdminComponent = ({
           <li className={activeTab === 'dashboard' ? 'active' : ''} onClick={() => setActiveTab('dashboard')}>Dashboard</li>
           <li className={activeTab === 'usuarios' ? 'active' : ''} onClick={() => setActiveTab('usuarios')}>Gestión de Estudiantes</li>
           <li className={activeTab === 'cursos' ? 'active' : ''} onClick={() => setActiveTab('cursos')}>Gestión de Cursos</li>
+          <li className={activeTab === 'mensajes' ? 'active' : ''} onClick={() => setActiveTab('mensajes')}>Mensajes Recibidos</li>
           <li className="admin-logout-li" onClick={handleLogout}>Cerrar Sesión</li>
         </ul>
       </aside>

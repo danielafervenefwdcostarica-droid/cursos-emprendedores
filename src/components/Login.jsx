@@ -25,7 +25,7 @@ const LoginPage = () => {
       
       // GUARDAMOS EL USUARIO EN LOCALSTORAGE PARA QUE EL PERFIL LO ENCUENTRE
       localStorage.setItem('usuarioLogueado', JSON.stringify(usuarioValido));
-
+      localStorage.setItem("id",usuarioValido.id)
       // Navigate based on role
       if (usuarioValido.role === 'admin') {
         navigate('/panelAdministrativo');
