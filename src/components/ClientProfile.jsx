@@ -12,7 +12,7 @@ const ClientProfile = () => {
     const usuarioGuardado = localStorage.getItem('usuarioLogueado');
     if (usuarioGuardado) {
       const parsedUser = JSON.parse(usuarioGuardado);
-      return { ...parsedUser, plan: "Premium", fechaRegistro: "2023", cursoActual: parsedUser.curso || "" };
+      return { ...parsedUser, plan: "Premium",  cursoActual: parsedUser.curso || "" };
     }
     return { nombre: "", email: "", plan: "Básico", fechaRegistro: "", cursoActual: "" };
   });

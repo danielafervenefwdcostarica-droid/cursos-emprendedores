@@ -18,8 +18,7 @@ function Footer() {
                     <div className="modern-footer-col">
                         <h4>Explora</h4>
                         <ul className="modern-footer-links">
-                            <li><a href="/cursos">Todos los Cursos</a></li>
-                            <li><a href="/categorias">Categorías</a></li>
+                            <li><a href="/cursos">Nuestros Cursos</a></li>
                             <li><a href="/precios">Precios</a></li>
                             <li><a href="/becas">Becas</a></li>
                         </ul>
@@ -30,7 +29,6 @@ function Footer() {
                         <ul className="modern-footer-links">
                             <li><a href="/SobreNosotros">Sobre Nosotros</a></li>
                             <li><a href="/blog">Blog</a></li>
-                            <li><a href="/partners">Partners</a></li>
                             <li><a href="/contacto">Contacto</a></li>
                         </ul>
                     </div>

@@ -1,13 +1,6 @@
 {
   "usuarios": [
     {
-      "nombre": "Administrador Principal",
-      "email": "admin@empresa.com",
-      "password": "123",
-      "role": "admin",
-      "id": "1"
-    },
-    {
       "id": "7fbd",
       "nombre": "Ale",
       "email": "Ale@gmail.com",
@@ -27,15 +20,37 @@
       "email": "dd@gmail.com",
       "password": "1234",
       "role": "cliente"
+    },
+    {
+      "id": "16e4",
+      "nombre": "Rachell",
+      "email": "rl383207@gmail.com",
+      "password": "123456",
+      "role": "cliente"
+    },
+    {
+      "id": "16f7",
+      "nombre": "ihpjj",
+      "email": "o0u@gmail.com",
+      "curso": "",
+      "estado": "Activo",
+      "role": "admin",
+      "password": "111"
+    },
+    {
+      "id": "27b8",
+      "nombre": "juan antonio",
+      "email": "bolijuan@gmail.com",
+      "password": "Soyboliviano!",
+      "role": "cliente",
+      "edad": "25",
+      "nacionalidad": "Boliviano",
+      "cedula": "119885403",
+      "telefono": "911"
     }
   ],
   "cursos": [
     {
-<<<<<<< HEAD
-      "id": "1",
-      "nombre": "Desarrollo Web Full Stack",
-      "categoria": "Programación"
-=======
       "id": "4b6c",
       "nombre": "vfdvoifdj",
       "categoria": "idiomas",
@@ -45,7 +60,6 @@
       "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774476504/nuo12clxuletx82ijddr.jpg",
       "tag": "idiomas",
       "meta": "vnonvonv"
->>>>>>> c79e757be4f4fbef8552c828db46a1e74c5cd468
     },
     {
       "id": "3d5c",
@@ -59,22 +73,6 @@
       "meta": "oonmopji"
     },
     {
-<<<<<<< HEAD
-      "id": "3112",
-      "nombreCurso": "A",
-      "categoriaCurso": "B",
-      "descripcionCurso": "C",
-      "duracionCurso": "D",
-      "horarioCurso": "E"
-    },
-    {
-      "id": "d455",
-      "nombreCurso": "Prueba",
-      "categoriaCurso": "Desde",
-      "descripcionCurso": "La",
-      "duracionCurso": "Compu De",
-      "horarioCurso": "Daniela"
-=======
       "id": "b212",
       "nombre": "f",
       "categoria": "musica",
@@ -84,7 +82,6 @@
       "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774487039/gmiiizxu7moeah5x07ja.jpg",
       "tag": "musica",
       "meta": "b"
->>>>>>> c79e757be4f4fbef8552c828db46a1e74c5cd468
     }
   ]
 }

@@ -12,7 +12,7 @@ import ClientePerfil from '../pages/ClientePerfil';
 import Inicio from '../pages/Home';
 import SobreNosotros from '../pages/SobreNosotros';
 import OportunidadesDetalles from '../pages/OportunidadesDetalles';
-
+import CursoPago from '../pages/CursoPago';
 function Routing() {
   return(
     <Router>
@@ -25,7 +25,8 @@ function Routing() {
          <Route path='/PerfilCliente' element={<ClientePerfil/>}/>
          <Route path= '/cursos' element={<ListaDeCursos/>}/>
          <Route path='/Sobre-Nosotros' element={<SobreNosotros/>}/>
-         <Route path='/oportunidades-detalles' element={<OportunidadesDetalles/>}/>
+         <Route path='/oportunidades' element={<OportunidadesDetalles/>}/>
+         <Route path='/pagos' element={<CursoPago/>}/>
       </Routes>
     </Router>
   )
