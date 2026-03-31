@@ -146,55 +146,74 @@ const AdminComponent = ({
             <div className="page-header"><h1 className="page-title">Gestión de Usuarios</h1></div>
             
             <div className="glass-card" style={{ marginBottom: "2rem" }}>
-              <h3 className="card-title">Sección de Estudiantes</h3>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                <h3 className="card-title" style={{ margin: 0 }}>Sección de Estudiantes</h3>
+                <button onClick={() => abrirNuevoUsuario('cliente')} className="admin-btn-nuevo">+ Nuevo Estudiante</button>
+              </div>
 
               <table className="admin-table">
                 <thead>
                   <tr className="admin-thead-tr">
-                    <th className="admin-th">Nombre</th><th className="admin-th">Correo</th><th className="admin-th">Curso Inscrito</th><th className="admin-th">Estado</th><th className="admin-th">Acciones</th>
+                    <th className="admin-th">Nombre</th>
+                    <th className="admin-th">Correo</th>
+                    <th className="admin-th">Curso Inscrito</th>
+                    <th className="admin-th">Estado</th>
+                    <th className="admin-th">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {listaEstudiantes.map((est) => (
-                    <tr key={est.id} className="admin-tbody-tr">
-                      <td className="admin-td">{est.nombre}</td>
-                      <td className="admin-td-secondary">{est.email}</td>
-                      <td className="admin-td-secondary">{est.curso || 'Sin curso'}</td>
-                      <td className="admin-td">
-                        {/* Se determina el estado basándose en si el estudiante tiene un curso inscrito */}
-                        {/* Si est.curso existe, el estado es 'Activo' (verde); de lo contrario, es 'Inactivo' (rojo) */}
-                        <span className={`admin-status-badge ${est.curso ? 'admin-status-activo' : 'admin-status-inactivo'}`}>
-                          {est.curso ? 'Activo' : 'Inactivo'}
-                        </span>
-                      </td>
-                      <td className="admin-td-acciones">
-                        <button onClick={() => eliminarUsuario(est.id)} className="admin-btn-eliminar">Eliminar</button>
-                      </td>
-                    </tr>
-                  ))}
+                  {listaEstudiantes.length === 0 ? (
+                    <tr><td colSpan="5" className="admin-td" style={{ textAlign: 'center', padding: '20px' }}>No hay estudiantes registrados.</td></tr>
+                  ) : (
+                    listaEstudiantes.map((est) => (
+                      <tr key={est.id} className="admin-tbody-tr">
+                        <td className="admin-td">{est.nombre}</td>
+                        <td className="admin-td-secondary">{est.email}</td>
+                        <td className="admin-td-secondary">{est.curso || 'Sin curso'}</td>
+                        <td className="admin-td">
+                          <span className={`admin-status-badge ${est.estado === 'Activo' || !est.estado ? 'admin-status-activo' : 'admin-status-inactivo'}`}>
+                            {est.estado || 'Activo'}
+                          </span>
+                        </td>
+                        <td className="admin-td-acciones">
+                          <button onClick={() => abrirEditarUsuario(est)} className="admin-btn-editar">Editar</button>
+                          <button onClick={() => eliminarUsuario(est.id)} className="admin-btn-eliminar">Eliminar</button>
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>
 
             <div className="glass-card">
-              <h3 className="card-title">Sección de Administradores</h3>
-              <button onClick={() => abrirNuevoUsuario('admin')} className="admin-btn-nuevo" style={{ backgroundColor: "#1e3a8a" }}>+ Nuevo Administrador</button>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                <h3 className="card-title" style={{ margin: 0 }}>Sección de Administradores</h3>
+                <button onClick={() => abrirNuevoUsuario('admin')} className="admin-btn-nuevo" style={{ backgroundColor: "#1e3a8a" }}>+ Nuevo Administrador</button>
+              </div>
               <table className="admin-table">
                 <thead>
                   <tr className="admin-thead-tr">
-                    <th className="admin-th">Nombre</th><th className="admin-th">Correo</th><th className="admin-th">Acciones</th>
+                    <th className="admin-th">Nombre</th>
+                    <th className="admin-th">Correo</th>
+                    <th className="admin-th">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {listaAdmins.map((adm) => (
-                    <tr key={adm.id} className="admin-tbody-tr">
-                      <td className="admin-td">{adm.nombre}</td>
-                      <td className="admin-td-secondary">{adm.email}</td>
-                      <td className="admin-td-acciones">
-                        <button onClick={() => eliminarUsuario(adm.id)} className="admin-btn-eliminar">Eliminar</button>
-                      </td>
-                    </tr>
-                  ))}
+                  {listaAdmins.length === 0 ? (
+                    <tr><td colSpan="3" className="admin-td" style={{ textAlign: 'center', padding: '20px' }}>No hay administradores registrados.</td></tr>
+                  ) : (
+                    listaAdmins.map((adm) => (
+                      <tr key={adm.id} className="admin-tbody-tr">
+                        <td className="admin-td">{adm.nombre}</td>
+                        <td className="admin-td-secondary">{adm.email}</td>
+                        <td className="admin-td-acciones">
+                          <button onClick={() => abrirEditarUsuario(adm)} className="admin-btn-editar">Editar</button>
+                          <button onClick={() => eliminarUsuario(adm.id)} className="admin-btn-eliminar">Eliminar</button>
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
 
@@ -208,8 +227,6 @@ const AdminComponent = ({
                   <form onSubmit={(e) => {
                     if (estudianteActual.role === 'admin' && !estudianteActual.id) {
                       const pwd = estudianteActual.password || "";
-                      
-                      // Validación de fuerza de contraseña
                       const hasKLength = pwd.length >= 8;
                       const hasUpperCase = /[A-Z]/.test(pwd);
                       const hasSpecialChar = /[?!&#*]/.test(pwd);
@@ -241,7 +258,6 @@ const AdminComponent = ({
                     {estudianteActual.role === 'admin' && !estudianteActual.id && (
                       <>
                         <input type="password" placeholder="Contraseña" required value={estudianteActual.password || ''} onChange={(e) => setEstudianteActual({...estudianteActual, password: e.target.value})} className="admin-input"/>
-                        
                         <div style={{ margin: '10px 0', fontSize: '13px', textAlign: 'left', background: '#f8f9fa', padding: '10px', borderRadius: '5px', border: '1px solid #ddd' }}>
                           <p style={{ margin: '0 0 5px 0', fontWeight: 'bold', color: '#333' }}>Requisitos de la contraseña:</p>
                           <ul style={{ listStyleType: 'none', paddingLeft: '0', margin: '0' }}>
@@ -256,7 +272,6 @@ const AdminComponent = ({
                             </li>
                           </ul>
                         </div>
-
                         <input type="password" placeholder="Confirmar contraseña" required value={confirmarPassword} onChange={(e) => setConfirmarPassword(e.target.value)} className="admin-input"/>
                       </>
                     )}
@@ -268,7 +283,6 @@ const AdminComponent = ({
                   </form>
                 </div>
               )}
-
             </div>
           </>
         );
@@ -281,7 +295,7 @@ const AdminComponent = ({
               <div className="glass-card admin-cursos-left">
                 <h3 className="card-title admin-cursos-h3">Agregar Nuevo Curso</h3>
                 <form onSubmit={guardarCurso} className="admin-form">
-                  <input type="text" placeholder="Nombre (Ej. Kendo Básico)" required value={nombreCurso}onChange={(e) => setNombreCurso(e.target.value)} className="admin-input"/>
+                  <input type="text" placeholder="Nombre (Ej. Kendo Básico)" required value={nombreCurso} onChange={(e) => setNombreCurso(e.target.value)} className="admin-input"/>
                   <select className="admin-input" name="categoria" id="categoria" value={categoriaCurso} onChange={(e)=>setCategoriaCurso(e.target.value)}>
                     <option value="">Seleccione la categoría del curso</option>
                     <option value="idiomas">Idiomas</option>

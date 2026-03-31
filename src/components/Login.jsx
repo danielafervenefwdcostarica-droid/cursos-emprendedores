@@ -26,9 +26,12 @@ const LoginPage = () => {
       // GUARDAMOS EL USUARIO EN LOCALSTORAGE PARA QUE EL PERFIL LO ENCUENTRE
       localStorage.setItem('usuarioLogueado', JSON.stringify(usuarioValido));
       localStorage.setItem("id",usuarioValido.id)
-      // Se cambió la navegación para que, tras un login exitoso, el usuario vaya a la página principal ('/')
-      // en lugar de enviarlo a su perfil. Esto permite una mejor experiencia al ver directamente los cursos.
-      navigate('/');
+      // Navigate based on role
+      if (usuarioValido.role === 'admin') {
+        navigate('/panelAdministrativo');
+      } else {
+        navigate('/PerfilCliente');
+      }
     }else{
       alert(" contraseña o email incorrecto")
     }

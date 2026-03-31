@@ -24,7 +24,7 @@ const AdminProfile = () => {
       setCursos(cursosData);
       
       const estudiantesData = await getUsuarios();
-      setEstudiantes(estudiantesData.filter(user => user.role === 'cliente'));
+      setEstudiantes(estudiantesData || []);
       
       const mensajesData = await getMensajes();
       setMensajes(mensajesData || []);
@@ -130,6 +130,8 @@ const AdminProfile = () => {
       estudianteActual={estudianteActual} setEstudianteActual={setEstudianteActual}
       nuevoCurso={nuevoCurso} setNuevoCurso={setNuevoCurso}
       handleLogout={handleLogout} abrirNuevoUsuario={abrirNuevoUsuario}
+      abrirEditarUsuario={abrirEditarUsuario} confirmarPassword={confirmarPassword}
+      setConfirmarPassword={setConfirmarPassword}
       eliminarUsuario={eliminarUsuario} eliminarMensaje={eliminarMensaje}
       guardarUsuario={guardarUsuario} guardarCurso={guardarCurso}
       eliminarCurso={eliminarCurso}

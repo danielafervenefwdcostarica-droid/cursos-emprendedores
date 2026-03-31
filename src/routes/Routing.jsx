@@ -13,7 +13,6 @@ import Inicio from '../pages/Home';
 import SobreNosotros from '../pages/SobreNosotros';
 import OportunidadesDetalles from '../pages/OportunidadesDetalles';
 import RutasPrivadas from './RutasPrivadas';
-import CursoPago from '../pages/CursoPago';
 
 function Routing() {
   return (
@@ -23,12 +22,11 @@ function Routing() {
         <Route path='/Contacto' element={<Contacto />} />
         <Route path='/Registro' element={<RegisterPage />} />
         <Route path='/Login' element={<LoginPage />} />
-        <Route path='/panelAdministrativo' element={<AdministradorPerfil />} />
-        <Route path='/PerfilCliente' element={<RutasPrivadas children={<ClientePerfil />} />} />
+        <Route path='/panelAdministrativo' element={<RutasPrivadas children={<AdministradorPerfil />} />} />
+        <Route path='/PerfilCliente' element={<ClientePerfil />} />
         <Route path='/cursos' element={<ListaDeCursos />} />
         <Route path='/Sobre-Nosotros' element={<SobreNosotros />} />
         <Route path='/Oportunidades-Detalles' element={<OportunidadesDetalles />} />
-        <Route path='/pago' element={<CursoPago />} />
       </Routes>
     </Router>
   )

@@ -180,7 +180,7 @@ const ClientComponent = ({
                   }
                 }}
                 className="client-btn-cancel"
-                style={{ padding: '5px 15px', fontSize: '14px', borderRadius: '4px', margin: 0 }}
+                style={{ padding: '8px 9px', fontSize: '9px', borderRadius: '10px', margin: 0, minHeight: 'auto', height: 'auto', lineHeight: '1' }}
                 title="Eliminar datos de tarjeta"
               >
                 Eliminar datos de tarjeta

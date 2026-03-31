@@ -1,18 +1,35 @@
 {
-  "usuarios": [],
-  "cursos": [
+  "usuarios": [
     {
-      "id": "1837",
-      "nombre": "Soporte Técnico",
-      "categoria": "tecnologia",
-      "descripcion": "Un curso de soporte técnico es una formación orientada a enseñar cómo diagnosticar, reparar y mantener equipos informáticos, tanto en su parte física (hardware) como en los programas que utilizan (software). Durante el curso, se aprenden temas como el funcionamiento interno de una computadora, identificación y cambio de componentes, instalación de sistemas operativos como Windows o Linux, configuración de programas, eliminación de virus y optimización del rendimiento. Además, incluye conocimientos básicos de redes, como conexión a internet, configuración de WiFi y solución de problemas de conectividad. También se desarrolla la capacidad de analizar fallas comunes, encontrar sus causas y aplicar soluciones efectivas. Un aspecto importante es la atención al usuario, ya que el técnico debe saber comunicarse claramente para ayudar a otras personas a resolver sus problemas tecnológicos. Este tipo de curso prepara para trabajar en áreas como soporte técnico en empresas, reparación de computadoras, asistencia remota (help desk) o incluso emprender un negocio propio ofreciendo servicios informáticos.",
-      "duracion": "6 de Abril al 28 de Septiembre",
-      "horario": "Lunes de 5:00 pm a 8:00 pm",
-      "precio": "₡10 000",
-      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774972952/rvtsodpzfiud4nloszzw.png",
-      "tag": "tecnologia",
-      "meta": "6 de Abril al 28 de Septiembre"
+      "id": "7fbd",
+      "nombre": "Ale",
+      "email": "Ale@gmail.com",
+      "password": "12345",
+      "role": "admin"
     },
+    {
+      "id": "88e4",
+      "nombre": "Ale",
+      "email": "Ale@gmail.com",
+      "password": "123456",
+      "role": "admin"
+    },
+    {
+      "id": "cbf9",
+      "nombre": "d",
+      "email": "dd@gmail.com",
+      "password": "1234",
+      "role": "cliente"
+    },
+    {
+      "nombre": "dabiela",
+      "email": "danielafervene@gmail.com",
+      "password": "1234",
+      "role": "admin",
+      "id": "Xsvqe0YpPdE"
+    }
+  ],
+  "cursos": [
     {
       "id": "8c71",
       "nombre": "Diseño Digital",
@@ -48,18 +65,6 @@
       "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774973643/cgpmedjelulmzbloztj1.webp",
       "tag": "artesania",
       "meta": "12 de Mayo al 7 de Julio"
-    },
-    {
-      "id": "0e5b",
-      "nombre": "Costura",
-      "categoria": "artesania",
-      "descripcion": "La costura es una técnica de artesanía que consiste en unir telas utilizando aguja e hilo, ya sea a mano o con máquina, para crear o reparar prendas y otros productos textiles. En un curso de costura se aprende desde lo básico, como enhebrar la aguja, hacer puntadas simples y usar una máquina de coser, hasta habilidades más avanzadas como tomar medidas, cortar telas, seguir patrones y confeccionar ropa como camisas, vestidos o pantalones. También se enseñan técnicas de acabado, tipos de telas, combinación de colores y diseño básico. Además de ser una habilidad práctica para el día a día, la costura fomenta la creatividad y puede convertirse en una oportunidad de emprendimiento, permitiendo crear y vender prendas, accesorios o productos personalizados.",
-      "duracion": "9 de Julio al 10 de Septiembre",
-      "horario": "Jueves 2:30 pm a 5:30 pm ",
-      "precio": "₡10 000",
-      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774973803/az6aarz3iioxj7ed51nb.webp",
-      "tag": "artesania",
-      "meta": "9 de Julio al 10 de Septiembre"
     },
     {
       "id": "f34f",

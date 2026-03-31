@@ -43,9 +43,8 @@ async function postUsuarios(usuario) {
 
 export { postUsuarios }
 
-// PUT USUARIOS - Se corrigió el orden de los parámetros (id, usuario) para que coincida con las llamadas en los componentes
-// Esto asegura que la base de datos se actualice correctamente cuando un estudiante se inscribe o edita su perfil
-async function putUsuarios(id, usuario) {
+//PUT USUARIOS
+async function putUsuarios(usuario, id) {
     try {
         const respuesta = await fetch("http://localhost:3001/usuarios/" + id, {
             method: "PUT",
