@@ -36,49 +36,61 @@
       "categoria": "Programación"
     },
     {
-      "id": "3d5c",
-      "nombre": "jnojn",
-      "categoria": "artesania",
-      "descripcion": "bkbkjoj",
-      "duracion": "oonmopji",
-      "horario": "km[ok-",
-      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774476609/wei3qbscr9tbk8b9zxoy.jpg",
-      "tag": "artesania",
-      "meta": "oonmopji"
-    },
-    {
-      "id": "3112",
-      "nombreCurso": "A",
-      "categoriaCurso": "B",
-      "descripcionCurso": "C",
-      "duracionCurso": "D",
-      "horarioCurso": "E"
-    },
-    {
-      "id": "d455",
-      "nombreCurso": "Prueba",
-      "categoriaCurso": "Desde",
-      "descripcionCurso": "La",
-      "duracionCurso": "Compu De",
-      "horarioCurso": "Daniela"
-    }
-  ],
-  "mensajes": [
-    {
-      "nombre": "daniela",
-      "email": "danielafervene@gmail.com",
-      "asunto": "Becas y Financiamiento",
-      "mensaje": "sdefrgthyjuk",
-      "privacidad": true,
-      "id": "4HLjj2DIalM"
-    },
-    {
-      "nombre": "an",
-      "email": "danielavene@gmail.com",
-      "asunto": "Otros",
-      "mensaje": "werftghyjuklñ",
-      "privacidad": true,
-      "id": "Mk9tLIsAq1A"
-    }
-  ]
+    "id": "917a",
+    "nombre": "Diseño Digital",
+    "categoria": "tecnologia",
+    "descripcion": "El curso de diseño digital de Cursos Plus enseña a crear contenido visual para medios digitales, incluyendo imágenes, anuncios y publicaciones para redes sociales, utilizando herramientas como Adobe Photoshop y Adobe Illustrator; además, se aprenden principios básicos de diseño como el uso del color, la tipografía y la composición, con el objetivo de comunicar ideas de forma creativa y profesional mediante recursos gráficos digitales.",
+    "duracion": "96 horas (8 Semanas)",
+    "horario": "De L a V 5:30 pm a 9:00 pm ",
+    "precio": "₡10 000",
+    "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774893120/alepj8noxharizkwngud.jpg",
+    "tag": "tecnologia",
+    "meta": "96 horas (8 Semanas)"
+  },
+  {
+    "id": "3d5c",
+    "nombre": "jnojn",
+    "categoria": "artesania",
+    "descripcion": "bkbkjoj",
+    "duracion": "oonmopji",
+    "horario": "km[ok-",
+    "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774476609/wei3qbscr9tbk8b9zxoy.jpg",
+    "tag": "artesania",
+    "meta": "oonmopji"
+  },
+  {
+    "id": "3112",
+    "nombre": "A",
+    "categoria": "B",
+    "descripcion": "C",
+    "duracion": "D",
+    "horario": "E"
+  },
+  {
+    "id": "d455",
+    "nombre": "Prueba",
+    "categoria": "Desde",
+    "descripcion": "La",
+    "duracion": "Compu De",
+    "horario": "Daniela"
+  }
+],
+"mensajes": [
+  {
+    "nombre": "daniela",
+    "email": "danielafervene@gmail.com",
+    "asunto": "Becas y Financiamiento",
+    "mensaje": "sdefrgthyjuk",
+    "privacidad": true,
+    "id": "4HLjj2DIalM"
+  },
+  {
+    "nombre": "an",
+    "email": "danielavene@gmail.com",
+    "asunto": "Otros",
+    "mensaje": "werftghyjuklñ",
+    "privacidad": true,
+    "id": "Mk9tLIsAq1A"
+  }
+]
 }

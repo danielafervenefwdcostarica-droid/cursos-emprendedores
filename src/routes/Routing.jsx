@@ -19,14 +19,14 @@ function Routing() {
     <Router>
       <Routes>
         <Route path='/' element={<Inicio />} />
-        <Route path='/Contacto' element={<RutasPrivadas children={<Contacto />} />} />
+        <Route path='/Contacto' element={<Contacto />} />
         <Route path='/Registro' element={<RegisterPage />} />
         <Route path='/Login' element={<LoginPage />} />
         <Route path='/panelAdministrativo' element={<RutasPrivadas children={<AdministradorPerfil />} />} />
         <Route path='/PerfilCliente' element={<RutasPrivadas children={<ClientePerfil />} />} />
-        <Route path='/cursos' element={<RutasPrivadas children={<ListaDeCursos />} />} />
-        <Route path='/Sobre-Nosotros' element={<RutasPrivadas children={<SobreNosotros />} />} />
-        <Route path='/Oportunidades-Detalles' element={<RutasPrivadas children={<OportunidadesDetalles />} />} />
+        <Route path='/cursos' element={<ListaDeCursos />} />
+        <Route path='/Sobre-Nosotros' element={<SobreNosotros />} />
+        <Route path='/Oportunidades-Detalles' element={<OportunidadesDetalles />} />
       </Routes>
     </Router>
   )
