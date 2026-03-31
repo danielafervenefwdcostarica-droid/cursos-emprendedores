@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function CardCurso({ img, nombreCurso, descripcionCurso, duracionCurso, horarioCurso, tag, tagClass, meta }) {
+function CardCurso({ img, nombreCurso, descripcionCurso, duracionCurso, horarioCurso, precioCurso, tag, tagClass, meta }) {
+    const navigate = useNavigate();
+    // Estado para controlar si se muestra la descripción completa o truncada
+    const [expandido, setExpandido] = useState(false);
+
     // Determine tag class based on tag content if not provided
     const getTagClass = () => {
         if (tagClass) return tagClass;
@@ -26,7 +31,20 @@ function CardCurso({ img, nombreCurso, descripcionCurso, duracionCurso, horarioC
                 </div>
                 
                 <h3 className="curso-title">{nombreCurso}</h3>
-                <p className="curso-description">{descripcionCurso || "Aprende las mejores estrategias y herramientas con este increíble curso."}</p>
+                
+                {/* Lógica de descripción: si es muy larga, se muestra un botón para expandir/contraer */}
+                <p className={`curso-description ${expandido ? 'expandido' : ''}`}>
+                    {descripcionCurso || "Aprende las mejores estrategias y herramientas con este increíble curso."}
+                </p>
+                
+                {descripcionCurso && descripcionCurso.length > 100 && (
+                    <button 
+                        className="btn-leer-mas" 
+                        onClick={() => setExpandido(!expandido)}
+                    >
+                        {expandido ? "Leer menos" : "Leer más"}
+                    </button>
+                )}
                 
                 <div className="curso-footer">
                     <div className="curso-info">
@@ -42,8 +60,27 @@ function CardCurso({ img, nombreCurso, descripcionCurso, duracionCurso, horarioC
                                 {horarioCurso}
                             </span>
                         )}
+                        {/* Se ha quitado el icono de dólar ($) a petición del usuario para dejar solo el valor numérico */}
+                        {precioCurso && (
+                            <span className="curso-info-item">
+                                {precioCurso}
+                            </span> 
+                        )}
                     </div>
-                    <button className="curso-btn-inscribirse">Inscribirse</button>
+                    <button 
+                        className="curso-btn-inscribirse"
+                        onClick={() => {
+                            const isLogged = localStorage.getItem('usuarioLogueado');
+                            if (!isLogged) {
+                                alert("Aún no estás registrado, regístrate para continuar");
+                                navigate('/Registro');
+                            } else {
+                                navigate('/pago', { state: { cursoSeleccionado: nombreCurso } });
+                            }
+                        }}
+                    >
+                        Inscribirse
+                    </button>
                 </div>
             </div>
         </div>

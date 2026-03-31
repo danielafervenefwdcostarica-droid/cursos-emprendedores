@@ -81,8 +81,8 @@
 }
 
 .curso-image-wrapper {
-  width: 320px;
-  height: 220px;
+  width: 310px;
+  height: 210px;
   flex-shrink: 0;
   border-radius: 12px;
   overflow: hidden;
@@ -157,13 +157,40 @@
 .curso-description {
   font-size: 0.95rem;
   color: #4b5563;
-  margin: 0 0 auto 0;
+  margin: 0 0 8px 0; /* Un pequeño margen antes del botón 'Leer más' */
   line-height: 1.5;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 2; /* Truncar a 2 líneas por defecto */
   line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+/* Clase para mostrar todo el texto de la descripción */
+.curso-description.expandido {
+  display: block;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  overflow: visible;
+}
+
+/* Estilo para el botón de 'Leer más' solicitado por el usuario */
+.btn-leer-mas {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 12px;
+  text-align: left;
+  text-decoration: underline;
+}
+
+.btn-leer-mas:hover {
+  color: #1d4ed8;
 }
 
 /* Footer (Info & Button) */
@@ -196,7 +223,7 @@
   border: none;
   border-radius: 9999px;
   padding: 10px 24px;
-  font-size: 0.95rem;
+  font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s ease;

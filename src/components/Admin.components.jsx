@@ -9,8 +9,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 const AdminComponent = ({
   activeTab, setActiveTab, estudiantes, cursos, mensajes, mostrarFormulario,
   setMostrarFormulario, estudianteActual, setEstudianteActual,
-  nuevoCurso, setNuevoCurso, handleLogout, abrirNuevoUsuario,
-  abrirEditarUsuario, eliminarUsuario, eliminarMensaje, guardarUsuario,
+  nuevoCurso, setNuevoCurso, handleLogout, abrirNuevoUsuario, eliminarUsuario, eliminarMensaje, guardarUsuario,
   guardarCurso, eliminarCurso, onCursoCreated,
   editar, manejarCambio, guardarCambios, editando, CursoActual,setEditando
 }) => {
@@ -28,6 +27,7 @@ const AdminComponent = ({
    const [descripcionCurso,setDescripcionCurso] = useState("")
    const [duracionCurso,setDuracionCurso] = useState("")
    const [horarioCurso,setHorarioCurso] = useState("")
+   const [precioCurso,setPrecioCurso] = useState("") // Nuevo estado para el precio del curso
    const [imagenCurso,setImagenCurso] = useState("")
    const [confirmarPassword, setConfirmarPassword] = useState("");
 
@@ -39,27 +39,44 @@ const AdminComponent = ({
       descripcion: descripcionCurso,
       duracion: duracionCurso,
       horario: horarioCurso,
+      precio: precioCurso, // Se añade el precio al objeto para guardarlo en la BD
       imagen: imagenCurso,
       tag: categoriaCurso,
       meta: duracionCurso
     }
     const nuevoCursoCreado = await postCursos(objCurso);
     if (onCursoCreated) onCursoCreated(nuevoCursoCreado);
-    setNombreCurso("");
+     setNombreCurso("");
     setCategoriaCurso("");
     setDescripcionCurso("");
     setDuracionCurso("");
     setHorarioCurso("");
+    setPrecioCurso(""); // Limpiamos el estado del precio después de guardar
     setImagenCurso("");
   }
+
+  // Función para formatear el precio con el símbolo de colón y miles
+  const handlePrecioChange = (value, setter) => {
+    // Solo permitimos números
+    const soloNumeros = value.replace(/\D/g, '');
+    if (soloNumeros === '') {
+      setter('');
+      return;
+    }
+    // Formateamos con el símbolo ₡ y separador de miles
+    const formateado = '₡' + new Intl.NumberFormat('es-CR').format(soloNumeros);
+    setter(formateado);
+  };
 
 
   const renderContent = () => {
     switch(activeTab) {
       case 'dashboard': {
         const soloEstudiantes = estudiantes.filter(u => u.role !== 'admin');
-        const activos = soloEstudiantes.filter(est => est.estado === 'Activo' || !est.estado).length;
-        const inactivos = soloEstudiantes.filter(est => est.estado === 'Inactivo').length;
+        const activos = soloEstudiantes.filter(est => est.curso).length;
+        const inactivos = soloEstudiantes.filter(est => !est.curso).length;
+        const matriculadosTotal = activos;
+        const totalDinero = matriculadosTotal * 10000; // Actualizado de 50 a 10000 para coincidir con el nuevo precio unitario en Colones
 
         // Categorías únicas de cursos creados
         const categorias = [...new Set(cursos.map(c => c.categoria).filter(Boolean))];
@@ -70,7 +87,6 @@ const AdminComponent = ({
           const matriculados = soloEstudiantes.filter(est => cursosEnCat.includes(est.curso)).length;
           return {
             categoria: cat.charAt(0).toUpperCase() + cat.slice(1),
-            'Estudiantes registrados': soloEstudiantes.length,
             'Matriculados en categoría': matriculados,
           };
         });
@@ -85,23 +101,37 @@ const AdminComponent = ({
               <div className="glass-card"><h3 className="card-title">Mensajes Recibidos</h3><p className="card-value" style={{ color: '#2563eb' }}>{mensajes.length}</p></div>
             </div>
 
-            <div className="glass-card" style={{ marginTop: '2rem', padding: '1.5rem' }}>
-              <h3 className="card-title" style={{ marginBottom: '1.5rem' }}>Estudiantes por Categoría de Curso</h3>
-              {datosGrafico.length === 0 ? (
-                <p style={{ color: '#888', textAlign: 'center' }}>No hay categorías de cursos creadas aún.</p>
-              ) : (
-                <ResponsiveContainer width="100%" height={320}>
-                  <BarChart data={datosGrafico} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
-                    <XAxis dataKey="categoria" tick={{ fontSize: 13 }} />
-                    <YAxis allowDecimals={false} tick={{ fontSize: 13 }} />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="Estudiantes registrados" fill="#004aad" radius={[4,4,0,0]} />
-                    <Bar dataKey="Matriculados en categoría" fill="#28a745" radius={[4,4,0,0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              )}
+            <div className="glass-card dashboard-main-row" style={{ marginTop: '2rem', padding: '1.5rem', display: 'flex', flexWrap: 'wrap', gap: '2rem' }}>
+              <div style={{ flex: '1 1 500px' }}>
+                <h3 className="card-title" style={{ marginBottom: '1.5rem' }}>Estudiantes por Categoría de Curso</h3>
+                {datosGrafico.length === 0 ? (
+                  <p style={{ color: '#888', textAlign: 'center' }}>No hay categorías de cursos creadas aún.</p>
+                ) : (
+                  <ResponsiveContainer width="100%" height={320}>
+                    <BarChart data={datosGrafico} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
+                      <XAxis dataKey="categoria" tick={{ fontSize: 13 }} />
+                      <YAxis allowDecimals={false} tick={{ fontSize: 13 }} />
+                      <Tooltip />
+                      <Legend />
+                      <Bar dataKey="Matriculados en categoría" fill="#28a745" radius={[4,4,0,0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                )}
+              </div>
+              
+              <div className="income-stat-card" style={{ flex: '0 0 250px', display: 'flex', flexDirection: 'column', justifyContent: 'center', borderLeft: '1px solid #eee', paddingLeft: '2rem', minWidth: '220px' }}>
+                <h3 className="card-title">Ingresos Totales</h3>
+                <p className="card-value" style={{ color: '#16a34a', fontSize: '2.5rem' }}>{totalDinero} ₡</p>
+                <div style={{ marginTop: '1rem', padding: '1rem', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+                  <p style={{ fontSize: '0.85rem', color: '#64748b', margin: 0 }}>
+                    <strong>{matriculadosTotal}</strong> matrículas habilitadas
+                  </p>
+                  <p style={{ fontSize: '0.85rem', color: '#64748b', margin: '5px 0 0 0' }}>
+                    Precio unitario: <strong>₡10.000</strong>
+                  </p>
+                </div>
+              </div>
             </div>
           </>
         );
@@ -130,7 +160,13 @@ const AdminComponent = ({
                       <td className="admin-td">{est.nombre}</td>
                       <td className="admin-td-secondary">{est.email}</td>
                       <td className="admin-td-secondary">{est.curso || 'Sin curso'}</td>
-                      <td className="admin-td"><span className={`admin-status-badge ${est.estado === 'Activo' || !est.estado ? 'admin-status-activo' : 'admin-status-inactivo'}`}>{est.estado || 'Activo'}</span></td>
+                      <td className="admin-td">
+                        {/* Se determina el estado basándose en si el estudiante tiene un curso inscrito */}
+                        {/* Si est.curso existe, el estado es 'Activo' (verde); de lo contrario, es 'Inactivo' (rojo) */}
+                        <span className={`admin-status-badge ${est.curso ? 'admin-status-activo' : 'admin-status-inactivo'}`}>
+                          {est.curso ? 'Activo' : 'Inactivo'}
+                        </span>
+                      </td>
                       <td className="admin-td-acciones">
                         <button onClick={() => eliminarUsuario(est.id)} className="admin-btn-eliminar">Eliminar</button>
                       </td>
@@ -259,6 +295,15 @@ const AdminComponent = ({
                   <input type="text" placeholder="Descripción del curso" required value={descripcionCurso || ''} onChange={(e) => setDescripcionCurso(e.target.value)} className="admin-input"/>
                   <input type="text" placeholder="Duración del curso" required value={duracionCurso || ''} onChange={(e) => setDuracionCurso(e.target.value)} className="admin-input"/>
                   <input type="text" placeholder="Horario del curso" required value={horarioCurso || ''} onChange={(e) => setHorarioCurso(e.target.value)} className="admin-input"/>
+                  {/* Input de precio con formateo automático de Colones */}
+                  <input 
+                    type="text" 
+                    placeholder="Precio (Ej: ₡10.000)" 
+                    required 
+                    value={precioCurso} 
+                    onChange={(e) => handlePrecioChange(e.target.value, setPrecioCurso)} 
+                    className="admin-input"
+                  />
                   <CloudinaryUpload buttonText="Subir Imagen del Curso" onImageUpload={(url) => setImagenCurso(url)} />
                   {imagenCurso && <img src={imagenCurso} alt="Vista previa" className="admin-preview-img" />}
                   <button type="button" onClick={guardarCurso} className="admin-btn-crear-curso">Crear Curso</button>
@@ -269,17 +314,18 @@ const AdminComponent = ({
                 <ul className="admin-cursos-ul">
                   {cursos.length === 0 ? <p className="admin-no-cursos">No hay cursos creados.</p> : null}
                   {cursos.map(curso => (
-                    <li key={curso.id} className="admin-curso-li" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <li key={curso.id} className="admin-curso-li">
                       <CardCurso 
                         img={curso.imagen}
                         nombreCurso={curso.nombre}
                         descripcionCurso={curso.descripcion}
                         duracionCurso={curso.duracion}
                         horarioCurso={curso.horario}
+                        precioCurso={curso.precio} // Pasamos el precio a la tarjeta de previsualización
                         tag={curso.categoria}
                         meta={curso.meta || curso.duracion}
                       />
-                      <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', marginTop: '-15px', zIndex: 10 }}>
+                      <div className="admin-curso-actions">
                         <button onClick={() => editar(curso)} className="admin-btn-editar">Editar</button>
                         <button onClick={() => eliminarCurso(curso.id)} className="admin-btn-eliminar">Eliminar</button>
                       </div>
@@ -299,6 +345,19 @@ const AdminComponent = ({
                   <input type="text" name="descripcion" placeholder="Descripción" value={CursoActual.descripcion || ''} onChange={manejarCambio} className="admin-input"/>
                   <input type="text" name="duracion" placeholder="Duración" value={CursoActual.duracion || ''} onChange={manejarCambio} className="admin-input"/>
                   <input type="text" name="horario" placeholder="Horario" value={CursoActual.horario || ''} onChange={manejarCambio} className="admin-input"/>
+                  {/* Input de precio en el modal de edición con la misma lógica de formateo */}
+                  <input 
+                    type="text" 
+                    name="precio" 
+                    placeholder="Precio" 
+                    value={CursoActual.precio || ''} 
+                    onChange={(e) => {
+                      const soloNumeros = e.target.value.replace(/\D/g, '');
+                      const formateado = soloNumeros ? '₡' + new Intl.NumberFormat('es-CR').format(soloNumeros) : '';
+                      manejarCambio({ target: { name: 'precio', value: formateado } });
+                    }} 
+                    className="admin-input"
+                  />
                   <div className="admin-form-buttons">
                     <button type="submit" className="admin-btn-guardar">Guardar Cambios</button>
                     <button type="button" onClick={() => setEditando(false)} className="admin-btn-cancelar">Cancelar</button>

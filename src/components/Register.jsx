@@ -7,15 +7,26 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
-    nombre: '', email: '', password: '', role: 'cliente' 
+    nombre: '', 
+    email: '', 
+    password: '', 
+    role: 'cliente',
+    edad: '',
+    nacionalidad: '',
+    cedula: '',
+    telefono: ''
   });
-  
-  
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!acceptedTerms) {
+      alert("acepta Términos y condiciones para continuar");
+      return;
+    }
     
     const pwd = formData.password.trim();
     
@@ -62,50 +73,20 @@ const RegisterPage = () => {
             <label className="form-label">Nombre Completo</label>
             <input type="text" name="nombre" className="form-control" value={formData.nombre} onChange={handleChange} required placeholder="Ej. Juan Pérez"/>
           </div>
-           <label className="form-label">Edad</label>
+            <label className="form-label">Edad</label>
             <input type="text" name="edad" className="form-control" value={formData.edad} onChange={handleChange} required placeholder="Ej. 18"/>
           <div className="form-group">
 
-            <label className="form-label">Nacionalidad</label>
-            <select name="nacionalidad" className="form-control" value={formData.nacionalidad} onChange={handleChange} required>
-              <option value="">-- Selecciona tu nacionalidad --</option>
-              <option value="Costarricense">Costarricense</option>
-              <option value="Mexicano">Mexicano</option>
-              <option value="Guatemalteco">Guatemalteco</option>
-              <option value="Hondureño">Hondureño</option>
-              <option value="Salvadoreño">Salvadoreño</option>
-              <option value="Nicaragüense">Nicaragüense</option>
-              <option value="Panameño">Panameño</option>
-              <option value="Colombiano">Colombiano</option>
-              <option value="Venezolano">Venezolano</option>
-              <option value="Ecuatoriano">Ecuatoriano</option>
-              <option value="Peruano">Peruano</option>
-              <option value="Boliviano">Boliviano</option>
-              <option value="Chileno">Chileno</option>
-              <option value="Argentino">Argentino</option>
-              <option value="Uruguayo">Uruguayo</option>
-              <option value="Paraguayo">Paraguayo</option>
-              <option value="Brasileño">Brasileño</option>
-              <option value="Dominicano">Dominicano</option>
-              <option value="Cubano">Cubano</option>
-              <option value="Puertorriqueño">Puertorriqueño</option>
-              <option value="Haitiano">Haitiano</option>
-              <option value="Jamaicano">Jamaicano</option>
-              <option value="Español">Español</option>
-              <option value="Estadounidense">Estadounidense</option>
-              <option value="Canadiense">Canadiense</option>
-              <option value="Italiano">Italiano</option>
-              <option value="Francés">Francés</option>
-              <option value="Alemán">Alemán</option>
-              <option value="Chino">Chino</option>
-              <option value="Japonés">Japonés</option>
-              <option value="Otro">Otro</option>
-            </select>
-
-             <label className="form-label">Cedula</label>
-            <input type="text" name="cedula" className="form-control" value={formData.cedula} onChange={handleChange} required placeholder="Ej. 123456789"/>
-            
-
+          
+             <label className="form-label">Documento de Identidad</label>
+               <select name="documento" className="form-control" value={formData.documento} onChange={handleChange} required> 
+              <option value="">-- Selecciona tu documento --</option>
+              <option value="Cedula de Identidad ">Cedula de Identidad</option>
+              <option value="Dimex">Dimex</option>
+        
+             </select>
+           <label className="form-label">Número de Identificación</label>
+            <input type="text" name="numeroIdentificacion" className="form-control" value={formData.numeroIdentificacion} onChange={handleChange} required placeholder="_-__-__"/>
              <label className="form-label"> Telefono</label>
             <input type="text" name="telefono" className="form-control" value={formData.telefono} onChange={handleChange} required placeholder="Ej. 8745-3321"/>
             
@@ -131,6 +112,29 @@ const RegisterPage = () => {
               </ul>
             </div>
 
+          </div>
+
+          <div className="terms-container">
+            <h4 className="terms-title">Términos y Condiciones</h4>
+            <div className="terms-box">
+              <p>Al completar el proceso de registro en esta plataforma de cursos virtuales, el usuario declara que la información proporcionada es veraz, completa y actualizada. El registro es personal e intransferible, por lo que cada usuario es responsable de mantener la confidencialidad de su nombre de usuario y contraseña.</p>
+              <p>El usuario se compromete a no crear cuentas falsas, suplantar la identidad de otras personas o utilizar datos que no le pertenezcan. En caso de detectarse información incorrecta, fraudulenta o incompleta, la plataforma se reserva el derecho de suspender o eliminar la cuenta sin previo aviso.</p>
+              <p>El acceso a la plataforma está destinado exclusivamente a fines educativos. Por lo tanto, el usuario acepta utilizar su cuenta únicamente para participar en los cursos, actividades y servicios ofrecidos, respetando en todo momento las normas de convivencia y el uso adecuado de los recursos digitales.</p>
+              <p>Asimismo, el usuario reconoce que no está permitido compartir su cuenta con terceros. Cualquier uso indebido, incluyendo el acceso simultáneo desde múltiples dispositivos de manera sospechosa o la distribución de credenciales, podrá dar lugar a la cancelación del acceso.</p>
+              <p>La plataforma podrá enviar notificaciones relacionadas con el proceso de aprendizaje, actualizaciones de cursos, recordatorios y comunicaciones importantes al correo electrónico registrado. Es responsabilidad del usuario asegurarse de que su información de contacto sea correcta y esté activa.</p>
+              <p>En cuanto a la protección de datos, la información personal proporcionada durante el registro será tratada de manera confidencial y utilizada únicamente para fines académicos, administrativos y de mejora del servicio, conforme a la normativa vigente en materia de protección de datos.</p>
+              <p>La plataforma se reserva el derecho de modificar estos términos en cualquier momento. El uso continuo del sistema después de dichos cambios implicará la aceptación de los mismos.</p>
+              <p>Al registrarse, el usuario confirma que ha leído, comprendido y aceptado estos términos y condiciones.</p>
+            </div>
+            <div className="terms-checkbox-group">
+              <input 
+                type="checkbox" 
+                id="terms" 
+                checked={acceptedTerms} 
+                onChange={(e) => setAcceptedTerms(e.target.checked)}
+              />
+              <label htmlFor="terms">Acepto los términos y condiciones</label>
+            </div>
           </div>
           
           <button type="submit" className="btn-primary">Registrarse</button>

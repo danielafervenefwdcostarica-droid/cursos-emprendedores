@@ -189,16 +189,102 @@
 
 .admin-cursos-right {
   flex: 2;
-}
-
-.admin-cursos-h3 {
-  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .admin-cursos-ul {
-  list-style: none;
+  list-style: none; 
   padding: 0;
   margin: 0;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* Scrollbar styling for the course list */
+.admin-cursos-ul::-webkit-scrollbar {
+  width: 6px;
+}
+
+.admin-cursos-ul::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.admin-cursos-ul::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.admin-cursos-ul::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* Compact version of Course Card for Admin */
+.admin-curso-li .curso-card-horizontal {
+  padding: 10px;
+  gap: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  background: #fafafa;
+}
+
+.admin-curso-li .curso-image-wrapper {
+  width: 140px;
+  height: 90px;
+  border-radius: 8px;
+}
+
+.admin-curso-li .curso-content {
+  padding: 0;
+}
+
+.admin-curso-li .curso-title {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.admin-curso-li .curso-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Only 1 line of description */
+  line-clamp: 1;
+  font-size: 0.85rem;
+}
+
+.admin-curso-li .curso-meta-top {
+  margin-bottom: 6px;
+  gap: 8px;
+}
+
+.admin-curso-li .curso-tag {
+  padding: 2px 6px;
+  font-size: 0.65rem;
+}
+
+.admin-curso-li .curso-footer {
+  margin-top: 8px;
+  padding-top: 8px;
+}
+
+.admin-curso-li .curso-info {
+  gap: 12px;
+}
+
+.admin-curso-li .curso-info-item {
+  font-size: 0.75rem;
+}
+
+.admin-curso-li .curso-btn-inscribirse {
+  display: none; /* Hide enroll button in admin view */
+}
+
+.admin-curso-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: -15px;
+  z-index: 10;
 }
 
 .admin-no-cursos {
@@ -207,11 +293,13 @@
 
 .admin-curso-li {
   display: flex;
-  justify-content: space-between;
-  padding: 15px;
+  flex-direction: column;
+  padding: 12px;
   border-bottom: 1px solid #eee;
-  align-items: center;
-  gap: 15px;
+  gap: 12px;
+  background-color: white;
+  margin-bottom: 10px;
+  border-radius: 12px;
 }
 
 .admin-curso-img {

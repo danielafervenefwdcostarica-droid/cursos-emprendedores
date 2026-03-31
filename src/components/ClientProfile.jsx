@@ -12,9 +12,26 @@ const ClientProfile = () => {
     const usuarioGuardado = localStorage.getItem('usuarioLogueado');
     if (usuarioGuardado) {
       const parsedUser = JSON.parse(usuarioGuardado);
-      return { ...parsedUser, plan: "Premium",  cursoActual: parsedUser.curso || "" };
+      return { 
+        ...parsedUser, 
+        plan: "Premium",  
+        cursoActual: parsedUser.curso || "",
+        edad: parsedUser.edad || "",
+        documento: parsedUser.documento || "",
+        numeroIdentificacion: parsedUser.numeroIdentificacion || "",
+        telefono: parsedUser.telefono || ""
+      };
     }
-    return { nombre: "", email: "", plan: "Básico", fechaRegistro: "", cursoActual: "" };
+    return { 
+      nombre: "", 
+      email: "", 
+      plan: "Básico", 
+      cursoActual: "",
+      edad: "",
+      documento: "",
+      numeroIdentificacion: "",
+      telefono: ""
+    };
   });
 
   const [isEditing, setIsEditing] = useState(false);
@@ -36,9 +53,15 @@ const ClientProfile = () => {
 
   // Funciones de manejo
   const handleLogout = () => {
+    // Limpiamos los datos del usuario del almacenamiento local para cerrar la sesión
     localStorage.removeItem('usuarioLogueado');
-    navigate('/login');
+    localStorage.removeItem('id');
+    // Redirigimos a la página principal fuera de la cuenta
+    navigate('/');
   };
+
+  // Función para regresar a la página de inicio directamente desde el perfil del cliente
+  const handleGoHome = () => navigate('/');
 
   const iniciarEdicion = () => {
     setEditForm(userData);
@@ -67,6 +90,39 @@ const ClientProfile = () => {
     }
   };
 
+  const agregarTarjeta = async (nuevaTarjeta) => {
+    try {
+      const tarjetasActualizadas = [...(userData.tarjetas || []), nuevaTarjeta];
+      const datosActualizados = { ...userData, tarjetas: tarjetasActualizadas };
+      
+      if (userData.id) {
+        await putUsuarios(userData.id, datosActualizados);
+      }
+      
+      setUserData(datosActualizados);
+      localStorage.setItem('usuarioLogueado', JSON.stringify(datosActualizados));
+      alert('Tarjeta agregada exitosamente.');
+    } catch (error) {
+      console.error("Error al agregar tarjeta:", error);
+    }
+  };
+
+  const eliminarTarjeta = async () => {
+    try {
+      const datosActualizados = { ...userData, tarjetas: [] };
+      
+      if (userData.id) {
+        await putUsuarios(userData.id, datosActualizados);
+      }
+      
+      setUserData(datosActualizados);
+      localStorage.setItem('usuarioLogueado', JSON.stringify(datosActualizados));
+      alert('Datos de tarjeta eliminados exitosamente.');
+    } catch (error) {
+      console.error("Error al eliminar tarjeta:", error);
+    }
+  };
+
   // Renderizamos el Componente visual y le pasamos los datos y funciones
   return (
     <ClientComponent 
@@ -75,10 +131,13 @@ const ClientProfile = () => {
       editForm={editForm}
       cursosDisponibles={cursosDisponibles}
       handleLogout={handleLogout}
+      handleGoHome={handleGoHome}
       iniciarEdicion={iniciarEdicion}
       cancelarEdicion={cancelarEdicion}
       manejarCambios={manejarCambios}
       guardarCambios={guardarCambios}
+      agregarTarjeta={agregarTarjeta}
+      eliminarTarjeta={eliminarTarjeta}
     />
   );
 };

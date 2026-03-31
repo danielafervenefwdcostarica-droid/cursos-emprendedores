@@ -140,3 +140,80 @@
   font-size: 14px;
   text-decoration: underline;
 }
+
+/* Términos y Condiciones */
+.terms-container {
+  margin-top: 10px;
+  padding: 15px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.terms-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.terms-box {
+  max-height: 120px;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #475569;
+}
+
+.terms-box p {
+  margin: 0 0 8px 0;
+}
+
+.terms-box p:last-child {
+  margin-bottom: 0;
+}
+
+/* Custom scrollbar for terms-box */
+.terms-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.terms-box::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.terms-box::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.terms-box::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.terms-checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+  cursor: pointer;
+}
+
+.terms-checkbox-group input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.terms-checkbox-group label {
+  cursor: pointer;
+}

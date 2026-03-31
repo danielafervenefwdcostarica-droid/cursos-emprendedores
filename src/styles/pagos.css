@@ -93,11 +93,7 @@
     object-fit: contain;
 }
 
-/* Custom logos for demonstration if images are not available */
-.method-logo {
-    font-weight: 800;
-    font-size: 14px;
-}
+
 
 .sepa { color: #1d4ed8; }
 .visa { color: #1a1f71; font-style: italic; }
@@ -107,6 +103,7 @@
 }
 .apple-pay { color: #000; display: flex; align-items: center; gap: 4px; }
 .google-pay { color: #5f6368; display: flex; gap: 2px; }
+.paypal { color: #003087; font-weight: 900; }
 
 .btn-comprar {
     background: #0f172a;
@@ -161,10 +158,10 @@
 }
 
 .input-field {
-    padding: 14px;
+    padding: 13px;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
-    font-size: 15px;
+    font-size: 11px;
     font-family: inherit;
     transition: all 0.2s;
     background: #f8fafc;
@@ -239,10 +236,25 @@
     color: #0f172a;
 }
 
-.payment-status-container p {
-    color: #64748b;
+/* Estilización para el cuadro de mensaje de éxito solicitado */
+/* Esto asegura que el mensaje largo sea legible y se vea como un 'cuadro' visualmente atractivo */
+.success-message-box {
+    background: #f0fdf4;
+    border: 1px solid #bbfcce;
+    border-radius: 16px;
+    padding: 20px;
+    margin: 10px 0;
+}
+
+.success-message-box p {
+    color: #166534 !important; /* Verde oscuro para legibilidad */
     margin: 0;
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.success-message-box strong {
+    color: #15803d;
 }
 
 .btn-volver {

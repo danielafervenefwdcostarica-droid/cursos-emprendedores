@@ -1,74 +1,114 @@
 {
-  "usuarios": [
-    {
-      "id": "7fbd",
-      "nombre": "Ale",
-      "email": "Ale@gmail.com",
-      "password": "12345",
-      "role": "admin"
-    },
-    {
-      "id": "88e4",
-      "nombre": "Ale",
-      "email": "Ale@gmail.com",
-      "password": "123456",
-      "role": "admin"
-    },
-    {
-      "id": "cbf9",
-      "nombre": "d",
-      "email": "dd@gmail.com",
-      "password": "1234",
-      "role": "cliente"
-    },
-    {
-      "nombre": "dabiela",
-      "email": "danielafervene@gmail.com",
-      "password": "1234",
-      "role": "admin",
-      "id": "Xsvqe0YpPdE"
-    }
-  ],
+  "usuarios": [],
   "cursos": [
     {
-      "id": "3d5c",
-      "nombre": "jnojn",
-      "categoria": "artesania",
-      "descripcion": "bkbkjoj",
-      "duracion": "oonmopji",
-      "horario": "km[ok-",
-      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774476609/wei3qbscr9tbk8b9zxoy.jpg",
-      "tag": "artesania",
-      "meta": "oonmopji"
+      "id": "1837",
+      "nombre": "Soporte Técnico",
+      "categoria": "tecnologia",
+      "descripcion": "Un curso de soporte técnico es una formación orientada a enseñar cómo diagnosticar, reparar y mantener equipos informáticos, tanto en su parte física (hardware) como en los programas que utilizan (software). Durante el curso, se aprenden temas como el funcionamiento interno de una computadora, identificación y cambio de componentes, instalación de sistemas operativos como Windows o Linux, configuración de programas, eliminación de virus y optimización del rendimiento. Además, incluye conocimientos básicos de redes, como conexión a internet, configuración de WiFi y solución de problemas de conectividad. También se desarrolla la capacidad de analizar fallas comunes, encontrar sus causas y aplicar soluciones efectivas. Un aspecto importante es la atención al usuario, ya que el técnico debe saber comunicarse claramente para ayudar a otras personas a resolver sus problemas tecnológicos. Este tipo de curso prepara para trabajar en áreas como soporte técnico en empresas, reparación de computadoras, asistencia remota (help desk) o incluso emprender un negocio propio ofreciendo servicios informáticos.",
+      "duracion": "6 de Abril al 28 de Septiembre",
+      "horario": "Lunes de 5:00 pm a 8:00 pm",
+      "precio": "₡10 000",
+      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774972952/rvtsodpzfiud4nloszzw.png",
+      "tag": "tecnologia",
+      "meta": "6 de Abril al 28 de Septiembre"
     },
     {
-      "id": "f694",
-      "nombre": "hbkiygfiug",
+      "id": "8c71",
+      "nombre": "Diseño Digital",
       "categoria": "tecnologia",
-      "descripcion": "neigrnhogiurhivu",
-      "duracion": " vufvfug87",
-      "horario": "jyguyfd76f8pgt9",
-      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774712534/ojbzvanaqwxryjiav3hh.jpg",
+      "descripcion": "Un curso de diseño digital es una formación enfocada en enseñar cómo crear contenido visual utilizando herramientas tecnológicas, combinando creatividad y habilidades técnicas. En este tipo de curso se aprenden fundamentos del diseño gráfico como el uso del color, la tipografía, la composición y la identidad visual, además del manejo de programas especializados para crear imágenes, ilustraciones, logotipos, publicaciones para redes sociales, páginas web y contenido multimedia. También se desarrollan habilidades para comunicar ideas de forma visual, adaptándose a distintos formatos digitales como publicidad, redes sociales o sitios web. Algunos cursos incluyen nociones de edición de fotos y video, animación básica y diseño para experiencia de usuario (UX/UI). Al finalizar, la persona puede trabajar como diseñador gráfico digital, creador de contenido, community manager o freelancer, ofreciendo servicios creativos para empresas o proyectos personales.",
+      "duracion": "18 de Mayo al 17 de Agosto",
+      "horario": "L a V de 4:30 pm a 7:00 pm",
+      "precio": "₡10 000",
+      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774973157/r52ykttfdao65o0izug6.jpg",
       "tag": "tecnologia",
-      "meta": " vufvfug87"
+      "meta": "18 de Mayo al 17 de Agosto"
+    },
+    {
+      "id": "db5e",
+      "nombre": "Lógica Computacional",
+      "categoria": "tecnologia",
+      "descripcion": "Un curso de lógica computacional es una formación que enseña a pensar de manera estructurada y ordenada para resolver problemas usando principios similares a los que utilizan las computadoras. En este tipo de curso se aprenden conceptos como algoritmos (pasos para resolver un problema), diagramas de flujo, estructuras de control (decisiones y repeticiones) y razonamiento lógico. No siempre implica programar al inicio, sino entender cómo analizar una situación, dividirla en partes y encontrar una solución paso a paso. También se desarrollan habilidades como el pensamiento crítico, la resolución de problemas y la capacidad de crear instrucciones claras y precisas. Este curso es una base fundamental para aprender programación, ya que ayuda a comprender cómo funcionan los programas y cómo se construyen desde cero, facilitando luego el aprendizaje de lenguajes como Python, Java o JavaScript.",
+      "duracion": "11 de Mayo al 9 de Noviembre ",
+      "horario": "L y J  7:30 am a 12:30 pm ",
+      "precio": "₡10 000",
+      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774973387/btya8ajlscpmgbkachfs.jpg",
+      "tag": "tecnologia",
+      "meta": "11 de Mayo al 9 de Noviembre "
+    },
+    {
+      "id": "0ace",
+      "nombre": "Bordado",
+      "categoria": "artesania",
+      "descripcion": "El bordado es una técnica de artesanía que consiste en decorar telas utilizando hilo y aguja para crear diseños, figuras o patrones. En un curso de bordado se aprende desde lo más básico, como enhebrar la aguja y hacer puntadas simples, hasta técnicas más avanzadas que permiten crear flores, letras, paisajes o diseños personalizados sobre diferentes tipos de tela. También se enseñan distintos tipos de puntadas (como punto cruz, punto cadena o punto satén), el uso de bastidores, combinación de colores y elección de materiales. Además de desarrollar habilidades manuales, el bordado fomenta la creatividad, la paciencia y la concentración. Este tipo de actividad puede realizarse como hobby o convertirse en una fuente de ingresos, ya que permite crear productos como ropa personalizada, accesorios, decoraciones o regalos hechos a mano.",
+      "duracion": "12 de Mayo al 7 de Julio",
+      "horario": "Martes 2:00 pm a 5:00 pm",
+      "precio": "₡10 000",
+      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774973643/cgpmedjelulmzbloztj1.webp",
+      "tag": "artesania",
+      "meta": "12 de Mayo al 7 de Julio"
+    },
+    {
+      "id": "0e5b",
+      "nombre": "Costura",
+      "categoria": "artesania",
+      "descripcion": "La costura es una técnica de artesanía que consiste en unir telas utilizando aguja e hilo, ya sea a mano o con máquina, para crear o reparar prendas y otros productos textiles. En un curso de costura se aprende desde lo básico, como enhebrar la aguja, hacer puntadas simples y usar una máquina de coser, hasta habilidades más avanzadas como tomar medidas, cortar telas, seguir patrones y confeccionar ropa como camisas, vestidos o pantalones. También se enseñan técnicas de acabado, tipos de telas, combinación de colores y diseño básico. Además de ser una habilidad práctica para el día a día, la costura fomenta la creatividad y puede convertirse en una oportunidad de emprendimiento, permitiendo crear y vender prendas, accesorios o productos personalizados.",
+      "duracion": "9 de Julio al 10 de Septiembre",
+      "horario": "Jueves 2:30 pm a 5:30 pm ",
+      "precio": "₡10 000",
+      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774973803/az6aarz3iioxj7ed51nb.webp",
+      "tag": "artesania",
+      "meta": "9 de Julio al 10 de Septiembre"
+    },
+    {
+      "id": "f34f",
+      "nombre": "Creacion de piezas Artesanales",
+      "categoria": "artesania",
+      "descripcion": "La creación de piezas artesanales es una actividad que consiste en diseñar y elaborar objetos únicos hechos a mano, utilizando diferentes materiales como madera, tela, cerámica, vidrio, cuero o materiales reciclados. En un curso de este tipo se aprende desde la selección de materiales y herramientas hasta las técnicas de elaboración, ensamblaje y acabado de cada pieza, cuidando detalles como la forma, el color y la textura. Además, se desarrollan habilidades creativas y manuales que permiten transformar ideas en productos reales, como decoraciones, accesorios, utensilios o regalos. Este tipo de formación también puede incluir nociones básicas de diseño y comercialización, lo que permite no solo crear por hobby, sino también emprender y generar ingresos a través de la venta de piezas artesanales.",
+      "duracion": "8 de Julio al17 de Agosto",
+      "horario": "L y S de 12:00pm  a 3:00 pm",
+      "precio": "₡10 000",
+      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774974063/wzs7bigcbpzau6ike5m0.webp",
+      "tag": "artesania",
+      "meta": "8 de Julio al17 de Agosto"
+    },
+    {
+      "id": "df40",
+      "nombre": "Inglés(inicial",
+      "categoria": "idiomas",
+      "descripcion": "Un curso de **inglés inicial** es una formación básica diseñada para personas que empiezan desde cero o tienen muy poco conocimiento del idioma. En este nivel se aprende lo fundamental para comunicarse en situaciones simples, como saludar, presentarse, decir la edad, hablar de la familia, los gustos y actividades diarias. También se enseñan palabras básicas (vocabulario), estructuras sencillas de gramática (como el verbo “to be”), números, colores, días de la semana y frases comunes. Además, se trabaja la pronunciación y la comprensión auditiva para entender conversaciones básicas. El objetivo principal es que el estudiante pueda comenzar a entender y usar el inglés en la vida diaria de forma simple, creando una base sólida para seguir avanzando a niveles más altos.",
+      "duracion": "4 de Marzo al 8 de Junio",
+      "horario": "L a V de 4:30 pm a 6:00 pm",
+      "precio": "₡10 000",
+      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774974262/w7cijfemqtvs9zslzkrt.jpg",
+      "tag": "idiomas",
+      "meta": "4 de Marzo al 8 de Junio"
+    },
+    {
+      "id": "41fb",
+      "nombre": "Portugués(intermedio)",
+      "categoria": "idiomas",
+      "descripcion": "Un curso de **portugués intermedio** está diseñado para personas que ya tienen una base del idioma y buscan mejorar su fluidez y comprensión. En este nivel se profundiza en la gramática, aprendiendo tiempos verbales más complejos (como pasado y futuro), el uso correcto de preposiciones y estructuras más elaboradas. También se amplía el vocabulario para poder hablar de temas cotidianos con mayor detalle, como trabajo, estudios, viajes y opiniones personales. Además, se practican conversaciones más largas, comprensión de textos y audios, y se mejora la pronunciación. El objetivo es que el estudiante pueda comunicarse con mayor seguridad, entender conversaciones más naturales y desenvolverse en situaciones reales, tanto sociales como laborales.",
+      "duracion": "15 de Mayo al 12 de Octubre",
+      "horario": "L y J  7:00 am a 10:30 am",
+      "precio": "₡10 000",
+      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774974490/qa20om0rgbh4jwseld1l.jpg",
+      "tag": "idiomas",
+      "meta": "15 de Mayo al 12 de Octubre"
+    },
+    {
+      "id": "2c4d",
+      "nombre": "Peluquería",
+      "categoria": "belleza",
+      "descripcion": "Un curso de peluquería es una formación completa orientada a enseñar el cuidado, tratamiento y transformación del cabello mediante técnicas profesionales. En este tipo de curso se comienza con lo básico, como la higiene capilar, el lavado correcto, el uso adecuado de herramientas (tijeras, máquinas, secadoras, planchas) y el conocimiento de los diferentes tipos de cabello y cuero cabelludo. A medida que se avanza, se aprenden técnicas de corte para hombres y mujeres, estilos modernos, degradados, capas y diseño de peinados. También se incluyen procesos químicos como la coloración, decoloración, aplicación de tintes, mechas, alisados y tratamientos capilares para mejorar la salud del cabello.  Además, el curso enseña cómo analizar el rostro y estilo de cada cliente para recomendar cortes o colores que favorezcan su apariencia. Otro aspecto importante es la atención al cliente, la comunicación y el manejo profesional dentro de un salón de belleza. Muchos cursos también incluyen prácticas reales, donde el estudiante trabaja con modelos para ganar experiencia. Esta formación no solo permite trabajar en salones de belleza, barberías o spas, sino que también brinda la oportunidad de emprender un negocio propio, ofreciendo servicios a domicilio o abriendo tu propio salón.",
+      "duracion": "10 de Agosto al 16 de Noviembre",
+      "horario": "L y S 4:00 pm a 7:00 pm",
+      "precio": "₡10 000",
+      "imagen": "https://res.cloudinary.com/djhlieqmd/image/upload/v1774974743/y8p17n17pxf92km3yevc.jpg",
+      "tag": "belleza",
+      "meta": "10 de Agosto al 16 de Noviembre"
     }
   ],
-  "mensajes": [
-    {
-      "nombre": "daniela",
-      "email": "danielafervene@gmail.com",
-      "asunto": "Becas y Financiamiento",
-      "mensaje": "sdefrgthyjuk",
-      "privacidad": true,
-      "id": "4HLjj2DIalM"
-    },
-    {
-      "nombre": "an",
-      "email": "danielavene@gmail.com",
-      "asunto": "Otros",
-      "mensaje": "werftghyjuklñ",
-      "privacidad": true,
-      "id": "Mk9tLIsAq1A"
-    }
-  ]
+  "mensajes": []
 }

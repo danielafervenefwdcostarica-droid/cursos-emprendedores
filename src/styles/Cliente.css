@@ -24,9 +24,31 @@
   font-weight: bold;
 }
 
-/* Valor de tarjeta activa */
+/* Estilos para el nuevo botón de 'Home' en el perfil del cliente */
+.client-home-btn {
+  padding: 8px 16px;
+  background-color: #004aad;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Contenedor flexible para alinear Home y Cerrar Sesión en h-flex */
+.client-header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Valor de tarjeta activa - Indica que el usuario ha completado su registro e inscripción */
 .client-card-value-active {
-  color: #28a745;
+  color: #28a745; /* Verde para un estado positivo/activo */
+}
+
+/* Valor de tarjeta inactiva - Indica que el usuario solo se ha registrado pero no se ha matriculado */
+.client-card-value-inactive {
+  color: #dc3545; /* Rojo para llamar la atención sobre la falta de matrícula */
 }
 
 /* Valor de tarjeta de curso */
@@ -48,11 +70,9 @@
   margin-top: 20px;
 }
 
-/* Título de tarjeta personalizado */
-.client-card-title-custom {
-  color: #1a1a1a;
-  font-size: 18px;
-}
+ 
+
+ 
 
 /* Separador horizontal */
 .client-hr {

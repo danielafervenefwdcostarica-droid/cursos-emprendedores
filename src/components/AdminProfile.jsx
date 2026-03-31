@@ -36,7 +36,12 @@ const AdminProfile = () => {
   const actualizarUsuario = putUsuarios;
   const eliminarUsuarioAPI = deleteUsuarios;
 
-  const handleLogout = () => navigate('/login'); 
+  const handleLogout = () => {
+    // Cerramos sesión limpiando el almacenamiento y enviando al usuario al inicio
+    localStorage.removeItem('usuarioLogueado');
+    localStorage.removeItem('id');
+    navigate('/');
+  }; 
 
   const abrirNuevoUsuario = (role) => {
     const assignedRole = typeof role === 'string' ? role : 'cliente';

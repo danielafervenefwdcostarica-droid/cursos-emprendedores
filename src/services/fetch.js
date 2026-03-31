@@ -43,8 +43,9 @@ async function postUsuarios(usuario) {
 
 export { postUsuarios }
 
-//PUT USUARIOS
-async function putUsuarios(usuario, id) {
+// PUT USUARIOS - Se corrigió el orden de los parámetros (id, usuario) para que coincida con las llamadas en los componentes
+// Esto asegura que la base de datos se actualice correctamente cuando un estudiante se inscribe o edita su perfil
+async function putUsuarios(id, usuario) {
     try {
         const respuesta = await fetch("http://localhost:3001/usuarios/" + id, {
             method: "PUT",
@@ -62,8 +63,9 @@ async function putUsuarios(usuario, id) {
 
 export { putUsuarios }
 
-//PATCH USUARIOS
-async function patchUsuarios(usuario, id) {
+// PATCH USUARIOS - Se corrigió el orden de (id, usuario) para consistencia con el resto de la app
+// Permite actualizaciones parciales del perfil del usuario sin errores de parámetro
+async function patchUsuarios(id, usuario) {
     try {
         const respuesta = await fetch("http://localhost:3001/usuarios/" + id, {
             method: "PATCH",

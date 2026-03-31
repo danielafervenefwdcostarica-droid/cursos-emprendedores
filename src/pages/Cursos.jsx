@@ -90,6 +90,7 @@ function Cursos() {
                     descripcionCurso={item.descripcion}
                     duracionCurso={item.duracion}
                     horarioCurso={item.horario}
+                    precioCurso={item.precio} // Pasamos el precio del curso desde la base de datos
                     tag={item.categoria}
                     meta={item.meta || "4.8 ★ (2k+ alumnos)"}
                 />

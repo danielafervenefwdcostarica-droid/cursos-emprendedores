@@ -26,11 +26,9 @@ const LoginPage = () => {
       // GUARDAMOS EL USUARIO EN LOCALSTORAGE PARA QUE EL PERFIL LO ENCUENTRE
       localStorage.setItem('usuarioLogueado', JSON.stringify(usuarioValido));
       localStorage.setItem("id",usuarioValido.id)
-      // Navigate based on role
-      if (usuarioValido.role === 'admin') {
-      } else {
-        navigate('/PerfilCliente');
-      }
+      // Se cambió la navegación para que, tras un login exitoso, el usuario vaya a la página principal ('/')
+      // en lugar de enviarlo a su perfil. Esto permite una mejor experiencia al ver directamente los cursos.
+      navigate('/');
     }else{
       alert(" contraseña o email incorrecto")
     }
@@ -44,14 +42,14 @@ const LoginPage = () => {
           <h2 className="register-title">Iniciar Sesión</h2>
           <p className="register-subtitle">Ingresa tus credenciales para continuar</p>
         </div>
-        <form  className="register-form">
+        <form className="register-form" autoComplete="off">
           <div className="form-group">
             <label className="form-label">Correo Electrónico</label>
-            <input type="email" name="email" className="form-control" value={emailUsuario} onChange={(e)=>setEmailUsuario(e.target.value)} required placeholder="rl123@gmail.com"/>
+            <input type="email" name="email" className="form-control" value={emailUsuario} onChange={(e)=>setEmailUsuario(e.target.value)} required placeholder="rl123@gmail.com" autoComplete="off"/>
           </div>
           <div className="form-group">
             <label className="form-label">Contraseña</label>
-            <input type="password" name="password" className="form-control" value={claveUsuario} onChange={(e)=>setClaveUsuario(e.target.value)} required placeholder="••••••••"/>
+            <input type="password" name="password" className="form-control" value={claveUsuario} onChange={(e)=>setClaveUsuario(e.target.value)} required placeholder="••••••••" autoComplete="new-password"/>
           </div>
           <button type="button" onClick={iniciarSesion} className="btn-primary">Entrar</button>
         </form>
